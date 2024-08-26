@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PanelManagement : MonoBehaviour
 {
     public RectTransform RedPanel;
-    Vector2 targetPanelPos = new Vector2(10, 0);
+    Vector2 targetPanelPos = new Vector2(1, 0);
     public Image panelColor;
     //public Color endColor;
     [SerializeField] GameObject botonPantalla;
