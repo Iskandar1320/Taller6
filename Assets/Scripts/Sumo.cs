@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Sumo : MonoBehaviour
 {
@@ -7,7 +6,6 @@ public class Sumo : MonoBehaviour
     [SerializeField] private float _movementSpeed = 1.0f; // Velocidad de movimiento
     [SerializeField] private GameObject _directionReference1; // Objeto de referencia para la dirección del jugador 1
     [SerializeField] private GameObject _directionReference2; // Objeto de referencia para la dirección del jugador 2
-    [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private Transform _p1; // Transform del Jugador 1
     [SerializeField] private Transform _p2; // Transform del Jugador 2
 
@@ -16,13 +14,12 @@ public class Sumo : MonoBehaviour
 
     private void Start()
     {
-        _playerInput = GetComponent<PlayerInput>();
     }
 
     void Update()
     {
         // Jugador 1 controlado por el botón sur del gamepad
-        if (Gamepad.current.buttonSouth.isPressed)
+        if (Input.touchCount>(0))
         {
             _isTackle1 = true;
         }
@@ -32,7 +29,7 @@ public class Sumo : MonoBehaviour
         }
 
         // Jugador 2 controlado por el botón oeste del gamepad
-        if (Gamepad.current.buttonWest.isPressed)
+        if (Input.touchCount > (0))
         {
             _isTackle2 = true;
         }
