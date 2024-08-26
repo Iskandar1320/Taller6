@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
-public class PanelMangement : MonoBehaviour
+public class PanelManagement : MonoBehaviour
 {
     public RectTransform RedPanel;
-    Vector2 targetPanelPos = new Vector2(10, 0);
+    Vector2 targetPanelPos = new Vector2(1, 0);
     public Image panelColor;
     //public Color endColor;
     [SerializeField] GameObject botonPantalla;
-    public void changeScene() 
+    public void ChangeScene(string _sceneName) 
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(_sceneName);
     }
     
     public void MovePanel()
