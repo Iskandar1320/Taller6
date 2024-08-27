@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Sumo : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Sumo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textMeshPro;
     [SerializeField] private GameObject panel;
     [SerializeField] private Button btn;
+    [SerializeField] private Image colorpanel;
 
     private bool _isTackle1 = false;
     private bool _isTackle2 = false;
@@ -94,6 +96,7 @@ public class Sumo : MonoBehaviour
         else if (other.transform == _p2)
         {
             PlayerLost(2);
+            
         }
     }
 
@@ -109,7 +112,12 @@ public class Sumo : MonoBehaviour
 
     private void PlayerLost(int playerNumber)
     {
+        Color32 color1 = new Color32(161, 28, 28, 233);
+        Color32 color2 = new Color32(28, 39, 161, 233);
         _textMeshPro.text = playerNumber > 1 ? "Player 1 Wins" : "Player 2 Wins";
+        if (playerNumber == 1)colorpanel.color = color2;
+        else colorpanel.color = color1;
         panel.SetActive(true);
+        SceneManager.LoadScene(0);
     }
 }
