@@ -13,6 +13,7 @@ public class PanelManagement : MonoBehaviour
     public Image panelColor;
     //public Color endColor;
     [SerializeField] GameObject botonPantalla;
+    [SerializeField] TextMeshProUGUI toca;
     private TextMeshPro _textMeshPro;
     private void Start()
     {
@@ -34,6 +35,7 @@ public class PanelManagement : MonoBehaviour
         // RedPanel.DOAnchorPos(targetPanelPos, 1).SetEase(Ease.Flash).SetDelay(0.1f);
         RedPanel.DOAnchorPos(targetPanelPos, 1).SetEase(Ease.OutBounce);
         panelColor.DOFade(1, 1f);
+        toca.text = "";
         botonPantalla.SetActive(false);
     }
 }
