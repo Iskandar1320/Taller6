@@ -94,7 +94,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""30e0b717-4d53-429d-ba4c-9446aab548b8"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mobile"",

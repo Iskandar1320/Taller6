@@ -701,7 +701,19 @@ MonoBehaviour:
     m_ActionId: 1a93adb5-9f7b-4079-8a92-7322f262bb98
     m_ActionName: Player/Turn
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 540323294}
+        m_TargetAssemblyTypeName: ShipsPlayerController, Assembly-CSharp
+        m_MethodName: OnShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0f292d0e-080a-4899-a77a-3396fcaab7c8
     m_ActionName: Player/Shot
   m_NeverAutoSwitchControlSchemes: 0
@@ -927,7 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Gamepad>/buttonNorth
+  m_ControlPath: <iOSGameController>/buttonNorth
 --- !u!1 &847147460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -478.3, y: -125.6}
+  m_AnchoredPosition: {x: -478.3, y: -87}
   m_SizeDelta: {x: 70.9, y: 232.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363222359
