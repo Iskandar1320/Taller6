@@ -8,6 +8,7 @@ public class Turret : MonoBehaviour
     [SerializeField] GameObject proyectilePrefab;
     [SerializeField] float reloadDelay = 1.0f;
     [SerializeField] float currentDelay = 0;
+    [SerializeField] AudioSource shootAudioSource;
 
     private bool canShoot = true;
     private Collider2D[] shipColliders;
@@ -46,6 +47,10 @@ public class Turret : MonoBehaviour
                 {
                    Physics2D.IgnoreCollision(proyectile.GetComponent<Collider2D>(), collider);
                 }
+            }
+            if (shootAudioSource != null)
+            {
+                shootAudioSource.Play();
             }
         }
     }
