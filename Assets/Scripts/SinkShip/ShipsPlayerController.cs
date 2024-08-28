@@ -11,8 +11,6 @@ public class ShipsPlayerController : MonoBehaviour
     [SerializeField] Vector2 speed;
     [SerializeField] int playerNumber;
     [SerializeField] float rotationSpeed = 90f;
-    [SerializeField] AudioClip shooting_Audio;
-    [SerializeField] AudioClip movement_Audio;
     [SerializeField] SteeringWheel steeringWheel;
 
     private Rigidbody2D rb;
@@ -24,6 +22,8 @@ public class ShipsPlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
+    
    
 
 
@@ -34,9 +34,11 @@ public class ShipsPlayerController : MonoBehaviour
         float rotationAmount = steeringInput   * rotationSpeed *Time.deltaTime;
         rb.rotation += rotationAmount;
 
-        Vector2 forwardMovement = transform.up * speed.y * Time.fixedDeltaTime;
+        Vector2 forwardMovement = transform.right * speed.y * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forwardMovement);
     }
+
+    
     public void OnShot()
     {
         Debug.Log("Mathafakas");

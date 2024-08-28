@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: LevelLayout
+    uniqueID: 898209125
+    locked: 0
+  - name: Players
+    uniqueID: 2819519337
+    locked: 0
+  - name: Proyectiles
+    uniqueID: 2221889677
+    locked: 0
