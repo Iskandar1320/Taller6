@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class ShipsPlayerController : MonoBehaviour
 {
@@ -16,8 +17,20 @@ public class ShipsPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GetBodyMovement();
+        GetShootingInput();
     }
+
+    private void GetShootingInput()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void GetBodyMovement()
+    {
+        throw new NotImplementedException();
+    }
+
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + Speed * Time.fixedDeltaTime);
