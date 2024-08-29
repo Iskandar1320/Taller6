@@ -18,6 +18,8 @@ public class Sumo : MonoBehaviour
     [SerializeField] private Collider2D _gameZone;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
     [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject mano1;
+    [SerializeField] private GameObject mano2;
     [SerializeField] private Image colorpanel;
     [SerializeField] private TextMeshProUGUI _puntosAzul;
     [SerializeField] private TextMeshProUGUI _puntosRojo;
@@ -109,19 +111,23 @@ public class Sumo : MonoBehaviour
         {
             if (_isTackle1)
             {
+                mano1.SetActive(true);
                 Tackle(_p1, _directionReference1.transform.up);
             }
             else
             {
+                mano1.SetActive(false);
                 Rotate(_p1);
             }
 
             if (_isTackle2)
             {
+                mano2.SetActive(true);
                 Tackle(_p2, _directionReference2.transform.up);
             }
             else
             {
+                mano2.SetActive(false);
                 Rotate(_p2);
             }
         }
@@ -209,6 +215,10 @@ public class Sumo : MonoBehaviour
 
         _p1.rotation = Quaternion.Euler(0, 0, 90);
         _p2.rotation = Quaternion.Euler(0, 0, 90);
+
+        mano1.SetActive(false);
+        mano2.SetActive(false);
+
         ResetTimer();
         _canMove = false; // Desactivar movimiento hastsa que termine la cuenta regresiva
         if (_roundsBlue < 3 && _roundsRed < 3)
