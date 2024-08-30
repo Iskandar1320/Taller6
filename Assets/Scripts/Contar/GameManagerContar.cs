@@ -12,10 +12,9 @@ public class GameManagerContar : MonoBehaviour
     public Transform spawnPoint;
     public float spawnRate;
 
-    bool gameStarted = false;
+    public bool gameStarted = false;
 
     public GameObject tapText;
-
 
     void Update()
     {
@@ -43,6 +42,6 @@ public class GameManagerContar : MonoBehaviour
         Vector3 spawnPos = spawnPoint.position;
         spawnPos.x = Random.Range(-maxX, maxX);
         Instantiate(PjroVer, spawnPos, Quaternion.identity);
-    }  
+    }
 
 }

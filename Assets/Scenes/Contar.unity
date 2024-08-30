@@ -794,6 +794,9 @@ MonoBehaviour:
   contador: 0
   contAzul: 0
   contRojo: 0
+  AzulGana: {fileID: 138809021}
+  RojoGana: {fileID: 1024771225}
+  Empate: {fileID: 879111439}
 --- !u!1 &1274987697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1046,8 @@ MonoBehaviour:
   PjroVer: {fileID: 9035345100674921240, guid: dc2fd24e31dc1a54e94e66c308e0a5c8, type: 3}
   maxX: 2.25
   spawnPoint: {fileID: 1812648189}
-  spawnRate: 0.5
+  spawnRate: 0.3
+  gameStarted: 0
   tapText: {fileID: 814261083}
 --- !u!4 &1497600658
 Transform:
