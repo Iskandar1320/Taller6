@@ -34,14 +34,12 @@ public class ShipsPlayerController : MonoBehaviour
         float rotationAmount = steeringInput   * rotationSpeed *Time.deltaTime;
         rb.rotation += rotationAmount;
 
-        Vector2 forwardMovement = transform.right * speed.y * Time.fixedDeltaTime;
+        Vector2 forwardMovement = transform.up * speed.y * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forwardMovement);
     }
 
     
-    public void OnShot()
-    {
-        Debug.Log("Mathafakas");
-    }
+   
+   
 
 }

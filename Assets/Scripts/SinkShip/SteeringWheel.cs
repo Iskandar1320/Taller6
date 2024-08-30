@@ -55,7 +55,7 @@ public class SteeringWheel : MonoBehaviour
         // Rotate the wheel image
         rectT.localEulerAngles = Vector3.back * wheelAngle;
 
-        Debug.Log("Steering Value: " + GetClampedValue());
+        //Debug.Log("Steering Value: " + GetClampedValue());
     }
 
     void InitEventsSystem()

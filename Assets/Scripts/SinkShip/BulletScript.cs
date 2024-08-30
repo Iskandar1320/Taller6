@@ -5,7 +5,6 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
-    [SerializeField] int damage = 1;
     [SerializeField] float maxDistance = 10f;
 
     private Vector2 startPosition;
