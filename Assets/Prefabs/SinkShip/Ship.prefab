@@ -359,10 +359,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedc9e9ca562fa144a0248f78d70d2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: -10
-  maxX: 10
-  minY: -5
-  maxY: 5
+  minX: -15
+  maxX: 15
+  minY: -7
+  maxY: 7
 --- !u!82 &8100753239408430125
 AudioSource:
   m_ObjectHideFlags: 0

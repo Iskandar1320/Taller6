@@ -12,6 +12,8 @@ public class ShipsPlayerController : MonoBehaviour
     [SerializeField] int playerNumber;
     [SerializeField] float rotationSpeed = 90f;
     [SerializeField] SteeringWheel steeringWheel;
+    [SerializeField] public int lifes = 10;
+    [SerializeField] GameObject projectile;
 
     private Rigidbody2D rb;
     private float steeringInput;
@@ -22,9 +24,6 @@ public class ShipsPlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-    
-   
 
 
     private void FixedUpdate()
@@ -38,8 +37,21 @@ public class ShipsPlayerController : MonoBehaviour
         rb.MovePosition(rb.position + forwardMovement);
     }
 
-    
-   
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        lifes--;
+
+        Debug.Log("Impacto a jugador");
+
+        Destroy(collision.gameObject);
+
+        if ( lifes <= 0 )
+        {
+            Debug.Log("gano el jugador x");
+        }
+    }
+
+
+
 
 }

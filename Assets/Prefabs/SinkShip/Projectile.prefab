@@ -172,5 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 17.57
-  damage: 1
-  maxDistance: 10
+  maxDistance: 25.5
