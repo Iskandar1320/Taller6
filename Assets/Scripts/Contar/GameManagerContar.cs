@@ -43,6 +43,6 @@ public class GameManagerContar : MonoBehaviour
         Vector3 spawnPos = spawnPoint.position;
         spawnPos.x = Random.Range(-maxX, maxX);
         Instantiate(PjroVer, spawnPos, Quaternion.identity);
-    }
+    }  
 
 }
