@@ -17,5 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SinkShip.unity
     guid: fda3528c56df9ba4f82898d41f14eaea
+  - enabled: 1
+    path: Assets/Scenes/Memoria.unity
+    guid: a10b49c10b3505941ad0ec3c10a6cd32
+  - enabled: 1
+    path: Assets/Scenes/Contar.unity
+    guid: 119dcf57432b6c3409433fe67f449510
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2ee6df0e165974945a290f179ed5ff99, type: 2}
