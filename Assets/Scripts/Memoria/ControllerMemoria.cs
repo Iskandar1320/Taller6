@@ -26,7 +26,7 @@ public class ControllerMemoria : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreTextPlayer2;
     [SerializeField] private TextMeshProUGUI turnText;
     [SerializeField] private TextMeshProUGUI turnText2;
-    [SerializeField] private SpriteRenderer main; // Objeto principal con el color deseado
+    [SerializeField] private SpriteRenderer _unknownRend; // Objeto principal con el color deseado
     [SerializeField] private GameObject panelwin; // Objeto principal con el color deseado
     [SerializeField] private Image colorpanel;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
@@ -78,7 +78,17 @@ public class ControllerMemoria : MonoBehaviour
                 SpriteRenderer spriteRenderer = gameImage.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
                 {
-                    spriteRenderer.color = main.color;
+                    if (currentPlayer == 1)
+                    {
+                        _unknownRend.color = new Color32(161, 28, 28, 255); 
+
+                    }
+                    else
+                    {
+                        _unknownRend.color = new Color32(28, 39, 161, 255);
+
+
+                    }
                 }
                 else
                 {
@@ -99,6 +109,7 @@ public class ControllerMemoria : MonoBehaviour
 
         UpdateTurnText();
     }
+    
 
     private MemoriaImagen firstOpen;
     private MemoriaImagen secondOpen;
@@ -161,6 +172,7 @@ public class ControllerMemoria : MonoBehaviour
             turnText.color = Color.red;
           //  main.color = Color.red;
             turnText2.enabled = false;
+            
         }
         else
         {
