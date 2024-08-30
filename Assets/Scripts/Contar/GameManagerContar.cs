@@ -13,14 +13,17 @@ public class GameManagerContar : MonoBehaviour
     public float spawnRate;
 
     bool gameStarted = false;
-    
-   
+
+    public GameObject tapText;
+
+
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !gameStarted)
+        if (Input.GetMouseButtonDown(0) && !gameStarted)
         {
-            StartSpawning();    
+            StartSpawning();
             gameStarted = true;
+            tapText.SetActive(false);
         }
     }
 
