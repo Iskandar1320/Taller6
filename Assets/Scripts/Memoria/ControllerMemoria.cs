@@ -4,14 +4,15 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.SceneManagement;
 
 public class ControllerMemoria : MonoBehaviour
 {
-    private const int columns = 4;
-    private const int rows = 4;
+    private const int columns = 2;
+    private const int rows = 6;
 
-    private const float Xspace = .8f;
-    private const float Yspace = -2f;
+    private const float Xspace = 1.5f;
+    private const float Yspace = -1f;
 
     [SerializeField]
     private MemoriaImagen _startObject;
@@ -26,14 +27,19 @@ public class ControllerMemoria : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreTextPlayer2;
     [SerializeField] private TextMeshProUGUI turnText;
     [SerializeField] private TextMeshProUGUI turnText2;
-    [SerializeField] private SpriteRenderer _unknownRend; // Objeto principal con el color deseado
-    [SerializeField] private GameObject panelwin; // Objeto principal con el color deseado
+    [SerializeField] private GameObject panelwin; 
     [SerializeField] private Image colorpanel;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
+    [SerializeField] private SpriteRenderer _mesa; // Objeto principal con el color deseado
+
 
     private void Update()
     {
         Debug.Log(scorePlayer1 + " " + scorePlayer2);
+        if (scorePlayer1 + scorePlayer2 == 6)
+        {
+            Winner();
+        }
     }
 
     private int[] Randomizer(int[] locations)
@@ -51,7 +57,7 @@ public class ControllerMemoria : MonoBehaviour
 
     private void Start()
     {
-        int[] locations = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+        int[] locations = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
         locations = Randomizer(locations);
 
         float totalWidth = (columns - 1) * Xspace;
@@ -72,27 +78,6 @@ public class ControllerMemoria : MonoBehaviour
                 else
                 {
                     gameImage = Instantiate(_startObject) as MemoriaImagen;
-                }
-
-                // Asigna el color del main a cada carta clonada
-                SpriteRenderer spriteRenderer = gameImage.GetComponent<SpriteRenderer>();
-                if (spriteRenderer != null)
-                {
-                    if (currentPlayer == 1)
-                    {
-                        _unknownRend.color = new Color32(161, 28, 28, 255); 
-
-                    }
-                    else
-                    {
-                        _unknownRend.color = new Color32(28, 39, 161, 255);
-
-
-                    }
-                }
-                else
-                {
-                    Debug.LogError("SpriteRenderer no encontrado en " + gameImage.name);
                 }
 
                 int index = j * columns + i;
@@ -121,7 +106,6 @@ public class ControllerMemoria : MonoBehaviour
 
     public void ImageOpened(MemoriaImagen startObject)
     {
-        Winner();
         if (firstOpen == null)
         {
             firstOpen = startObject;
@@ -167,50 +151,45 @@ public class ControllerMemoria : MonoBehaviour
     {
         if (currentPlayer == 1)
         {
-            turnText.enabled = true;
-            turnText.text = "Player " + currentPlayer;
-            turnText.color = Color.red;
-          //  main.color = Color.red;
-            turnText2.enabled = false;
-            
+            _mesa.color = new Color32(161, 28, 28, 255);
+
         }
         else
         {
-            turnText2.enabled = true;
-            turnText2.text = "Player " + currentPlayer;
-            turnText2.color = Color.blue;
-           // main.color = Color.blue;
-            turnText.enabled = false;
-
+            _mesa.color = new Color32(28, 39, 161, 255);
         }
     }
     private void Winner()
     {
         // Verifica si ambos jugadores han acumulado todas las cartas (en este caso, 8)
-        if (scorePlayer1 + scorePlayer2 == 8)
+        if (scorePlayer1 + scorePlayer2 == 6)
         {
             if (scorePlayer1 > scorePlayer2)
             {
                 // Jugador 1 gana
                 _textMeshPro.text = "Player 1 Wins";
                 colorpanel.color = new Color32(161, 28, 28, 233);
-                panelwin.SetActive(true);
             }
             else if (scorePlayer2 > scorePlayer1)
             {
                 // Jugador 2 gana
                 _textMeshPro.text = "Player 2 Wins";
                 colorpanel.color = new Color32(28, 39, 161, 233);
-                panelwin.SetActive(true);
             }
             else if (scorePlayer1 == scorePlayer2)
             {
                 // Empate
                 _textMeshPro.text = "Empate";
                 colorpanel.color = new Color32(117, 5, 226, 255);
-                panelwin.SetActive(true);
             }
+            panelwin.SetActive(true);
+            StartCoroutine(RestartGame());
         }
+    }
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(0);
     }
 
 }
