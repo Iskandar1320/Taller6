@@ -52,3 +52,6 @@ TagManager:
   - name: Proyectiles
     uniqueID: 2221889677
     locked: 0
+  - name: UI
+    uniqueID: 1837652981
+    locked: 0

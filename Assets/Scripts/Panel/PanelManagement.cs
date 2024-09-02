@@ -15,14 +15,17 @@ public class PanelManagement : MonoBehaviour
     [SerializeField] GameObject botonPantalla;
     [SerializeField] TextMeshProUGUI toca;
     private TextMeshPro _textMeshPro;
+
     private void Start()
     {
         _textMeshPro = GetComponent<TextMeshPro>();
     }
+
     public void ChangeScene(string _sceneName) 
     {
         SceneManager.LoadScene(_sceneName);
     }
+
     public void EndGameScene(int playerNumber)
     {
         _textMeshPro.text = playerNumber > 1 ? "Player 1 Wins" : "Player 2 Wins";
@@ -37,5 +40,10 @@ public class PanelManagement : MonoBehaviour
         panelColor.DOFade(1, 1f);
         toca.text = "";
         botonPantalla.SetActive(false);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
