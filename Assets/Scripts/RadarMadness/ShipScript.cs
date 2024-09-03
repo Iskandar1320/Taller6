@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +8,6 @@ public class ShipScript : MonoBehaviour
     public float yOffsset = 0;
     private float nextYRotation = 90f;
     private GameObject clickedTile;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per fra
     public void ClearTileList()
     {
         _touchTiles.Clear();
