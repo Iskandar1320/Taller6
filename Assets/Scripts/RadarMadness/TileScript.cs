@@ -6,6 +6,14 @@ using UnityEngine.EventSystems;
 public class TileScript : MonoBehaviour, IDropHandler
 {
     GameManager gameManager;
+    Ray ray;
+    RaycastHit hit;
+
+    private bool missileHit = false;
+    Color32[] hitColor = new Color32[2];
+
+    public LayerMask interactableLayer;
+    public LayerMask groundLayer;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -23,18 +31,30 @@ public class TileScript : MonoBehaviour, IDropHandler
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Detecta el clic izquierdo del mouse
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-           
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (hit.collider != null)
+            if (Physics.Raycast(ray, out hit, 100f, interactableLayer))
             {
-                Debug.Log("Tile clickeada: " + hit.collider.name);
-                gameManager.TileClicked(hit.collider.gameObject);
-                // Aquí puedes manejar lo que suceda cuando se haga clic en una tile.
+                // Si el raycast golpea un objeto con la capa interactuable, procesa el clic ahí
+                hit.collider.gameObject.GetComponent<FakeBttn>().OnMouseUpAsButton();
+                Debug.Log("Ay miguel");
+                return; // Sale de la función para no procesar el clic en el terreno
+            }
+            else if (Physics.Raycast(ray, out hit, 100f, groundLayer)) // Detecta el clic izquierdo del mouse
+            {
+                if (Input.GetMouseButton(0) && hit.collider.gameObject.name == gameObject.name)
+                {
+                    if (missileHit == false)
+                    {
+                        gameManager.TileClicked(hit.collider.gameObject);
+
+                    }
+                }
             }
         }
+        
+        Debug.DrawRay(ray.origin, ray.direction*30f,Color.green);
     }
 }
