@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class ContadorDeColisiones : MonoBehaviour
 {
@@ -13,17 +15,45 @@ public class ContadorDeColisiones : MonoBehaviour
     public GameObject AzulGana;
     public GameObject RojoGana;
     public GameObject Empate;
-
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI contAzulTXT;
+    public TextMeshProUGUI contRojoTXT;
+    public TextMeshProUGUI contadorTXT;
+    public bool GameFinished = false;
 
     private void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManagerContar>();
+        contAzulTXT.enabled = false;
+        contRojoTXT.enabled = false;
+        contadorTXT.enabled = false;
     }
     private void Update()
     {
-        if(gameManager.gameStarted == true)
+        contAzulTXT.text = contAzul.ToString();
+        contRojoTXT.text = contRojo.ToString();
+        contadorTXT.text = "Total pajaros amarillos: " + contador.ToString();
+
+
+        if (gameManager.gameStarted == true)
         {
             StartCoroutine(EjecutarAccionDespuesDeTiempo());
+            if (tiempoDeEspera > 0)
+            {
+                tiempoDeEspera -= Time.deltaTime;
+                if (tiempoDeEspera < 0)
+                    tiempoDeEspera = 0;
+            }
+            else
+            {
+                contAzulTXT.enabled = true;
+                contRojoTXT.enabled = true;
+                contadorTXT.enabled = true;
+                GameFinished = true;
+            }
+
+            int secondsRemaining = Mathf.FloorToInt(tiempoDeEspera);
+            timeText.text =secondsRemaining.ToString();
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

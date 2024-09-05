@@ -14,6 +14,7 @@ public class GameManagerContar : MonoBehaviour
 
     public bool gameStarted = false;
 
+    [SerializeField] private ContadorDeColisiones cont;
     public GameObject tapText;
 
     void Update()
@@ -23,6 +24,11 @@ public class GameManagerContar : MonoBehaviour
             StartSpawning();
             gameStarted = true;
             tapText.SetActive(false);
+        }
+
+        if(cont.GameFinished == true)
+        {
+            Debug.Log("juego terminado");
         }
     }
 
