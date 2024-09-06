@@ -2040,6 +2040,7 @@ GameObject:
   - component: {fileID: 1084033709}
   - component: {fileID: 1084033708}
   - component: {fileID: 1084033712}
+  - component: {fileID: 1084033713}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2148,6 +2149,37 @@ MonoBehaviour:
   panelColor: {fileID: 0}
   botonPantalla: {fileID: 1699799717}
   toca: {fileID: 202277415}
+--- !u!114 &1084033713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084033707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1793183757
+      Data2: 1190706885
+      Data3: 1770951337
+      Data4: -1176125865
+    Path: event:/IntroSong
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1098331232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,7 +2600,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Pong
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1255147822
@@ -3212,8 +3244,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1639512014}
   - component: {fileID: 1639512013}
-  - component: {fileID: 1639512012}
   - component: {fileID: 1639512015}
+  - component: {fileID: 1639512016}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3221,14 +3253,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1639512012
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639512011}
-  m_Enabled: 1
 --- !u!20 &1639512013
 Camera:
   m_ObjectHideFlags: 0
@@ -3339,6 +3363,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1639512016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639512011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 1639512011}
 --- !u!1 &1686466656
 GameObject:
   m_ObjectHideFlags: 0

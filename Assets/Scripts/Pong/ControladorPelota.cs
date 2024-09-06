@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ControladorPelota : MonoBehaviour
 {
-    [SerializeField] private float impulso;
+    [SerializeField] float impulso;
 
     Rigidbody2D rb;
 
@@ -18,16 +18,17 @@ public class ControladorPelota : MonoBehaviour
     {
         transform.position = Vector2.zero;
         rb.velocity = Vector2.zero;
-        impulso = 25;
+        impulso = 20;
         float direccionRandom = Random.Range(0,2) * 2-1;
+        //rb.velocity = new Vector2(3 * direccionRandom, 15 * direccionRandom) * impulso;
         rb.AddForce(new Vector2(3*direccionRandom, 15*direccionRandom) * impulso, ForceMode2D.Force);
     }
     public void IncrementoVelocidad_Golpe()
     {
-        impulso = impulso + 5;
+        impulso+= 12;
     } 
     public void GolpeLateral()
     {
-        impulso = impulso + 3.5f;
+        impulso += 6.5f;
     }
 }
