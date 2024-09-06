@@ -2,157 +2,160 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+namespace RadarMadness
 {
-    private RectTransform rectTransform;
-    private Vector2 initialPosition; // Variable para almacenar la posición inicial
-    private int rotationState = 0; // 0 = sin rotar, 1 = rotado a 90 grados
-
-    [SerializeField]
-    private Canvas _canvas;
-    [SerializeField]
-    private CanvasGroup _canvasGroup;
-    [SerializeField]
-    private float Threshold = 50f;
-
-    [Header("Limites en Fila")]
-    // Límites en el espacio de coordenadas de UI para cuando el objeto no está rotado
-    [SerializeField]
-    private float minXNormal = 0f;
-    [SerializeField]
-    private float maxXNormal = 1000f;
-    [SerializeField]
-    private float minYNormal = 0f;
-    [SerializeField]
-    private float maxYNormal = 1000f;
-
-
-    [Header("Limites en Columna")]
-    // Límites en el espacio de coordenadas de UI para cuando el objeto está rotado
-    [SerializeField]
-    private float minXRotated = 0f;
-    [SerializeField]
-    private float maxXRotated = 1000f;
-    [SerializeField]
-    private float minYRotated = 0f;
-    [SerializeField]
-    private float maxYRotated = 1000f;
-
-    [SerializeField]
-    private List<RectTransform> uiElementsToCompare;
-
-    private void Awake()
+    public class Draggable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        rectTransform = GetComponent<RectTransform>();
-        initialPosition = rectTransform.anchoredPosition; // Guarda la posición inicial al inicio
-    }
+        private RectTransform rectTransform;
+        private Vector2 initialPosition; // Variable para almacenar la posiciï¿½n inicial
+        private int rotationState = 0; // 0 = sin rotar, 1 = rotado a 90 grados
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        Debug.Log("OnBeginDrag");
-        _canvasGroup.alpha = .8f;
-        _canvasGroup.blocksRaycasts = false;
+        [SerializeField]
+        private Canvas _canvas;
+        [SerializeField]
+        private CanvasGroup _canvasGroup;
+        [SerializeField]
+        private float Threshold = 50f;
 
-        initialPosition = rectTransform.anchoredPosition; // Guarda la posición inicial al comenzar a arrastrar
-    }
+        [Header("Limites en Fila")]
+        // Lï¿½mites en el espacio de coordenadas de UI para cuando el objeto no estï¿½ rotado
+        [SerializeField]
+        private float minXNormal = 0f;
+        [SerializeField]
+        private float maxXNormal = 1000f;
+        [SerializeField]
+        private float minYNormal = 0f;
+        [SerializeField]
+        private float maxYNormal = 1000f;
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        // Mueve el objeto mientras es arrastrado
-        rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
 
-        // Limitar el movimiento dentro de los límites definidos según el estado de rotación
-        Vector2 pos = rectTransform.anchoredPosition;
+        [Header("Limites en Columna")]
+        // Lï¿½mites en el espacio de coordenadas de UI para cuando el objeto estï¿½ rotado
+        [SerializeField]
+        private float minXRotated = 0f;
+        [SerializeField]
+        private float maxXRotated = 1000f;
+        [SerializeField]
+        private float minYRotated = 0f;
+        [SerializeField]
+        private float maxYRotated = 1000f;
 
-        if (rotationState == 0) // Sin rotar
+        [SerializeField]
+        private List<RectTransform> uiElementsToCompare;
+
+        private void Awake()
         {
-            pos.x = Mathf.Clamp(pos.x, minXNormal, maxXNormal);
-            pos.y = Mathf.Clamp(pos.y, minYNormal, maxYNormal);
-        }
-        else if (rotationState == 1) // Rotado a 90 grados
-        {
-            pos.x = Mathf.Clamp(pos.x, minXRotated, maxXRotated);
-            pos.y = Mathf.Clamp(pos.y, minYRotated, maxYRotated);
+            rectTransform = GetComponent<RectTransform>();
+            initialPosition = rectTransform.anchoredPosition; // Guarda la posiciï¿½n inicial al inicio
         }
 
-        rectTransform.anchoredPosition = pos;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Debug.Log("OnEndDrag");
-
-        // Comprobar si el objeto se puede soltar
-        if (CanDrop())
+        public void OnBeginDrag(PointerEventData eventData)
         {
-            Debug.Log("Objeto soltado correctamente.");
-        }
-        else
-        {
-            Debug.Log("No se puede soltar el objeto aquí.");
-            // Volver a la posición inicial si no se puede soltar
-            rectTransform.anchoredPosition = initialPosition;
+            Debug.Log("OnBeginDrag");
+            _canvasGroup.alpha = .8f;
+            _canvasGroup.blocksRaycasts = false;
+
+            initialPosition = rectTransform.anchoredPosition; // Guarda la posiciï¿½n inicial al comenzar a arrastrar
         }
 
-        // Restaurar la interacción
-        _canvasGroup.alpha = 1f;
-        _canvasGroup.blocksRaycasts = true;
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("OnPointerDown");
-
-        // Verifica si el objeto está alineado con un UIElement antes de rotar
-        if (IsAlignedWithUIElement())
+        public void OnDrag(PointerEventData eventData)
         {
-            RotateObject();
-        }
-    }
+            // Mueve el objeto mientras es arrastrado
+            rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
 
-    private bool IsAlignedWithUIElement()
-    {
-        // Comprobar si el objeto está alineado con algún elemento de la lista
-        foreach (RectTransform uiElement in uiElementsToCompare)
-        {
-            if (Vector2.Distance(rectTransform.anchoredPosition, uiElement.anchoredPosition) < Threshold)
+            // Limitar el movimiento dentro de los lï¿½mites definidos segï¿½n el estado de rotaciï¿½n
+            Vector2 pos = rectTransform.anchoredPosition;
+
+            if (rotationState == 0) // Sin rotar
             {
-                return true;
+                pos.x = Mathf.Clamp(pos.x, minXNormal, maxXNormal);
+                pos.y = Mathf.Clamp(pos.y, minYNormal, maxYNormal);
+            }
+            else if (rotationState == 1) // Rotado a 90 grados
+            {
+                pos.x = Mathf.Clamp(pos.x, minXRotated, maxXRotated);
+                pos.y = Mathf.Clamp(pos.y, minYRotated, maxYRotated);
+            }
+
+            rectTransform.anchoredPosition = pos;
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            Debug.Log("OnEndDrag");
+
+            // Comprobar si el objeto se puede soltar
+            if (CanDrop())
+            {
+                Debug.Log("Objeto soltado correctamente.");
+            }
+            else
+            {
+                Debug.Log("No se puede soltar el objeto aquï¿½.");
+                // Volver a la posiciï¿½n inicial si no se puede soltar
+                rectTransform.anchoredPosition = initialPosition;
+            }
+
+            // Restaurar la interacciï¿½n
+            _canvasGroup.alpha = 1f;
+            _canvasGroup.blocksRaycasts = true;
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            Debug.Log("OnPointerDown");
+
+            // Verifica si el objeto estï¿½ alineado con un UIElement antes de rotar
+            if (IsAlignedWithUIElement())
+            {
+                RotateObject();
             }
         }
-        return false;
-    }
 
-    public void RotateObject()
-    {
-        // Rota el objeto 90 grados en el eje Z
-        rectTransform.Rotate(0, 0, 90);
-        rotationState = (rotationState + 1) % 2; // Alternar entre 0 (sin rotar) y 1 (rotado 90 grados)
-        Debug.Log("Rotando el objeto.");
-    }
-
-    private bool CanDrop()
-    {
-        RectTransform closestElement = null;
-        float closestDistance = float.MaxValue;
-
-        foreach (RectTransform uiElement in uiElementsToCompare)
+        private bool IsAlignedWithUIElement()
         {
-            if (RectTransformUtility.RectangleContainsScreenPoint(uiElement, Input.mousePosition, _canvas.worldCamera))
+            // Comprobar si el objeto estï¿½ alineado con algï¿½n elemento de la lista
+            foreach (RectTransform uiElement in uiElementsToCompare)
             {
-                Vector2 pivotPosition = rectTransform.TransformPoint(rectTransform.pivot);
-                Vector2 elementCenter = uiElement.TransformPoint(new Vector2(0.5f, 0.5f));
-
-                float distance = Vector2.Distance(pivotPosition, elementCenter);
-
-                if (distance < closestDistance)
+                if (Vector2.Distance(rectTransform.anchoredPosition, uiElement.anchoredPosition) < Threshold)
                 {
-                    closestDistance = distance;
-                    closestElement = uiElement;
+                    return true;
                 }
             }
+            return false;
         }
 
-        return closestElement != null && closestDistance < Threshold;
+        public void RotateObject()
+        {
+            // Rota el objeto 90 grados en el eje Z
+            rectTransform.Rotate(0, 0, 90);
+            rotationState = (rotationState + 1) % 2; // Alternar entre 0 (sin rotar) y 1 (rotado 90 grados)
+            Debug.Log("Rotando el objeto.");
+        }
+
+        private bool CanDrop()
+        {
+            RectTransform closestElement = null;
+            float closestDistance = float.MaxValue;
+
+            foreach (RectTransform uiElement in uiElementsToCompare)
+            {
+                if (RectTransformUtility.RectangleContainsScreenPoint(uiElement, Input.mousePosition, _canvas.worldCamera))
+                {
+                    Vector2 pivotPosition = rectTransform.TransformPoint(rectTransform.pivot);
+                    Vector2 elementCenter = uiElement.TransformPoint(new Vector2(0.5f, 0.5f));
+
+                    float distance = Vector2.Distance(pivotPosition, elementCenter);
+
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestElement = uiElement;
+                    }
+                }
+            }
+
+            return closestElement != null && closestDistance < Threshold;
+        }
     }
 }

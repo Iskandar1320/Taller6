@@ -1227,22 +1227,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9984c76f2e71ce6429452703fc78bc62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 100
-  _movementSpeed: 4.37
-  _directionReference1: {fileID: 765745139}
-  _directionReference2: {fileID: 159920299}
-  _p1: {fileID: 962319344}
-  _p2: {fileID: 922619717}
-  _gameZone: {fileID: 1776371606}
-  _textMeshPro: {fileID: 315065032}
+  rotationSpeed: 100
+  movementSpeed: 5
+  directionReference1: {fileID: 765745139}
+  directionReference2: {fileID: 159920299}
+  p1: {fileID: 962319344}
+  p2: {fileID: 922619717}
+  gameZone: {fileID: 1776371606}
+  textMeshPro: {fileID: 315065032}
   panel: {fileID: 1214007391}
   mano1: {fileID: 1266041932}
   mano2: {fileID: 1160554447}
   colorpanel: {fileID: 1214007393}
-  _puntosAzul: {fileID: 1317353774}
-  _puntosRojo: {fileID: 400587955}
-  _panelTime: {fileID: 660683183}
-  _timerText: {fileID: 1355679592}
+  puntosAzul: {fileID: 1317353774}
+  puntosRojo: {fileID: 400587955}
+  panelTime: {fileID: 660683183}
+  timerText: {fileID: 1355679592}
 --- !u!4 &534236388
 Transform:
   m_ObjectHideFlags: 0

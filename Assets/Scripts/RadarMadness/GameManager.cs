@@ -1,32 +1,32 @@
-using System.Drawing;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+namespace RadarMadness
 {
- 
+    public class GameManager : MonoBehaviour
+  {
 
     [Header("Pool ships")]
     public GameObject[] ships;
     public GameObject[] ships2;
 
-    bool _setupComplete = false;
+    private bool _setupComplete = false;
     private int _shipIndex = 0;
     private ShipScript _shipScript;
-    int cuenta = 0;
+    private int _cuenta = 0;
 
 
-    [Header("Turno debug")]
-    public bool _player1Turn = true;
+    [FormerlySerializedAs("_player1Turn")] [Header("Turno debug")]
+    public bool player1Turn = true;
     public GameObject readybttn;
     public GameObject rotatebttn;
 
     #region SerializeField
 
     [SerializeField]
-    GameObject panelInicial;
+    private GameObject panelInicial;
 
     [Header("Elementos a invertir")]
     [SerializeField]
@@ -34,22 +34,22 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Image colorpanel;
     [SerializeField]
-    GameObject holder;
+    private GameObject holder;
     [SerializeField]
-    GameObject flotaRoja;
+    private GameObject flotaRoja;
     [SerializeField]
-    GameObject flotaAzul;
+    private GameObject flotaAzul;
     [SerializeField]
-    GameObject fondoTextoPosicionar;
+    private GameObject fondoTextoPosicionar;
     [SerializeField]
-    GameObject textoPosicionar;
+    private GameObject textoPosicionar;
     [SerializeField]
-    GameObject vidas;
+    private GameObject vidas;
     [SerializeField]
-    GameObject exit;
+    private GameObject exit;
     #endregion
 
-    void Start()
+    private void Start()
     {
         panelInicial.SetActive(true);
         _shipScript = ships[_shipIndex].GetComponent<ShipScript>();
@@ -64,68 +64,63 @@ public class GameManager : MonoBehaviour
     }
     public void TileClicked(GameObject tile)
     {
-        if (_setupComplete && _player1Turn)
+        switch (_setupComplete)
         {
-            //Empieza el juego
+            case true when player1Turn:
+                //Empieza el juego
 
-            Debug.Log("setteo completo");
-
-
-        }
-        else if (!_setupComplete)
-        {
-
-            PlaceShip(tile);
-            _shipScript.SetClickedTile(tile);
-
+                Debug.Log("setteo completo");
+                break;
+            case false:
+                PlaceShip(tile);
+                _shipScript.SetClickedTile(tile);
+                break;
         }
     }
-    public void PlaceShip(GameObject tile)
+    private void PlaceShip(GameObject tile)
     {
-        if (!panelInicial.activeSelf)
+        if (panelInicial.activeSelf) return;
+        if (player1Turn)
         {
-            if (_player1Turn)
-            {
-                _shipScript = ships[_shipIndex].GetComponent<ShipScript>();
-                _shipScript.ClearTileList();
-                Vector3 newVec = _shipScript.GetOffsetVec(tile.transform.position);
-                ships[_shipIndex].transform.localPosition = newVec;
+            _shipScript = ships[_shipIndex].GetComponent<ShipScript>();
+            _shipScript.ClearTileList();
+            var newVec = _shipScript.GetOffsetVec(tile.transform.position);
+            ships[_shipIndex].transform.localPosition = newVec;
 
-                Transform activeTransform = ships[_shipIndex].transform;
-                Vector3 newButtonPosition = activeTransform.position + new Vector3(1f, 0f, 0f); // Ajusta este Vector3 según donde quieras que se mueva el botón
-                readybttn.transform.position = newButtonPosition;
-                readybttn.SetActive(true);
+            var activeTransform = ships[_shipIndex].transform;
+            var newButtonPosition = activeTransform.position + new Vector3(1f, 0f, 0f); // Ajusta este Vector3 segï¿½n donde quieras que se mueva el botï¿½n
+            readybttn.transform.position = newButtonPosition;
+            readybttn.SetActive(true);
 
-                Vector3 newButtonPosition2 = activeTransform.position + new Vector3(-1f, 0f, 0f); // Ajusta este Vector3 según donde quieras que se mueva el botón
-                rotatebttn.transform.position = newButtonPosition2;
-                rotatebttn.SetActive(true);
-                Debug.Log("El Transform del barco activo es: " + activeTransform.name);
+            var newButtonPosition2 = activeTransform.position + new Vector3(-1f, 0f, 0f); // Ajusta este Vector3 segï¿½n donde quieras que se mueva el botï¿½n
+            rotatebttn.transform.position = newButtonPosition2;
+            rotatebttn.SetActive(true);
+            Debug.Log("El Transform del barco activo es: " + activeTransform.name);
 
-            }
+        }
 
-            if (!_player1Turn)
-            {
-                _shipScript = ships2[_shipIndex].GetComponent<ShipScript>();
-                _shipScript.ClearTileList();
-                Vector3 newVec = _shipScript.GetOffsetVec(tile.transform.position);
-                ships2[_shipIndex].transform.localPosition = newVec;
+        if (player1Turn) return;
+        {
+            _shipScript = ships2[_shipIndex].GetComponent<ShipScript>();
+            _shipScript.ClearTileList();
+            var newVec = _shipScript.GetOffsetVec(tile.transform.position);
+            ships2[_shipIndex].transform.localPosition = newVec;
 
-                Transform activeTransform = ships2[_shipIndex].transform;
-                Vector3 newButtonPosition = activeTransform.position + new Vector3(1f, 0f, 0f); // Ajusta este Vector3 según donde quieras que se mueva el botón
-                readybttn.transform.position = newButtonPosition;
-                readybttn.SetActive(true);
+            var activeTransform = ships2[_shipIndex].transform;
+            var newButtonPosition = activeTransform.position + new Vector3(1f, 0f, 0f); // Ajusta este Vector3 segï¿½n donde quieras que se mueva el botï¿½n
+            readybttn.transform.position = newButtonPosition;
+            readybttn.SetActive(true);
 
-                Vector3 newButtonPosition2 = activeTransform.position + new Vector3(-1f, 0f, 0f); // Ajusta este Vector3 según donde quieras que se mueva el botón
-                rotatebttn.transform.position = newButtonPosition2;
-                rotatebttn.SetActive(true);
-                Debug.Log("El Transform del barco activo es: " + activeTransform.name);
-            }
+            var newButtonPosition2 = activeTransform.position + new Vector3(-1f, 0f, 0f); // Ajusta este Vector3 segï¿½n donde quieras que se mueva el botï¿½n
+            rotatebttn.transform.position = newButtonPosition2;
+            rotatebttn.SetActive(true);
+            Debug.Log("El Transform del barco activo es: " + activeTransform.name);
         }
 
 
-       
+
     }
-    public void NextShipCliked()
+    public void NextShipClicked()
     {
         if (_shipIndex <= ships.Length - 2)
         {
@@ -137,25 +132,19 @@ public class GameManager : MonoBehaviour
         {
             print("no entro if");
 
-            Debug.Log("Fin de la colocación de barcos. Cambiar turno.");
-            // _setupComplete = true; // Marcar que la configuración está completa
-            _player1Turn = !_player1Turn; // Cambiar turno al jugador 2
-            _shipIndex = 0; // Reiniciar el índice del barco para el nuevo jugador
-            _shipScript = _player1Turn ? ships[_shipIndex].GetComponent<ShipScript>() : ships2[_shipIndex].GetComponent<ShipScript>();
+            Debug.Log("Fin de la colocaciï¿½n de barcos. Cambiar turno.");
+            // _setupComplete = true; // Marcar que la configuraciï¿½n estï¿½ completa
+            player1Turn = !player1Turn; // Cambiar turno al jugador 2
+            _shipIndex = 0; // Reiniciar el ï¿½ndice del barco para el nuevo jugador
+            _shipScript = player1Turn ? ships[_shipIndex].GetComponent<ShipScript>() : ships2[_shipIndex].GetComponent<ShipScript>();
 
             ChangeSites();
-
-
         }
-        
-        
-            if (!_shipScript.OngameBoard())
-            {
+        if (!_shipScript.OngameBoard())
+        {
                 print("a ya");
 
-            }
-           
-        
+        }
     }
     public void RotateClicked()
     {
@@ -163,47 +152,45 @@ public class GameManager : MonoBehaviour
     }
     private void ChangeSites()
     {
-        if (cuenta<1)
+        switch (_cuenta)
         {
+            case < 1:
+                panelInicial.SetActive(true);
+                textmeshpro.text = "Pasale el cel a tu amigo y no mirï¿½s ome";
+                colorpanel.color = new Color32(28, 39, 161, 255);
+                holder.GetComponent<Transform>().transform.position += new Vector3(-2.06f, 0.0086f, 0f);
+                holder.GetComponent<SpriteRenderer>().color = new Color32(87, 136, 173, 255);
+                flotaAzul.SetActive(true);
+                flotaRoja.SetActive(false);
+                fondoTextoPosicionar.GetComponent<Transform>().position += new Vector3(-10.06f, -0.0196f, 0f);
+                fondoTextoPosicionar.GetComponent<SpriteRenderer>().color = new Color32(164, 77, 64, 255);
 
-        panelInicial.SetActive(true);
-        textmeshpro.text = "Pasale el cel a tu amigo y no mirés ome";
-        colorpanel.color = new Color32(28, 39, 161, 255);
-        holder.GetComponent<Transform>().transform.position += new Vector3(-2.06f, 0.0086f, 0f);
-        holder.GetComponent<SpriteRenderer>().color = new Color32(87, 136, 173, 255);
-        flotaAzul.SetActive(true);
-        flotaRoja.SetActive(false);
-        fondoTextoPosicionar.GetComponent<Transform>().position += new Vector3(-10.06f, -0.0196f, 0f);
-        fondoTextoPosicionar.GetComponent<SpriteRenderer>().color = new Color32(164, 77, 64, 255);
-
-        textoPosicionar.GetComponent<RectTransform>().eulerAngles = new Vector3(0f, 0f, 180f);
-        textoPosicionar.GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, -469f, 0f);
-        cuenta++;
+                textoPosicionar.GetComponent<RectTransform>().eulerAngles = new Vector3(0f, 0f, 180f);
+                textoPosicionar.GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, -469f, 0f);
+                _cuenta++;
+                break;
+            case 1:
+                _setupComplete = true;
+                player1Turn = true;
+                break;
         }
-        else if (cuenta == 1)
+
+
+        if (!_setupComplete || !player1Turn) return;
+        foreach (var sr in flotaAzul.GetComponentsInChildren<SpriteRenderer>())
         {
-            _setupComplete = true;
-            _player1Turn = true;
+            sr.enabled = false;
         }
-
-
-        if (_setupComplete && _player1Turn)
+        Debug.Log("apago azul");
+        foreach (var sr in flotaRoja.GetComponentsInChildren<SpriteRenderer>())
         {
-            foreach (SpriteRenderer sr in flotaAzul.GetComponentsInChildren<SpriteRenderer>())
-            {
-                sr.enabled = false;
-            }
-            Debug.Log("apago azul");
-            foreach (SpriteRenderer sr in flotaRoja.GetComponentsInChildren<SpriteRenderer>())
-            {
-                sr.enabled = false;
-            }
-            textoPosicionar.SetActive(false);
-            fondoTextoPosicionar.SetActive(false);
-            vidas.SetActive(true);
-            holder.SetActive(false);
-            exit.SetActive(true);
+            sr.enabled = false;
         }
+        textoPosicionar.SetActive(false);
+        fondoTextoPosicionar.SetActive(false);
+        vidas.SetActive(true);
+        holder.SetActive(false);
+        exit.SetActive(true);
     }
-
+  }
 }

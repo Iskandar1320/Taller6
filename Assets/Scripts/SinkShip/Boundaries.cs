@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoundaryTeleport : MonoBehaviour
 {
-    [SerializeField] float minX = -10f;
-    [SerializeField] float maxX = 10f;
-    [SerializeField] float minY = -5f;
-    [SerializeField] float maxY = 5f;
+    [SerializeField] private float minX = -10f;
+    [SerializeField] private float maxX = 10f;
+    [SerializeField] private float minY = -5f;
+    [SerializeField] private float maxY = 5f;
 
     // Update is called once per frame
     void Update()
@@ -18,7 +16,7 @@ public class BoundaryTeleport : MonoBehaviour
     {
         Vector2 playerPosition = transform.position;
 
-        // Verifica si el jugador se ha salido de los límites en el eje X
+        // Verifica si el jugador se ha salido de los lï¿½mites en el eje X
         if (playerPosition.x < minX)
         {
             playerPosition.x = maxX; // Teletransporta al jugador al extremo derecho
@@ -28,7 +26,7 @@ public class BoundaryTeleport : MonoBehaviour
             playerPosition.x = minX; // Teletransporta al jugador al extremo izquierdo
         }
 
-        // Verifica si el jugador se ha salido de los límites en el eje Y
+        // Verifica si el jugador se ha salido de los lï¿½mites en el eje Y
         if (playerPosition.y < minY)
         {
             playerPosition.y = maxY; // Teletransporta al jugador al extremo superior
@@ -38,7 +36,7 @@ public class BoundaryTeleport : MonoBehaviour
             playerPosition.y = minY; // Teletransporta al jugador al extremo inferior
         }
 
-        // Actualiza la posición del jugador
+        // Actualiza la posiciï¿½n del jugador
         transform.position = playerPosition;
     }
 }
