@@ -1198,6 +1198,66 @@ MonoBehaviour:
   panelColor: {fileID: 0}
   botonPantalla: {fileID: 0}
   toca: {fileID: 0}
+--- !u!1 &534236386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 534236388}
+  - component: {fileID: 534236387}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &534236387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534236386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9984c76f2e71ce6429452703fc78bc62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 100
+  _movementSpeed: 4.37
+  _directionReference1: {fileID: 765745139}
+  _directionReference2: {fileID: 159920299}
+  _p1: {fileID: 962319344}
+  _p2: {fileID: 922619717}
+  _gameZone: {fileID: 1776371606}
+  _textMeshPro: {fileID: 315065032}
+  panel: {fileID: 1214007391}
+  mano1: {fileID: 1266041932}
+  mano2: {fileID: 1160554447}
+  colorpanel: {fileID: 1214007393}
+  _puntosAzul: {fileID: 1317353774}
+  _puntosRojo: {fileID: 400587955}
+  _panelTime: {fileID: 660683183}
+  _timerText: {fileID: 1355679592}
+--- !u!4 &534236388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534236386}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2234133, y: 2.2174537, z: -0.0072824843}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &610496630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,7 +2143,6 @@ GameObject:
   - component: {fileID: 922619717}
   - component: {fileID: 922619719}
   - component: {fileID: 922619718}
-  - component: {fileID: 922619720}
   m_Layer: 0
   m_Name: P1_01
   m_TagString: Untagged
@@ -2169,34 +2228,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &922619720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922619715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9984c76f2e71ce6429452703fc78bc62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotationSpeed: 60
-  _movementSpeed: 5
-  _directionReference1: {fileID: 765745139}
-  _directionReference2: {fileID: 159920299}
-  _p1: {fileID: 962319344}
-  _p2: {fileID: 922619717}
-  _gameZone: {fileID: 1776371606}
-  _textMeshPro: {fileID: 315065032}
-  panel: {fileID: 1214007391}
-  mano1: {fileID: 1266041932}
-  mano2: {fileID: 1160554447}
-  colorpanel: {fileID: 1214007393}
-  _puntosAzul: {fileID: 1317353774}
-  _puntosRojo: {fileID: 400587955}
-  _panelTime: {fileID: 660683183}
-  _timerText: {fileID: 1355679592}
 --- !u!1 &962319343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2208,7 +2239,6 @@ GameObject:
   - component: {fileID: 962319344}
   - component: {fileID: 962319347}
   - component: {fileID: 962319346}
-  - component: {fileID: 962319348}
   m_Layer: 0
   m_Name: P1
   m_TagString: Untagged
@@ -2294,34 +2324,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &962319348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962319343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9984c76f2e71ce6429452703fc78bc62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotationSpeed: 60
-  _movementSpeed: 5
-  _directionReference1: {fileID: 765745139}
-  _directionReference2: {fileID: 159920299}
-  _p1: {fileID: 962319344}
-  _p2: {fileID: 922619717}
-  _gameZone: {fileID: 1776371606}
-  _textMeshPro: {fileID: 315065032}
-  panel: {fileID: 1214007391}
-  mano1: {fileID: 1266041932}
-  mano2: {fileID: 1160554447}
-  colorpanel: {fileID: 1214007393}
-  _puntosAzul: {fileID: 1317353774}
-  _puntosRojo: {fileID: 400587955}
-  _panelTime: {fileID: 660683183}
-  _timerText: {fileID: 1355679592}
 --- !u!1 &972551346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4329,3 +4331,4 @@ SceneRoots:
   - {fileID: 922619717}
   - {fileID: 510450848}
   - {fileID: 835512741}
+  - {fileID: 534236388}

@@ -8,7 +8,7 @@ public class TileScript : MonoBehaviour, IDropHandler
     GameManager gameManager;
     Ray ray;
     RaycastHit hit;
-
+    
     private bool missileHit = false;
     Color32[] hitColor = new Color32[2];
 
@@ -56,5 +56,12 @@ public class TileScript : MonoBehaviour, IDropHandler
         }
         
         Debug.DrawRay(ray.origin, ray.direction*30f,Color.green);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Missile"))
+        {
+            missileHit = true;
+        }
     }
 }

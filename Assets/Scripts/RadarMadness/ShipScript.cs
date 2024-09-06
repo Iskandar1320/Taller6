@@ -8,13 +8,26 @@ public class ShipScript : MonoBehaviour
     public float yOffsset = 0;
     private float nextYRotation = 90f;
     private GameObject clickedTile;
+    private int hitcount;
+    
+    [SerializeField]
+    int _shipSize;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Tile"))
+        {
+            _touchTiles.Add(collision.gameObject);
+        }
+    }
+
     public void ClearTileList()
     {
         _touchTiles.Clear();
     }
     public Vector3 GetOffsetVec(Vector3 tilePos)
     {
-        return new Vector3(tilePos.x + xOffsset, tilePos.y + yOffsset, 0);
+        return new Vector3(tilePos.x + xOffsset, tilePos.y + yOffsset, -9.96f);
         
     }
     public void RotateShip()
@@ -29,10 +42,19 @@ public class ShipScript : MonoBehaviour
     }
     public void SetPosition(Vector3 newVec)
     {
-        transform.localPosition = new Vector3(newVec.x + xOffsset, newVec.y + yOffsset, 0);
+        ClearTileList();
+        transform.localPosition = new Vector3(newVec.x + xOffsset, newVec.y + yOffsset, -9.96f);
     }
     public void SetClickedTile(GameObject tile)
     {
         clickedTile = tile;
+    }
+    public bool OngameBoard()
+    {
+        return _touchTiles.Count > _shipSize;
+    }
+    public bool HitCheckSank()
+    {
+        return _shipSize <= hitcount;
     }
 }

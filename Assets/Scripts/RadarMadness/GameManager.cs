@@ -1,11 +1,12 @@
+using System.Drawing;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject panelInicial;
+ 
 
     [Header("Pool ships")]
     public GameObject[] ships;
@@ -22,32 +23,41 @@ public class GameManager : MonoBehaviour
     public GameObject readybttn;
     public GameObject rotatebttn;
 
+    #region SerializeField
+
+    [SerializeField]
+    GameObject panelInicial;
+
     [Header("Elementos a invertir")]
     [SerializeField]
     private TextMeshProUGUI textmeshpro;
     [SerializeField]
     private Image colorpanel;
     [SerializeField]
-    Transform holderflota;
-    [SerializeField]
-    SpriteRenderer holdercolor;
+    GameObject holder;
     [SerializeField]
     GameObject flotaRoja;
     [SerializeField]
     GameObject flotaAzul;
     [SerializeField]
-    GameObject fondoTexto;
+    GameObject fondoTextoPosicionar;
     [SerializeField]
-    SpriteRenderer fondosprite;
+    GameObject textoPosicionar;
     [SerializeField]
-    GameObject textoPosi;
+    GameObject vidas;
+    [SerializeField]
+    GameObject exit;
+    #endregion
 
     void Start()
     {
         panelInicial.SetActive(true);
         _shipScript = ships[_shipIndex].GetComponent<ShipScript>();
     }
-
+    private void Update()
+    {
+        Debug.Log(_setupComplete);
+    }
     public void OnDisablePanel()
     {
         panelInicial.SetActive(false);
@@ -57,6 +67,10 @@ public class GameManager : MonoBehaviour
         if (_setupComplete && _player1Turn)
         {
             //Empieza el juego
+
+            Debug.Log("setteo completo");
+
+
         }
         else if (!_setupComplete)
         {
@@ -117,19 +131,31 @@ public class GameManager : MonoBehaviour
         {
             _shipIndex++;
             _shipScript = ships[_shipIndex].GetComponent<ShipScript>();
-
+            print("entro if");
         }
         else
         {
+            print("no entro if");
+
             Debug.Log("Fin de la colocación de barcos. Cambiar turno.");
-           // _setupComplete = true; // Marcar que la configuración está completa
+            // _setupComplete = true; // Marcar que la configuración está completa
             _player1Turn = !_player1Turn; // Cambiar turno al jugador 2
             _shipIndex = 0; // Reiniciar el índice del barco para el nuevo jugador
             _shipScript = _player1Turn ? ships[_shipIndex].GetComponent<ShipScript>() : ships2[_shipIndex].GetComponent<ShipScript>();
 
             ChangeSites();
 
+
         }
+        
+        
+            if (!_shipScript.OngameBoard())
+            {
+                print("a ya");
+
+            }
+           
+        
     }
     public void RotateClicked()
     {
@@ -143,21 +169,40 @@ public class GameManager : MonoBehaviour
         panelInicial.SetActive(true);
         textmeshpro.text = "Pasale el cel a tu amigo y no mirés ome";
         colorpanel.color = new Color32(28, 39, 161, 255);
-        holderflota.transform.position += new Vector3(-2.06f, 0.0086f, 0f);
-        holdercolor.color = new Color32(87, 136, 173, 255);
+        holder.GetComponent<Transform>().transform.position += new Vector3(-2.06f, 0.0086f, 0f);
+        holder.GetComponent<SpriteRenderer>().color = new Color32(87, 136, 173, 255);
         flotaAzul.SetActive(true);
         flotaRoja.SetActive(false);
-        fondoTexto.transform.position += new Vector3(-10.06f, -0.0196f, 0f);
-        fondosprite.color = new Color32(164, 77, 64, 255);
+        fondoTextoPosicionar.GetComponent<Transform>().position += new Vector3(-10.06f, -0.0196f, 0f);
+        fondoTextoPosicionar.GetComponent<SpriteRenderer>().color = new Color32(164, 77, 64, 255);
 
-        textoPosi.GetComponent<RectTransform>().eulerAngles = new Vector3(0f, 0f, 180f);
-        textoPosi.GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, -469f, 0f);
+        textoPosicionar.GetComponent<RectTransform>().eulerAngles = new Vector3(0f, 0f, 180f);
+        textoPosicionar.GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, -469f, 0f);
         cuenta++;
         }
-        else
+        else if (cuenta == 1)
         {
-        _setupComplete = true;
-        _player1Turn = true;
+            _setupComplete = true;
+            _player1Turn = true;
+        }
+
+
+        if (_setupComplete && _player1Turn)
+        {
+            foreach (SpriteRenderer sr in flotaAzul.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.enabled = false;
+            }
+            Debug.Log("apago azul");
+            foreach (SpriteRenderer sr in flotaRoja.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.enabled = false;
+            }
+            textoPosicionar.SetActive(false);
+            fondoTextoPosicionar.SetActive(false);
+            vidas.SetActive(true);
+            holder.SetActive(false);
+            exit.SetActive(true);
         }
     }
 

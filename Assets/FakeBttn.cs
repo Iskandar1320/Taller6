@@ -11,6 +11,9 @@ public class FakeBttn : MonoBehaviour
     }
     public void OnMouseUpAsButton()
     {
+        if (this.gameObject.name is "Boton ready" or "Boton girar")
+        {
+
         FakeBttn[] btns = FindObjectsOfType<FakeBttn>();
 
         Physics.queriesHitTriggers = false;
@@ -30,5 +33,15 @@ public class FakeBttn : MonoBehaviour
             script.gameObject.SetActive(false);
         }
         Physics.queriesHitTriggers = true;
+        }
+
+
+        if (this.gameObject.name is "SaveBtn")
+        {
+            Physics.queriesHitTriggers = false;
+
+            Physics.queriesHitTriggers = true;
+
+        }
     }
 }
