@@ -1,43 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+namespace SinkShip
 {
-    [SerializeField] float speed = 10f;
-    [SerializeField] float maxDistance = 10f;
-
-    private Vector2 startPosition;
-    private float conquaredDistance = 0;
-    private Rigidbody2D rb;
-
-    private void Awake()
+    public class BulletScript : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+        [SerializeField] float speed = 10f;
+        [SerializeField] float maxDistance = 10f;
 
-    public void Initialize()
-    {
-        startPosition = transform.position;
-        rb.velocity = transform.up * speed;
-    }
-    private void Update()
-    {
-        conquaredDistance = Vector2.Distance(transform.position, startPosition);
-        if (conquaredDistance > maxDistance )
+        private Vector2 startPosition;
+        private float conquaredDistance = 0;
+        private Rigidbody2D rb;
+
+        private void Awake()
         {
-            DisableObject();
+            rb = GetComponent<Rigidbody2D>();
         }
-    }
 
-    private void DisableObject()
-    {
-        rb.velocity = Vector2.zero;
-        gameObject.SetActive(false);
-    }
+        public void Initialize()
+        {
+            startPosition = transform.position;
+            rb.velocity = transform.up * speed;
+        }
+        private void Update()
+        {
+            conquaredDistance = Vector2.Distance(transform.position, startPosition);
+            if (conquaredDistance > maxDistance )
+            {
+                DisableObject();
+            }
+        }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Colliderd" + collision.name);
+        private void DisableObject()
+        {
+            rb.velocity = Vector2.zero;
+            gameObject.SetActive(false);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log("Colliderd" + collision.name);
+        }
     }
 }

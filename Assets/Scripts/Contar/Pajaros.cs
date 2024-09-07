@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Pajaros : MonoBehaviour
-{   
-    void Update()
-    {
-        if(transform.position.y < -6f)
+namespace Contar
+{
+    public class Pajaros : MonoBehaviour
+    {   
+        void Update()
         {
-            Destroy(gameObject);
+            if(transform.position.y < -6f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

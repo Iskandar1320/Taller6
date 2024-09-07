@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Laterales : MonoBehaviour
+namespace Pong
 {
-    private void OnCollisionEnter2D(Collision2D pelotaGolpe)
+    public class Laterales : MonoBehaviour
     {
-        if(pelotaGolpe.gameObject.GetComponent<ControladorPelota>() != null)
+        private void OnCollisionEnter2D(Collision2D pelotaGolpe)
         {
-            pelotaGolpe.gameObject.GetComponent<ControladorPelota>().GolpeLateral();
+            if(pelotaGolpe.gameObject.GetComponent<ControladorPelota>() != null)
+            {
+                pelotaGolpe.gameObject.GetComponent<ControladorPelota>().GolpeLateral();
+            }
         }
     }
 }

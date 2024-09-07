@@ -2,13 +2,15 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SumoScripts
 {
     public class Sumo : MonoBehaviour
     {
+
+        #region SerializedFields
+        
         [SerializeField] private float rotationSpeed = 45.0f;
         [SerializeField] private float movementSpeed = 1.0f;
         [SerializeField] private GameObject directionReference1;
@@ -23,15 +25,18 @@ namespace SumoScripts
         [SerializeField] private Image colorpanel;
         [SerializeField] private TextMeshProUGUI puntosAzul;
         [SerializeField] private TextMeshProUGUI puntosRojo;
+        [SerializeField] private Animator animator;
+        #endregion
 
         private Vector3 _p1InitialPosition;
         private Vector3 _p2InitialPosition;
         private bool _isTackle1;
         private bool _isTackle2;
-        private int _roundsBlue;
+        private int _roundsBlue =2;
         private int _roundsRed;
         private bool _canAddPoints = true;
         private bool _canMove; // Nueva variable para controlar el movimiento de los jugadores
+        private SceneTransitions _sceneTransitions;
 
         [SerializeField] private GameObject panelTime;
         [SerializeField] private TextMeshProUGUI timerText;
@@ -41,11 +46,13 @@ namespace SumoScripts
 
         private void Start()
         {
+            
+            _sceneTransitions = FindObjectOfType<SceneTransitions>();
+            
             _p1InitialPosition = p1.position;
             _p2InitialPosition = p2.position;
-
+            StartCoroutine(StartAnimCoroutine());
             // Iniciar la cuenta regresiva al inicio del juego
-            StartCoroutine(StartTimerCoroutine());
         }
 
         private void Update()
@@ -194,14 +201,17 @@ namespace SumoScripts
                 textMeshPro.text = "Player 1 Wins";
                 colorpanel.color = new Color32(161, 28, 28, 233);
                 panel.SetActive(true);
-                StartCoroutine(RestartGame());
+                animator.Play("EntreEscenas");
+                StartCoroutine(_sceneTransitions.EndScene());
             }
             else if (_roundsBlue == 3)
             {
                 textMeshPro.text = "Player 2 Wins";
                 colorpanel.color = new Color32(28, 39, 161, 233);
                 panel.SetActive(true);
-                StartCoroutine(RestartGame());
+                animator.Play("EntreEscenas");
+                StartCoroutine(_sceneTransitions.EndScene());
+
             }
             else
             {
@@ -230,13 +240,13 @@ namespace SumoScripts
             puntosAzul.text = _roundsBlue.ToString();
             puntosRojo.text = _roundsRed.ToString();
         }
-
-        private static IEnumerator RestartGame()
+        private IEnumerator StartAnimCoroutine()
         {
-            yield return new WaitForSeconds(5);
-            SceneManager.LoadScene(0);
-        }
+            animator.Play("MenuEnter");            
 
+            yield return StartCoroutine(StartTimerCoroutine());
+
+        }
         private IEnumerator StartTimerCoroutine()
         {
             ResetTimer();
@@ -265,5 +275,5 @@ namespace SumoScripts
         {
             panelTime.SetActive(false);
         }
-    }
+     }
 }

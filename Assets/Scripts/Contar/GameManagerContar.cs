@@ -1,53 +1,53 @@
-using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManagerContar : MonoBehaviour
+namespace Contar
 {
-    public GameObject PjroAma;
-    public GameObject PjroVer;
-
-    public float maxX;
-    public Transform spawnPoint;
-    public float spawnRate;
-
-    public bool gameStarted = false;
-
-    [SerializeField] private ContadorDeColisiones cont;
-    public GameObject tapText;
-
-    void Update()
+    public class GameManagerContar : MonoBehaviour
     {
-        if (Input.GetMouseButtonDown(0) && !gameStarted)
+        public GameObject PjroAma;
+        public GameObject PjroVer;
+
+        public float maxX;
+        public Transform spawnPoint;
+        public float spawnRate;
+
+        public bool gameStarted = false;
+
+        [SerializeField] private ContadorDeColisiones cont;
+        public GameObject tapText;
+
+        void Update()
         {
-            StartSpawning();
-            gameStarted = true;
-            tapText.SetActive(false);
+            if (Input.GetMouseButtonDown(0) && !gameStarted)
+            {
+                StartSpawning();
+                gameStarted = true;
+                tapText.SetActive(false);
+            }
+
+            if(cont.GameFinished == true)
+            {
+                Debug.Log("juego terminado");
+            }
         }
 
-        if(cont.GameFinished == true)
+        private void StartSpawning()
         {
-            Debug.Log("juego terminado");
+            InvokeRepeating("SpawnPjroAma", 0.2f, spawnRate);
+            InvokeRepeating("SpawnPjroVer", 0.5f, spawnRate);
         }
-    }
+        void SpawnPjroAma()
+        {
+            Vector3 spawnPos = spawnPoint.position;
+            spawnPos.x = Random.Range(-maxX, maxX);
+            Instantiate(PjroAma, spawnPos, Quaternion.identity);
+        }
+        void SpawnPjroVer()
+        {
+            Vector3 spawnPos = spawnPoint.position;
+            spawnPos.x = Random.Range(-maxX, maxX);
+            Instantiate(PjroVer, spawnPos, Quaternion.identity);
+        }
 
-    private void StartSpawning()
-    {
-        InvokeRepeating("SpawnPjroAma", 0.2f, spawnRate);
-        InvokeRepeating("SpawnPjroVer", 0.5f, spawnRate);
     }
-    void SpawnPjroAma()
-    {
-        Vector3 spawnPos = spawnPoint.position;
-        spawnPos.x = Random.Range(-maxX, maxX);
-        Instantiate(PjroAma, spawnPos, Quaternion.identity);
-    }
-    void SpawnPjroVer()
-    {
-        Vector3 spawnPos = spawnPoint.position;
-        spawnPos.x = Random.Range(-maxX, maxX);
-        Instantiate(PjroVer, spawnPos, Quaternion.identity);
-    }
-
 }
