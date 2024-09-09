@@ -29,6 +29,7 @@ public class GameManagerContar : MonoBehaviour
         if(cont.GameFinished == true)
         {
             Debug.Log("juego terminado");
+            gameStarted = false;
         }
     }
 
