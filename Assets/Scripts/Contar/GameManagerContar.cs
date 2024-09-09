@@ -25,11 +25,12 @@ namespace Contar
                 tapText.SetActive(false);
             }
 
-            if(cont.GameFinished == true)
-            {
-                Debug.Log("juego terminado");
-            }
+        if(cont.GameFinished == true)
+        {
+            Debug.Log("juego terminado");
+            gameStarted = false;
         }
+    }
 
         private void StartSpawning()
         {
