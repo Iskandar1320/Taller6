@@ -32,7 +32,7 @@ namespace SumoScripts
         private Vector3 _p2InitialPosition;
         private bool _isTackle1;
         private bool _isTackle2;
-        private int _roundsBlue =2;
+        private int _roundsBlue;
         private int _roundsRed;
         private bool _canAddPoints = true;
         private bool _canMove; // Nueva variable para controlar el movimiento de los jugadores
