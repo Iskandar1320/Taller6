@@ -9,6 +9,7 @@ TagManager:
   - BotonRotar
   - BotonR
   - Tile
+  - SceneTransition
   layers:
   - Default
   - TransparentFX

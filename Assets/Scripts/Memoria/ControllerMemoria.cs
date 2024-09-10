@@ -23,6 +23,10 @@ namespace Memoria
         private int currentPlayer = 1; // 1 para Jugador 1, 2 para Jugador 2
         private int scorePlayer1 = 0;
         private int scorePlayer2 = 0;
+        private SceneTransitions _sceneTransitions;
+        bool ganador;
+
+        
 
         [SerializeField] private TextMeshProUGUI scoreTextPlayer1;
         [SerializeField] private TextMeshProUGUI scoreTextPlayer2;
@@ -32,14 +36,63 @@ namespace Memoria
         [SerializeField] private Image colorpanel;
         [SerializeField] private TextMeshProUGUI _textMeshPro;
         [SerializeField] private SpriteRenderer _mesa; // Objeto principal con el color deseado
+        [SerializeField] private Animator animator;
 
-
+        
+         private void Start()
+         {
+                    _sceneTransitions = FindObjectOfType<SceneTransitions>();
+                    
+                    int[] locations = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
+                    locations = Randomizer(locations);
+        
+                    float totalWidth = (columns - 1) * Xspace;
+                    float totalHeight = (rows - 1) * Mathf.Abs(Yspace);
+        
+                    Vector3 startPosition = _startObject.transform.position;
+                    Vector3 offset = new Vector3(-totalWidth / 2, totalHeight / 2, 0);
+        
+                    for (int i = 0; i < columns; i++)
+                    {
+                        for (int j = 0; j < rows; j++)
+                        {
+                            MemoriaImagen gameImage;
+                            if (i == 0 && j == 0)
+                            {
+                                gameImage = _startObject;
+                            }
+                            else
+                            {
+                                gameImage = Instantiate(_startObject) as MemoriaImagen;
+                            }
+        
+                            int index = j * columns + i;
+                            int id = locations[index];
+                            gameImage.ChangeSprite(id, _images[id]);
+        
+                            float positionX = Xspace * i;
+                            float positionY = Yspace * j;
+        
+                            Vector3 targetPosition = startPosition + offset + new Vector3(positionX, positionY, 0);
+                            gameImage.transform.DOMove(targetPosition, 0.5f).SetEase(Ease.OutBounce);
+                        }
+                    }
+        
+                    UpdateTurnText();
+         }
+        
         private void Update()
         {
-            Debug.Log(scorePlayer1 + " " + scorePlayer2);
-            if (scorePlayer1 + scorePlayer2 == 6)
+            print(ganador);
+            Debug.Log("suma"+scorePlayer1 + scorePlayer2);
+            if (!ganador)
             {
+            if (scorePlayer1 + scorePlayer2 == 6 )
+            {
+                ganador = true;
                 Winner();
+            }
+                
             }
         }
 
@@ -56,45 +109,7 @@ namespace Memoria
             return array;
         }
 
-        private void Start()
-        {
-            int[] locations = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
-            locations = Randomizer(locations);
-
-            float totalWidth = (columns - 1) * Xspace;
-            float totalHeight = (rows - 1) * Mathf.Abs(Yspace);
-
-            Vector3 startPosition = _startObject.transform.position;
-            Vector3 offset = new Vector3(-totalWidth / 2, totalHeight / 2, 0);
-
-            for (int i = 0; i < columns; i++)
-            {
-                for (int j = 0; j < rows; j++)
-                {
-                    MemoriaImagen gameImage;
-                    if (i == 0 && j == 0)
-                    {
-                        gameImage = _startObject;
-                    }
-                    else
-                    {
-                        gameImage = Instantiate(_startObject) as MemoriaImagen;
-                    }
-
-                    int index = j * columns + i;
-                    int id = locations[index];
-                    gameImage.ChangeSprite(id, _images[id]);
-
-                    float positionX = Xspace * i;
-                    float positionY = Yspace * j;
-
-                    Vector3 targetPosition = startPosition + offset + new Vector3(positionX, positionY, 0);
-                    gameImage.transform.DOMove(targetPosition, 0.5f).SetEase(Ease.OutBounce);
-                }
-            }
-
-            UpdateTurnText();
-        }
+       
     
 
         private MemoriaImagen firstOpen;
@@ -125,12 +140,12 @@ namespace Memoria
                 if (currentPlayer == 1)
                 {
                     scorePlayer1++;
-                    scoreTextPlayer1.text = "" + scorePlayer1;
+                    scoreTextPlayer1.text = scorePlayer1.ToString();
                 }
                 else
                 {
                     scorePlayer2++;
-                    scoreTextPlayer2.text = "" + scorePlayer2;
+                    scoreTextPlayer2.text = scorePlayer2.ToString();
                 }
             }
             else
@@ -165,23 +180,28 @@ namespace Memoria
             // Verifica si ambos jugadores han acumulado todas las cartas (en este caso, 8)
             if (scorePlayer1 + scorePlayer2 == 6)
             {
+                print("entra a if de igual 6");
                 if (scorePlayer1 > scorePlayer2)
                 {
                     // Jugador 1 gana
                     _textMeshPro.text = "Player 1 Wins";
                     colorpanel.color = new Color32(161, 28, 28, 233);
+                    StartCoroutine(_sceneTransitions.EndScene());
                 }
                 else if (scorePlayer2 > scorePlayer1)
                 {
                     // Jugador 2 gana
                     _textMeshPro.text = "Player 2 Wins";
                     colorpanel.color = new Color32(28, 39, 161, 233);
+                    StartCoroutine(_sceneTransitions.EndScene());
                 }
                 else if (scorePlayer1 == scorePlayer2)
                 {
                     // Empate
                     _textMeshPro.text = "Empate";
                     colorpanel.color = new Color32(117, 5, 226, 255);
+                    animator.Play("EntreEscenas");
+                    StartCoroutine(_sceneTransitions.EndScene());
                 }
                 panelwin.SetActive(true);
                 StartCoroutine(RestartGame());

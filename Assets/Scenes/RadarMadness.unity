@@ -4855,6 +4855,7 @@ GameObject:
   - component: {fileID: 515044891}
   - component: {fileID: 515044890}
   - component: {fileID: 515044894}
+  - component: {fileID: 515044895}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4969,6 +4970,19 @@ MonoBehaviour:
   panelColor: {fileID: 0}
   botonPantalla: {fileID: 0}
   toca: {fileID: 0}
+--- !u!114 &515044895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515044889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cdc5cc90e6d4ceabbd13f08aab5aa35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionAnim: {fileID: 1971341884}
 --- !u!1 &517617539
 GameObject:
   m_ObjectHideFlags: 0
@@ -16999,16 +17013,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 515044894}
-        m_TargetAssemblyTypeName: PanelManagement, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 515044895}
+        m_TargetAssemblyTypeName: SceneTransitions, Assembly-CSharp
+        m_MethodName: OnClickExit
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PantallaInicio_1
+          m_StringArgument: Menu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1731859181

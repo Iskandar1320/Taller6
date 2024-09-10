@@ -1213,7 +1213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 1732986579}
-  sceneName: PantallaInicio_1
 --- !u!1 &534236386
 GameObject:
   m_ObjectHideFlags: 0
@@ -3438,13 +3437,13 @@ MonoBehaviour:
       - m_Target: {fileID: 510450850}
         m_TargetAssemblyTypeName: SceneTransitions, Assembly-CSharp
         m_MethodName: OnClickExit
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PantallaInicio_1
+          m_StringArgument: Menu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1376387704
@@ -4708,5 +4707,5 @@ SceneRoots:
   - {fileID: 962319344}
   - {fileID: 922619717}
   - {fileID: 510450848}
-  - {fileID: 835512741}
   - {fileID: 534236388}
+  - {fileID: 835512741}

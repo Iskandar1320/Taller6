@@ -201,7 +201,6 @@ namespace SumoScripts
                 textMeshPro.text = "Player 1 Wins";
                 colorpanel.color = new Color32(161, 28, 28, 233);
                 panel.SetActive(true);
-                animator.Play("EntreEscenas");
                 StartCoroutine(_sceneTransitions.EndScene());
             }
             else if (_roundsBlue == 3)
@@ -209,7 +208,6 @@ namespace SumoScripts
                 textMeshPro.text = "Player 2 Wins";
                 colorpanel.color = new Color32(28, 39, 161, 233);
                 panel.SetActive(true);
-                animator.Play("EntreEscenas");
                 StartCoroutine(_sceneTransitions.EndScene());
 
             }
