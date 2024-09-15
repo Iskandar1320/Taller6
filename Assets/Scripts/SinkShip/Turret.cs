@@ -49,7 +49,7 @@ namespace SinkShip
                         Physics2D.IgnoreCollision(proyectile.GetComponent<Collider2D>(), collider);
                     }
                 }
-                if (shootAudioSource != null)
+                if (shootAudioSource != null) // Alejo Aca iria lo del Audio de Disparo
                 {
                     shootAudioSource.Play();
                 }
