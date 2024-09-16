@@ -1,10 +1,15 @@
 using System.Collections; 
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+using DG.Tweening;
 
 namespace SinkShip
 {
     public class ShipsPlayerController : MonoBehaviour
     {
+        private SceneTransitions _sceneTransitions;
    
         [Header("Movement Settings")]
         [SerializeField] Vector2 speed;
@@ -20,6 +25,11 @@ namespace SinkShip
         [SerializeField] float flashDuration = 0.1f; // Duración del titileo
         private bool isInvulnerable = false; // Controla si el barco es inmune
 
+        [Header("Winner Panel Settings")]
+        [SerializeField] Image colorpanel;
+        [SerializeField] GameObject winningPanel;
+        [SerializeField] TextMeshProUGUI winningText;
+
         private Rigidbody2D rb;
         private SpriteRenderer spriteRenderer;
         private float steeringInput;
@@ -28,6 +38,9 @@ namespace SinkShip
         // Start is called before the first frame update
         private void Awake()
         {
+            _sceneTransitions = FindObjectOfType<SceneTransitions>();
+
+
             rb = GetComponent<Rigidbody2D>();
             spriteRenderer = GetComponent<SpriteRenderer>(); // Esto para manejar el titileo
 
@@ -63,8 +76,7 @@ namespace SinkShip
                 }
                 else
                 {
-                    Debug.Log("gano el jugador"+playerNumber);
-
+                    Win();
                 }
             }
             
@@ -99,8 +111,29 @@ namespace SinkShip
             isInvulnerable = false; // Terminar el estado de inmortalidad
         }
 
+        private void Win()
+        {
+            if (playerNumber == 1 && lifes < 1)
+            {
+                winningText.text = "Player 2 Wins";
+                colorpanel.color = new Color32(28, 39, 161, 233);
+                StartCoroutine(_sceneTransitions.EndScene());
+            }
+            else if (playerNumber == 2 && lifes < 1)
+            {
+                winningText.text = "Player 1 Wins";
+                colorpanel.color = new Color32(161, 28, 28, 233);
+                StartCoroutine(_sceneTransitions.EndScene());
+            }
+            winningPanel.SetActive(true);
+            StartCoroutine(RestartGame());
+        }
 
-
+        private IEnumerator RestartGame()
+        {
+            yield return new WaitForSeconds(5);
+            SceneManager.LoadScene(0);
+        }
 
     }
 }
