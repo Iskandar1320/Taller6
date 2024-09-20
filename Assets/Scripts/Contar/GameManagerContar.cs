@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 namespace Contar
 {
@@ -24,12 +26,6 @@ namespace Contar
                 gameStarted = true;
                 tapText.SetActive(false);
             }
-
-        if(cont.GameFinished == true)
-        {
-            Debug.Log("juego terminado");
-            gameStarted = false;
-        }
     }
 
         private void StartSpawning()
@@ -49,6 +45,5 @@ namespace Contar
             spawnPos.x = Random.Range(-maxX, maxX);
             Instantiate(PjroVer, spawnPos, Quaternion.identity);
         }
-
     }
 }

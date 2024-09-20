@@ -51,6 +51,8 @@ namespace Contar
                     contRojoTXT.enabled = true;
                     contadorTXT.enabled = true;
                     GameFinished = true;
+                    Collider2D myCollider = GetComponent<Collider2D>();
+                    myCollider.enabled = false;
                 }
 
                 int secondsRemaining = Mathf.FloorToInt(tiempoDeEspera);
@@ -78,12 +80,12 @@ namespace Contar
         {
             diferencia1 = Mathf.Abs(contador - contAzul);
             diferencia2 = Mathf.Abs(contador - contRojo);
-        }
+        } 
 
 
         private IEnumerator EjecutarAccionDespuesDeTiempo()
         {
-            yield return new WaitForSeconds(tiempoDeEspera);    
+            yield return new WaitForSeconds(tiempoDeEspera);
 
             if (diferencia1 < diferencia2)
             {
