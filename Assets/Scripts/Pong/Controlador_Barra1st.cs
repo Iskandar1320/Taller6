@@ -63,12 +63,14 @@ public class Controlador_Barra1st : MonoBehaviour
         rb.position = miPosicion;
         */
     }
-    private void OnCollisionEnter2D(Collision2D golpeBola)
+
+    /*
+     private void OnCollisionEnter2D(Collision2D golpeBola)
     {
         if(golpeBola.gameObject.GetComponent<ControladorPelota>() != null)
         {
             golpeBola.gameObject.GetComponent<ControladorPelota>().IncrementoVelocidad_Golpe();
         }
-    }
+    }*/
 
 }

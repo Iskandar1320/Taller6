@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,15 +36,25 @@ namespace Panel
         public void MovePanel()
         {
             // RedPanel.DOAnchorPos(targetPanelPos, 1).SetEase(Ease.Flash).SetDelay(0.1f);
-            RedPanel.DOAnchorPos(targetPanelPos, 1).SetEase(Ease.OutBounce);
-            panelColor.DOFade(1, 1f);
+            
+            // Iniciamos la animación del panel
+            RedPanel.DOAnchorPos(targetPanelPos, 1).SetEase(Ease.OutBounce)
+                // Cuando la animación termine, matamos las transiciones
+                .OnComplete(() => DOTween.KillAll());
+            //panelColor.DOFade(1, 1f).OnComplete(() => DOTween.Kill(panelColor));
+
             toca.text = "";
             botonPantalla.SetActive(false);
+
         }
 
         public void RestartGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        private void OnDisable()
+        {
+            DOTween.KillAll();
         }
     }
 }

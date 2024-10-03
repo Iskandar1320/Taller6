@@ -10,6 +10,7 @@ TagManager:
   - BotonR
   - Tile
   - SceneTransition
+  - Paddle
   layers:
   - Default
   - TransparentFX
