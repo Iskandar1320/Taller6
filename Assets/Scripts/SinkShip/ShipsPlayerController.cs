@@ -53,6 +53,10 @@ namespace SinkShip
             steeringInput = steeringWheel.GetClampedValue();
 
             float rotationAmount = steeringInput   * rotationSpeed *Time.deltaTime;
+            if (playerNumber == 1)
+            {
+                rotationAmount = -rotationAmount; // Invertir la rotación
+            }
             rb.rotation += rotationAmount;
 
             Vector2 forwardMovement = transform.up * speed.y * Time.fixedDeltaTime;

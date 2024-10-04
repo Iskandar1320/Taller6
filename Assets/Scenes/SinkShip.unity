@@ -3292,7 +3292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5599048756053524327, guid: 54affebb018b7474984be1c4b2f4088b, type: 3}
       propertyPath: lifes
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5599048756053524327, guid: 54affebb018b7474984be1c4b2f4088b, type: 3}
       propertyPath: colorpanel
