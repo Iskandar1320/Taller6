@@ -26,7 +26,7 @@ namespace Contar
                 gameStarted = true;
                 tapText.SetActive(false);
             }
-    }
+        }
 
         private void StartSpawning()
         {
