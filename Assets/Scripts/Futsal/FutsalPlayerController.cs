@@ -4,16 +4,34 @@ using UnityEngine;
 
 public class FutsalPlayerController : MonoBehaviour
 {
+    Rigidbody2D rb;
+    [SerializeField] Joystick joystickDigital;
+    [SerializeField] private float moveSpeed = 5f;  // Velocidad de movimiento
+    [SerializeField] GameObject ball;
 
-    // Start is called before the first frame update
-    void Start()
+    private Vector2 movement;
+
+    private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Lee la dirección del joystick
+        movement = joystickDigital.Direction;
+    }
+
+    private void FixedUpdate()
+    {
+        // Aplicar el movimiento al Rigidbody2D
+        MovePlayer();
+    }
+
+    private void MovePlayer()
+    {
+        Vector2 moveVelocity = movement * moveSpeed;
+
+        rb.AddForce(moveVelocity);
     }
 }
