@@ -11,6 +11,10 @@ TagManager:
   - Tile
   - SceneTransition
   - Paddle
+  - PlayerBoundaries
+  - BallBoundaries
+  - Players
+  - Ball
   layers:
   - Default
   - TransparentFX
