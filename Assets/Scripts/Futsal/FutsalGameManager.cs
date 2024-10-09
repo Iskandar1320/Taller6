@@ -21,6 +21,12 @@ public class FutsalGameManager : MonoBehaviour
     [Header("Score Settings")]
     [SerializeField] TextMeshProUGUI bluePunt;
     [SerializeField] TextMeshProUGUI redPunt;
+    [SerializeField] TextMeshProUGUI winText;
+    [SerializeField] GameObject winPannel;
+    [SerializeField] Color blueColor;
+    [SerializeField] Color redColor;
+
+
 
     [Header("Other Settings")]
     [SerializeField] int maxScore = 5;
@@ -37,6 +43,8 @@ public class FutsalGameManager : MonoBehaviour
         redPlayerStartPositions = GetPlayerPositions(redPlayers);
         bluePlayerStartPositions = GetPlayerPositions(bluePlayers);
         ballStartPosition = ball.transform.position;
+        winPannel.SetActive(false);
+       
     }
 
     private void Update()
@@ -72,19 +80,39 @@ public class FutsalGameManager : MonoBehaviour
 
     private void Winner(string winner)
     {
+        winPannel.SetActive(true);
+        if (winner == "blue")
+        {
+            winText.text = "Gana Azul";
+            winText.color = blueColor;
+        }
+        else if (winner == "red")
+        {
+            winText.text = "Gana Rojo";
+            winText.color = redColor;
+        }
+       
         // Lógica para manejar la victoria
     }
 
     // Reiniciar el juego
     private IEnumerator RestartGame()
     {
+        // Activar el panel y mostrar la cuenta regresiva en el winText
+        winPannel.SetActive(true);
+
+        for (float timer = restartDelay; timer > 0; timer -= Time.deltaTime)
+        {
+            winText.text = "" + Mathf.Ceil(timer).ToString();  // Mostrar cuenta regresiva
+            yield return null;  // Esperar un frame
+        }
+
         // Reiniciar las posiciones de jugadores y pelota
         ResetGame();
 
-        // Esperar antes de que el jugador pueda continuar el juego
-        yield return new WaitForSeconds(restartDelay);
-
-        // Aquí puedes añadir la lógica para permitir que el juego continúe
+        // Desactivar el panel y el texto después del tiempo de reinicio
+        winPannel.SetActive(false);
+        winText.text = "";  // Limpiar el texto
     }
 
     private void ResetGame()
