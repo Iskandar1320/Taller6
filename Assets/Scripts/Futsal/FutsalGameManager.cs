@@ -36,6 +36,7 @@ public class FutsalGameManager : MonoBehaviour
     private Vector2[] redPlayerStartPositions;
     private Vector2[] bluePlayerStartPositions;
     private Vector2 ballStartPosition;
+    private SceneTransitions transitions;
 
     private void Start()
     {
@@ -91,7 +92,7 @@ public class FutsalGameManager : MonoBehaviour
             winText.text = "Gana Rojo";
             winText.color = redColor;
         }
-       
+       transitions.EndScene();
         // Lógica para manejar la victoria
     }
 
@@ -113,6 +114,11 @@ public class FutsalGameManager : MonoBehaviour
         // Desactivar el panel y el texto después del tiempo de reinicio
         winPannel.SetActive(false);
         winText.text = "";  // Limpiar el texto
+    }
+
+    private IEnumerator StartGame()
+    {
+        yield return null;
     }
 
     private void ResetGame()
