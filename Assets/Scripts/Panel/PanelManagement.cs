@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace Panel
 {
@@ -15,12 +16,43 @@ namespace Panel
         [SerializeField] GameObject botonPantalla;
         [SerializeField] TextMeshProUGUI toca;
         private TextMeshPro _textMeshPro;
-
+        
+       // Lista de GameObjects para las introducciones
+        [SerializeField] private List<GameObject> introPanels;
+        private Dictionary<GameObject, Vector3> originalScales; // Para guardar el tamaño original de cada popup
+        
         private void Start()
         {
             _textMeshPro = GetComponent<TextMeshPro>();
+            
+              originalScales = new Dictionary<GameObject, Vector3>();
+            
+         // Inicializamos cada introPanel y guardamos su escala original
+         foreach (GameObject intro in introPanels)
+         {
+            originalScales[intro] = intro.transform.localScale;
+            intro.transform.localScale = Vector3.zero; // Los ocultamos al inicio
+         }
+                    
+        }
+        
+        // Método que escala el popup específico a su tamaño original cuando se presiona el botón
+        public void ShowPopup(GameObject panelToShow)
+        {
+            if (introPanels.Contains(panelToShow))
+            {
+                Vector3 originalScale = originalScales[panelToShow];
+                panelToShow.transform.DOScale(originalScale, 0.5f).SetEase(Ease.OutBounce);
+            }
         }
 
+        public void ClosePopup(GameObject panelToClose)
+        {
+            if (introPanels.Contains(panelToClose))
+            {
+                panelToClose.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack);
+            }
+        }
         public void ChangeScene(string _sceneName) 
         {
             SceneManager.LoadScene(_sceneName);
