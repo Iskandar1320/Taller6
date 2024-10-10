@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,12 @@ namespace Contar
         [SerializeField] private ContadorDeColisiones cont;
         public GameObject tapText;
 
+        public bool isSpawning = true;
+
+        private void Start()
+        {
+            StartCoroutine(SpawnRoutine());
+        }
         void Update()
         {
             if (Input.GetMouseButtonDown(0) && !gameStarted)
@@ -28,11 +35,28 @@ namespace Contar
             }
         }
 
-        public void StartSpawning()
+        IEnumerator SpawnRoutine()
+        {
+            while (true)
+            {
+                if (isSpawning)
+                {
+                    SpawnPrefab();
+                }
+                yield return new WaitForSeconds(spawnRate);
+            }
+        }
+        void SpawnPrefab()
+        {
+            Instantiate(SpawnPjroAma(), transform.position, Quaternion.identity);
+        }
+
+        /*public void StartSpawning()
         {
             InvokeRepeating("SpawnPjroAma", 0.2f, spawnRate);
             InvokeRepeating("SpawnPjroVer", 0.5f, spawnRate);
-        }
+        }*/
+
         void SpawnPjroAma()
         {
             Vector3 spawnPos = spawnPoint.position;
