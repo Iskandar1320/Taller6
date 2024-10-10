@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +14,7 @@ namespace Contar
         public int contador = 0;
         public int contAzul = 0;
         public int contRojo = 0;
-        private float tiempoDeEspera = 35f;
+        private float tiempoDeRonda = 10f;
         public GameObject AzulGana;
         public GameObject RojoGana;
         public GameObject Empate;
@@ -20,7 +22,9 @@ namespace Contar
         public TextMeshProUGUI contAzulTXT;
         public TextMeshProUGUI contRojoTXT;
         public TextMeshProUGUI contadorTXT;
-        public bool GameFinished = false;
+
+        public int rondaAzul = 0;
+        public int rondaRojo = 0;
 
         private void Start()
         {
@@ -29,33 +33,66 @@ namespace Contar
             contRojoTXT.enabled = false;
             contadorTXT.enabled = false;
         }
+
         private void Update()
         {
             contAzulTXT.text = contAzul.ToString();
             contRojoTXT.text = contRojo.ToString();
             contadorTXT.text = "Total pajaros amarillos: " + contador.ToString();
 
-
             if (gameManager.gameStarted == true)
             {
                 StartCoroutine(EjecutarAccionDespuesDeTiempo());
-                if (tiempoDeEspera > 0)
+
+                if (tiempoDeRonda > 0)
                 {
-                    tiempoDeEspera -= Time.deltaTime;
-                    if (tiempoDeEspera < 0)
-                        tiempoDeEspera = 0;
+                    tiempoDeRonda -= Time.deltaTime;
+                    if (tiempoDeRonda < 0)
+                        tiempoDeRonda = 0;
                 }
                 else
                 {
+                    gameManager.CancelInvoke();
                     contAzulTXT.enabled = true;
                     contRojoTXT.enabled = true;
                     contadorTXT.enabled = true;
-                    GameFinished = true;
-                    Collider2D myCollider = GetComponent<Collider2D>();
-                    myCollider.enabled = false;
+
+                    if (diferencia1 < diferencia2)
+                    {
+                        rondaRojo++;
+                        if (rondaRojo == 2)
+                        {
+                            RojoGana.SetActive(true);
+                        }
+                        else
+                        {
+                            Debug.Log("ronda rojo");
+                            EjecutarAccionDespuesDeRonda();
+                        }
+                        return;
+                    }
+                    else if (diferencia2 < diferencia1)
+                    {
+                        rondaAzul++;
+                        if (rondaAzul == 2)
+                        {
+                            AzulGana.SetActive(true);
+                        }
+                        else
+                        {
+                            Debug.Log("ronda Azul");
+                            EjecutarAccionDespuesDeRonda();
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        EjecutarAccionDespuesDeRonda();
+                        return;
+                    }
                 }
 
-                int secondsRemaining = Mathf.FloorToInt(tiempoDeEspera);
+                int secondsRemaining = Mathf.FloorToInt(tiempoDeRonda);
                 timeText.text =secondsRemaining.ToString();
             }
         }
@@ -80,28 +117,20 @@ namespace Contar
         {
             diferencia1 = Mathf.Abs(contador - contAzul);
             diferencia2 = Mathf.Abs(contador - contRojo);
-        } 
-
-
+        }
         private IEnumerator EjecutarAccionDespuesDeTiempo()
         {
-            yield return new WaitForSeconds(tiempoDeEspera);
-
-            if (diferencia1 < diferencia2)
-            {
-                Debug.Log("Azul gana");
-                AzulGana.SetActive(true);
-            }
-            else if (diferencia2 < diferencia1)
-            {
-                Debug.Log("Rojo gana");
-                RojoGana.SetActive(true);
-            }
-            else
-            {
-                Debug.Log("Empate");
-                Empate.SetActive(true);
-            }
+            yield return new WaitForSeconds(tiempoDeRonda);        
+        }
+        private IEnumerator EjecutarAccionDespuesDeRonda()
+        {
+            yield return new WaitForSeconds(3f);
+            contAzul = 0;
+            contRojo = 0;
+            contador = 0;
+            diferencia1 = 0;
+            diferencia2 = 0;
+            gameManager.StartSpawning();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Contar
             }
         }
 
-        private void StartSpawning()
+        public void StartSpawning()
         {
             InvokeRepeating("SpawnPjroAma", 0.2f, spawnRate);
             InvokeRepeating("SpawnPjroVer", 0.5f, spawnRate);
