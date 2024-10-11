@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.Video;
 
 namespace Panel
 {
@@ -20,6 +21,10 @@ namespace Panel
        // Lista de GameObjects para las introducciones
         [SerializeField] private List<GameObject> introPanels;
         private Dictionary<GameObject, Vector3> originalScales; // Para guardar el tamaño original de cada popup
+        
+        
+        [SerializeField] private VideoPlayer videoPlayer;
+        
         
         private void Start()
         {
@@ -45,12 +50,31 @@ namespace Panel
                 panelToShow.transform.DOScale(originalScale, 0.5f).SetEase(Ease.OutBounce);
             }
         }
+        public void ShowPopupVod(GameObject panelToShow)
+        {
+            if (introPanels.Contains(panelToShow))
+            {
+                Vector3 originalScale = originalScales[panelToShow];
+                panelToShow.transform.DOScale(originalScale, 0.5f).SetEase(Ease.OutBounce);
+                PlayVideo();
+                
+            }
+        }
 
         public void ClosePopup(GameObject panelToClose)
         {
             if (introPanels.Contains(panelToClose))
             {
                 panelToClose.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack);
+            }
+        }
+        public void ClosePopupVod(GameObject panelToClose)
+        {
+            if (introPanels.Contains(panelToClose))
+            {
+                panelToClose.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack);
+                videoPlayer.Stop();
+    
             }
         }
         public void ChangeScene(string _sceneName) 
@@ -84,6 +108,15 @@ namespace Panel
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        public void PlayVideo()
+        {
+            // Asegúrate de que el VideoPlayer esté listo
+            videoPlayer.Prepare();
+            videoPlayer.prepareCompleted += (VideoPlayer vp) => {
+                vp.Play(); // Reproducir el video una vez preparado
+            };
+        }
+        
         private void OnDisable()
         {
             DOTween.KillAll();
