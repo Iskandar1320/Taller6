@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 namespace Contar
@@ -22,9 +23,14 @@ namespace Contar
         public TextMeshProUGUI contAzulTXT;
         public TextMeshProUGUI contRojoTXT;
         public TextMeshProUGUI contadorTXT;
-
         public int rondaAzul = 0;
         public int rondaRojo = 0;
+        public bool finRonda = false;
+        public GameObject puntoAzul;
+        public GameObject puntoRojo;
+
+
+
 
         private void Start()
         {
@@ -44,50 +50,61 @@ namespace Contar
             {
                 StartCoroutine(EjecutarAccionDespuesDeTiempo());
 
-                if (tiempoDeRonda > 0)
+                if (tiempoDeRonda > 0 && finRonda == false)
                 {
                     tiempoDeRonda -= Time.deltaTime;
                     if (tiempoDeRonda < 0)
+                    {
                         tiempoDeRonda = 0;
+                        finRonda = true;
+                    }
                 }
-                else
+                else if (finRonda == true)
                 {
-                    gameManager.CancelInvoke();
+                    gameManager.isSpawning = false;
+                    CompararContadores();
                     contAzulTXT.enabled = true;
                     contRojoTXT.enabled = true;
                     contadorTXT.enabled = true;
 
-                    if (diferencia1 < diferencia2)
+                    if (diferencia1 > diferencia2)
                     {
                         rondaRojo++;
-                        if (rondaRojo == 2)
+                        if (rondaRojo >= 2)
                         {
+                            gameManager.isSpawning = false;
+                            puntoRojo.SetActive(false);
                             RojoGana.SetActive(true);
                         }
                         else
                         {
-                            Debug.Log("ronda rojo");
-                            EjecutarAccionDespuesDeRonda();
+                            puntoRojo.SetActive(true);
+                            StartCoroutine(EjecutarAccionDespuesDeRonda());
+                            finRonda = false;
                         }
                         return;
                     }
-                    else if (diferencia2 < diferencia1)
+                    else if (diferencia1 < diferencia2)
                     {
                         rondaAzul++;
-                        if (rondaAzul == 2)
+                        if (rondaAzul >= 2)
                         {
+                            gameManager.isSpawning = false;
+                            puntoAzul.SetActive(false);
                             AzulGana.SetActive(true);
                         }
                         else
                         {
-                            Debug.Log("ronda Azul");
-                            EjecutarAccionDespuesDeRonda();
+                            puntoAzul.SetActive(true);
+                            StartCoroutine(EjecutarAccionDespuesDeRonda());
+                            finRonda = false;
                         }
                         return;
                     }
                     else
                     {
-                        EjecutarAccionDespuesDeRonda();
+                        StartCoroutine(EjecutarAccionDespuesDeRonda());
+                        finRonda = false;
                         return;
                     }
                 }
@@ -106,12 +123,10 @@ namespace Contar
         public void Azul()
         {
             contAzul++;
-            CompararContadores();
         }
         public void Rojo()
         {
             contRojo++;
-            CompararContadores();
         }
         private void CompararContadores()
         {
@@ -125,12 +140,16 @@ namespace Contar
         private IEnumerator EjecutarAccionDespuesDeRonda()
         {
             yield return new WaitForSeconds(3f);
+            tiempoDeRonda = 10f;
+            contAzulTXT.enabled = false;
+            contRojoTXT.enabled = false;
+            contadorTXT.enabled = false;
             contAzul = 0;
             contRojo = 0;
             contador = 0;
             diferencia1 = 0;
             diferencia2 = 0;
-            gameManager.StartSpawning();
+            gameManager.isSpawning = true;
         }
     }
 }

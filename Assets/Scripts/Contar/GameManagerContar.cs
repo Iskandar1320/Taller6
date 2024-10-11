@@ -12,26 +12,22 @@ namespace Contar
 
         public float maxX;
         public Transform spawnPoint;
-        public float spawnRate;
+        public float spawnRatePjroAma;
+        public float spawnRatePjroVer;
 
         public bool gameStarted = false;
 
-        [SerializeField] private ContadorDeColisiones cont;
-        public GameObject tapText;
+        //[SerializeField] private ContadorDeColisiones cont;
+        //public GameObject tapText;
 
         public bool isSpawning = true;
-
-        private void Start()
-        {
-            StartCoroutine(SpawnRoutine());
-        }
         void Update()
         {
             if (Input.GetMouseButtonDown(0) && !gameStarted)
             {
-                StartSpawning();
+                StartCoroutine(SpawnRoutine());
                 gameStarted = true;
-                tapText.SetActive(false);
+                //tapText.SetActive(false);
             }
         }
 
@@ -41,21 +37,34 @@ namespace Contar
             {
                 if (isSpawning)
                 {
-                    SpawnPrefab();
+                    SpawnPrefabPjroAma();
                 }
-                yield return new WaitForSeconds(spawnRate);
+                yield return new WaitForSeconds(spawnRatePjroAma);
+                if (isSpawning)
+                {
+                    SpawnPrefabPjroVer();
+                }
+                yield return new WaitForSeconds(spawnRatePjroVer);
             }
         }
-        void SpawnPrefab()
+        void SpawnPrefabPjroAma()
         {
-            Instantiate(SpawnPjroAma(), transform.position, Quaternion.identity);
+            Vector3 spawnPos = spawnPoint.position;
+            spawnPos.x = Random.Range(-maxX, maxX);
+            Instantiate(PjroAma, spawnPos, Quaternion.identity);
+        }
+        void SpawnPrefabPjroVer()
+        {
+            Vector3 spawnPos = spawnPoint.position;
+            spawnPos.x = Random.Range(-maxX, maxX);
+            Instantiate(PjroVer, spawnPos, Quaternion.identity);
         }
 
         /*public void StartSpawning()
         {
             InvokeRepeating("SpawnPjroAma", 0.2f, spawnRate);
             InvokeRepeating("SpawnPjroVer", 0.5f, spawnRate);
-        }*/
+        }
 
         void SpawnPjroAma()
         {
@@ -68,6 +77,6 @@ namespace Contar
             Vector3 spawnPos = spawnPoint.position;
             spawnPos.x = Random.Range(-maxX, maxX);
             Instantiate(PjroVer, spawnPos, Quaternion.identity);
-        }
+        }*/
     }
 }
