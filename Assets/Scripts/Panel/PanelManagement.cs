@@ -1,9 +1,11 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine.Video;
 
 namespace Panel
@@ -12,7 +14,6 @@ namespace Panel
     {
         public RectTransform RedPanel;
         Vector2 targetPanelPos = new Vector2(1, 0);
-        public Image panelColor;
         //public Color endColor;
         [SerializeField] GameObject botonPantalla;
         [SerializeField] TextMeshProUGUI toca;
@@ -20,11 +21,11 @@ namespace Panel
         
        // Lista de GameObjects para las introducciones
         [SerializeField] private List<GameObject> introPanels;
+        [SerializeField] private List<GameObject> videoPanels;
         private Dictionary<GameObject, Vector3> originalScales; // Para guardar el tamaño original de cada popup
         
         
-        [SerializeField] private VideoPlayer videoPlayer;
-        
+        private VideoPlayer videoPlayer;
         
         private void Start()
         {
@@ -38,6 +39,12 @@ namespace Panel
             originalScales[intro] = intro.transform.localScale;
             intro.transform.localScale = Vector3.zero; // Los ocultamos al inicio
          }
+
+         foreach (GameObject video in videoPanels)
+         {
+             originalScales[video] = video.transform.localScale;
+             video.transform.localScale = Vector3.zero; // Los ocultamos al inicio
+         }
                     
         }
         
@@ -50,16 +57,19 @@ namespace Panel
                 panelToShow.transform.DOScale(originalScale, 0.5f).SetEase(Ease.OutBounce);
             }
         }
-        public void ShowPopupVod(GameObject panelToShow)
+        public void ShowBotonVod(GameObject panelToShow)
         {
-            if (introPanels.Contains(panelToShow))
+            if (videoPanels.Contains(panelToShow))
             {
+                VideoPlayer[] videoPlayers = panelToShow.GetComponentsInChildren<VideoPlayer>();
+                
                 Vector3 originalScale = originalScales[panelToShow];
                 panelToShow.transform.DOScale(originalScale, 0.5f).SetEase(Ease.OutBounce);
                 PlayVideo();
                 
             }
         }
+        
 
         public void ClosePopup(GameObject panelToClose)
         {
@@ -67,14 +77,22 @@ namespace Panel
             {
                 panelToClose.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack);
             }
+
         }
-        public void ClosePopupVod(GameObject panelToClose)
+        
+        public void CloseBotonVod(GameObject panelToClose)
         {
-            if (introPanels.Contains(panelToClose))
+            
+            if (videoPanels.Contains(panelToClose))
             {
+                VideoPlayer[] videoPlayers = panelToClose.GetComponentsInChildren<VideoPlayer>();
+
+                foreach (VideoPlayer vp in videoPlayers)
+                {
+                    vp.Play();
+                }
                 panelToClose.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack);
                 videoPlayer.Stop();
-    
             }
         }
         public void ChangeScene(string _sceneName) 
