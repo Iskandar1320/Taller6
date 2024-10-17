@@ -2089,7 +2089,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280194894}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -2392,7 +2392,7 @@ MonoBehaviour:
   striker: {fileID: 927026424}
   goalkeeper: {fileID: 1002297961}
   joystick: {fileID: 680425618}
-  strikerSpeed: 22
+  strikerSpeed: 31.3
   goalkeeperSpeed: 22
   strikerMinX: -13.45
   strikerMaxX: 13.45
@@ -2998,9 +2998,7 @@ GameObject:
   - component: {fileID: 1858043936}
   - component: {fileID: 1858043935}
   - component: {fileID: 1858043934}
-  - component: {fileID: 1858043938}
   - component: {fileID: 1858043940}
-  - component: {fileID: 1858043941}
   - component: {fileID: 1858043942}
   m_Layer: 5
   m_Name: Canvas
@@ -3098,24 +3096,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1858043938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858043933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e681e1f85fdc47d4b9dd7dc712dca314, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RedPanel: {fileID: 0}
-  panelColor: {fileID: 0}
-  botonPantalla: {fileID: 0}
-  toca: {fileID: 0}
-  introPanels: []
-  videoPlayer: {fileID: 0}
 --- !u!114 &1858043940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3129,20 +3109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 1741870123}
---- !u!114 &1858043941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858043933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e68ec271c52dde4190beec1adb7e5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  instructionsPanel: {fileID: 0}
-  delayBeforeShowing: 1.5
 --- !u!114 &1858043942
 MonoBehaviour:
   m_ObjectHideFlags: 0
