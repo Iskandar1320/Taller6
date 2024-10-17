@@ -46,7 +46,7 @@ public class FutsalGameManager : MonoBehaviour
         bluePlayerStartPositions = GetPlayerPositions(bluePlayers);
         ballStartPosition = ball.transform.position;
         winPannel.SetActive(false);
-        StartCoroutine(StartGame());
+        StartCoroutine(StartGame());    
        
     }
 

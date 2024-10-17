@@ -36,7 +36,8 @@ public class FutsalPlayerController : MonoBehaviour
         goalkeeperRb = goalkeeper.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    
+    private void FixedUpdate()
     {
         ReadJoystickInput();
 
