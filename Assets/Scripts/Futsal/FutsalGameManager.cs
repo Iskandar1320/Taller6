@@ -21,15 +21,23 @@ public class FutsalGameManager : MonoBehaviour
     [Header("Score Settings")]
     [SerializeField] TextMeshProUGUI bluePunt;
     [SerializeField] TextMeshProUGUI redPunt;
+    [SerializeField] TextMeshProUGUI winText;
+    [SerializeField] GameObject winPannel;
+    [SerializeField] Color blueColor;
+    [SerializeField] Color redColor;
+
+
 
     [Header("Other Settings")]
     [SerializeField] int maxScore = 5;
     [SerializeField] float restartDelay = 2.0f;
+    [SerializeField] float _startTransitionDelay = 4.0f;
 
     // Para almacenar las posiciones iniciales de cada jugador
     private Vector2[] redPlayerStartPositions;
     private Vector2[] bluePlayerStartPositions;
     private Vector2 ballStartPosition;
+    private SceneTransitions transitions;
 
     private void Start()
     {
@@ -37,6 +45,9 @@ public class FutsalGameManager : MonoBehaviour
         redPlayerStartPositions = GetPlayerPositions(redPlayers);
         bluePlayerStartPositions = GetPlayerPositions(bluePlayers);
         ballStartPosition = ball.transform.position;
+        winPannel.SetActive(false);
+        StartCoroutine(StartGame());
+       
     }
 
     private void Update()
@@ -72,19 +83,53 @@ public class FutsalGameManager : MonoBehaviour
 
     private void Winner(string winner)
     {
+        winPannel.SetActive(true);
+        if (winner == "blue")
+        {
+            winText.text = "Gana Azul";
+            winText.color = blueColor;
+        }
+        else if (winner == "red")
+        {
+            winText.text = "Gana Rojo";
+            winText.color = redColor;
+        }
+       transitions.EndScene();
         // Lógica para manejar la victoria
     }
 
     // Reiniciar el juego
     private IEnumerator RestartGame()
     {
+        // Activar el panel y mostrar la cuenta regresiva en el winText
+        winPannel.SetActive(true);
+
+        for (float timer = restartDelay; timer > 0; timer -= Time.deltaTime)
+        {
+            winText.text = "" + Mathf.Ceil(timer).ToString();  // Mostrar cuenta regresiva
+            yield return null;  // Esperar un frame
+        }
+
         // Reiniciar las posiciones de jugadores y pelota
         ResetGame();
 
-        // Esperar antes de que el jugador pueda continuar el juego
-        yield return new WaitForSeconds(restartDelay);
+        // Desactivar el panel y el texto después del tiempo de reinicio
+        winPannel.SetActive(false);
+        winText.text = "";  // Limpiar el texto
+    }
 
-        // Aquí puedes añadir la lógica para permitir que el juego continúe
+    private IEnumerator StartGame()
+    {
+        winPannel.SetActive(true);
+
+        for (float timer = _startTransitionDelay; timer >0; timer -=Time.deltaTime)
+        {
+            winText.text = "" + Mathf.Ceil(timer).ToString();  // Mostrar cuenta regresiva
+            yield return null;
+        }
+        ResetGame();
+        winPannel.SetActive(false);
+        winText.text = "";
     }
 
     private void ResetGame()
