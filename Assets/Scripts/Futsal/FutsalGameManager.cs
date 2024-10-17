@@ -31,6 +31,7 @@ public class FutsalGameManager : MonoBehaviour
     [Header("Other Settings")]
     [SerializeField] int maxScore = 5;
     [SerializeField] float restartDelay = 2.0f;
+    [SerializeField] float _startTransitionDelay = 4.0f;
 
     // Para almacenar las posiciones iniciales de cada jugador
     private Vector2[] redPlayerStartPositions;
@@ -45,6 +46,7 @@ public class FutsalGameManager : MonoBehaviour
         bluePlayerStartPositions = GetPlayerPositions(bluePlayers);
         ballStartPosition = ball.transform.position;
         winPannel.SetActive(false);
+        StartCoroutine(StartGame());
        
     }
 
@@ -118,7 +120,16 @@ public class FutsalGameManager : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        yield return null;
+        winPannel.SetActive(true);
+
+        for (float timer = _startTransitionDelay; timer >0; timer -=Time.deltaTime)
+        {
+            winText.text = "" + Mathf.Ceil(timer).ToString();  // Mostrar cuenta regresiva
+            yield return null;
+        }
+        ResetGame();
+        winPannel.SetActive(false);
+        winText.text = "";
     }
 
     private void ResetGame()

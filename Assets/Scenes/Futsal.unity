@@ -325,8 +325,8 @@ MonoBehaviour:
   striker: {fileID: 422317048}
   goalkeeper: {fileID: 1700025970}
   joystick: {fileID: 1961859790}
-  strikerSpeed: 30
-  goalkeeperSpeed: 30
+  strikerSpeed: 22
+  goalkeeperSpeed: 22
   strikerMinX: -13.45
   strikerMaxX: 13.45
   strikerMinY: -6.2
@@ -675,6 +675,7 @@ MonoBehaviour:
   redColor: {r: 0, g: 0.24313727, b: 0.61960787, a: 1}
   maxScore: 3
   restartDelay: 3
+  _startTransitionDelay: 4
 --- !u!4 &504580970
 Transform:
   m_ObjectHideFlags: 0
@@ -1115,8 +1116,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2391,8 +2392,8 @@ MonoBehaviour:
   striker: {fileID: 927026424}
   goalkeeper: {fileID: 1002297961}
   joystick: {fileID: 680425618}
-  strikerSpeed: 30
-  goalkeeperSpeed: 30
+  strikerSpeed: 22
+  goalkeeperSpeed: 22
   strikerMinX: -13.45
   strikerMaxX: 13.45
   strikerMinY: -6.2
@@ -2832,7 +2833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1741870122
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3083,8 +3084,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 810698896}
   - {fileID: 37562746}
+  - {fileID: 810698896}
   - {fileID: 1987438086}
   - {fileID: 1280194895}
   - {fileID: 1741870122}
@@ -3114,6 +3115,7 @@ MonoBehaviour:
   botonPantalla: {fileID: 0}
   toca: {fileID: 0}
   introPanels: []
+  videoPlayer: {fileID: 0}
 --- !u!114 &1858043940
 MonoBehaviour:
   m_ObjectHideFlags: 0
