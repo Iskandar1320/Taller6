@@ -325,8 +325,8 @@ MonoBehaviour:
   striker: {fileID: 422317048}
   goalkeeper: {fileID: 1700025970}
   joystick: {fileID: 1961859790}
-  strikerSpeed: 22
-  goalkeeperSpeed: 22
+  strikerSpeed: 15
+  goalkeeperSpeed: 15
   strikerMinX: -13.45
   strikerMaxX: 13.45
   strikerMinY: -6.2
@@ -2392,8 +2392,8 @@ MonoBehaviour:
   striker: {fileID: 927026424}
   goalkeeper: {fileID: 1002297961}
   joystick: {fileID: 680425618}
-  strikerSpeed: 22
-  goalkeeperSpeed: 22
+  strikerSpeed: 15
+  goalkeeperSpeed: 15
   strikerMinX: -13.45
   strikerMaxX: 13.45
   strikerMinY: -6.2
@@ -3111,11 +3111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RedPanel: {fileID: 0}
-  panelColor: {fileID: 0}
   botonPantalla: {fileID: 0}
   toca: {fileID: 0}
   introPanels: []
-  videoPlayer: {fileID: 0}
+  videoPanels: []
 --- !u!114 &1858043940
 MonoBehaviour:
   m_ObjectHideFlags: 0

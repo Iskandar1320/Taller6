@@ -20,6 +20,7 @@ public class TransitionsTimerManagerScript : MonoBehaviour
         _redUI.SetActive(false);
         _blueShip.SetActive(false);
         _redShip.SetActive(false);
+        StartCoroutine(StartGame());
     }
 
     // Update is called once per frame
@@ -37,12 +38,13 @@ public class TransitionsTimerManagerScript : MonoBehaviour
             yield return null;
         }
         
-        _winPannel.SetActive(false);
-        _winText.text = "";
+        
         GameStart();
     }
     private void GameStart()
     {
+        _winText.text = "";
+        _winPannel.SetActive(false);
         _blueUI.SetActive(true);
         _redUI.SetActive(true);
         _blueShip.SetActive(true);
