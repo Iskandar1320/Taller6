@@ -2053,7 +2053,6 @@ GameObject:
   - component: {fileID: 1858043938}
   - component: {fileID: 1858043939}
   - component: {fileID: 1858043940}
-  - component: {fileID: 1858043941}
   - component: {fileID: 1858043942}
   m_Layer: 5
   m_Name: Canvas
@@ -2139,8 +2138,8 @@ RectTransform:
   m_Children:
   - {fileID: 284210409}
   - {fileID: 847147461}
-  - {fileID: 810698896}
   - {fileID: 37562746}
+  - {fileID: 810698896}
   - {fileID: 1987438086}
   - {fileID: 1280194895}
   - {fileID: 1741870122}
@@ -2197,20 +2196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 1741870123}
---- !u!114 &1858043941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858043933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e68ec271c52dde4190beec1adb7e5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  instructionsPanel: {fileID: 0}
-  delayBeforeShowing: 1.5
 --- !u!114 &1858043942
 MonoBehaviour:
   m_ObjectHideFlags: 0
