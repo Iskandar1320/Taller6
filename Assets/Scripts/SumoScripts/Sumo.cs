@@ -26,6 +26,8 @@ namespace SumoScripts
         [SerializeField] private TextMeshProUGUI puntosAzul;
         [SerializeField] private TextMeshProUGUI puntosRojo;
         [SerializeField] private Animator animator;
+        [SerializeField] private GameObject botonR;
+        [SerializeField] private GameObject botonA;
         #endregion
 
         private Vector3 _p1InitialPosition;
@@ -51,6 +53,26 @@ namespace SumoScripts
             
             _p1InitialPosition = p1.position;
             _p2InitialPosition = p2.position;
+            
+            EventTrigger triggerA = botonA.GetComponent<EventTrigger>();
+            EventTrigger.Entry pointerDownEntryA = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
+            pointerDownEntryA.callback.AddListener((data) => { ActivarTackle1(true); });
+            triggerA.triggers.Add(pointerDownEntryA);
+
+            EventTrigger.Entry pointerUpEntryA = new EventTrigger.Entry { eventID = EventTriggerType.PointerUp };
+            pointerUpEntryA.callback.AddListener((data) => { ActivarTackle1(false); });
+            triggerA.triggers.Add(pointerUpEntryA);
+
+            // Configurar EventTrigger para botonR (activar y desactivar Tackle2)
+            EventTrigger triggerR = botonR.GetComponent<EventTrigger>();
+            EventTrigger.Entry pointerDownEntryR = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
+            pointerDownEntryR.callback.AddListener((data) => { ActivarTackle2(true); });
+            triggerR.triggers.Add(pointerDownEntryR);
+
+            EventTrigger.Entry pointerUpEntryR = new EventTrigger.Entry { eventID = EventTriggerType.PointerUp };
+            pointerUpEntryR.callback.AddListener((data) => { ActivarTackle2(false); });
+            triggerR.triggers.Add(pointerUpEntryR);
+
             StartCoroutine(StartAnimCoroutine());
             // Iniciar la cuenta regresiva al inicio del juego
         }
@@ -77,7 +99,7 @@ namespace SumoScripts
             CheckPlayerInsideZone(p2, 2);
         }
 
-        private void Touching()
+        public void Touching()
         {
             if (!_canMove) return; // Verificar si los jugadores pueden moverse
     
@@ -91,10 +113,7 @@ namespace SumoScripts
                     return;
                 }
 
-                // Normalize the y-coordinate
                 float normalizedY = touch.position.y / Screen.height;
-
-                // Use 0.5 as the middle point in normalized space (instead of Screen.height / 2)
                 if (normalizedY < 0.5f)
                 {
                     _isTackle1 = true;
@@ -110,7 +129,15 @@ namespace SumoScripts
                 _isTackle2 = Input.GetKey(KeyCode.E);
             }
         }
+        public void ActivarTackle1(bool activo)
+        {
+            _isTackle1 = activo;
+        }
 
+        public void ActivarTackle2(bool activo)
+        {
+            _isTackle2 = activo;
+        }
         private void FixedUpdate()
         {
             Moving();
@@ -149,7 +176,7 @@ namespace SumoScripts
 
         private void Tackle(Transform playerTransform, Vector3 direction)
         {
-            playerTransform.Translate(direction * movementSpeed * Time.deltaTime, Space.World);
+            playerTransform.Translate(direction * (movementSpeed * Time.deltaTime), Space.World);
         }
 
         private void OnTriggerExit2D(Collider2D other)
