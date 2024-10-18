@@ -15,6 +15,9 @@ TagManager:
   - BallBoundaries
   - Players
   - Ball
+  - TrianAzul
+  - TrianRojo
+  - puntoAtrapar
   layers:
   - Default
   - TransparentFX

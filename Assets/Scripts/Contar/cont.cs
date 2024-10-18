@@ -28,6 +28,8 @@ namespace Contar
         public bool finRonda = false;
         public GameObject puntoAzul;
         public GameObject puntoRojo;
+        public GameObject BtnRojo;
+        public GameObject BtnAzul;
 
 
 
@@ -62,6 +64,8 @@ namespace Contar
                 else if (finRonda == true)
                 {
                     gameManager.isSpawning = false;
+                    BtnAzul.SetActive(false);
+                    BtnRojo.SetActive(false);
                     CompararContadores();
                     contAzulTXT.enabled = true;
                     contRojoTXT.enabled = true;
@@ -73,6 +77,7 @@ namespace Contar
                         if (rondaRojo >= 2)
                         {
                             gameManager.isSpawning = false;
+                            puntoAzul.SetActive(false);
                             puntoRojo.SetActive(false);
                             RojoGana.SetActive(true);
                         }
@@ -91,6 +96,7 @@ namespace Contar
                         {
                             gameManager.isSpawning = false;
                             puntoAzul.SetActive(false);
+                            puntoRojo.SetActive(false);
                             AzulGana.SetActive(true);
                         }
                         else
@@ -149,6 +155,9 @@ namespace Contar
             contador = 0;
             diferencia1 = 0;
             diferencia2 = 0;
+            BtnAzul.SetActive(true);
+            BtnRojo.SetActive(true);
+            gameManager.ReiniciarSpawnRates();
             gameManager.isSpawning = true;
         }
     }

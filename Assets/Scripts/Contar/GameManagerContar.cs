@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,20 +15,19 @@ namespace Contar
         public Transform spawnPoint;
         public float spawnRatePjroAma;
         public float spawnRatePjroVer;
-
         public bool gameStarted = false;
-
-        //[SerializeField] private ContadorDeColisiones cont;
-        //public GameObject tapText;
-
         public bool isSpawning = true;
+
+        private void Start()
+        {
+            ReiniciarSpawnRates();
+        }
         void Update()
         {
             if (Input.GetMouseButtonDown(0) && !gameStarted)
             {
                 StartCoroutine(SpawnRoutine());
                 gameStarted = true;
-                //tapText.SetActive(false);
             }
         }
 
@@ -60,23 +60,10 @@ namespace Contar
             Instantiate(PjroVer, spawnPos, Quaternion.identity);
         }
 
-        /*public void StartSpawning()
+        public void ReiniciarSpawnRates()
         {
-            InvokeRepeating("SpawnPjroAma", 0.2f, spawnRate);
-            InvokeRepeating("SpawnPjroVer", 0.5f, spawnRate);
+            spawnRatePjroAma = Random.Range(0.1f, 0.15f);
+            spawnRatePjroVer = Random.Range(0.3f, 0.35f);
         }
-
-        void SpawnPjroAma()
-        {
-            Vector3 spawnPos = spawnPoint.position;
-            spawnPos.x = Random.Range(-maxX, maxX);
-            Instantiate(PjroAma, spawnPos, Quaternion.identity);
-        }
-        void SpawnPjroVer()
-        {
-            Vector3 spawnPos = spawnPoint.position;
-            spawnPos.x = Random.Range(-maxX, maxX);
-            Instantiate(PjroVer, spawnPos, Quaternion.identity);
-        }*/
     }
 }
