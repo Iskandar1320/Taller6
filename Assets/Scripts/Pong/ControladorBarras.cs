@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Controlador_Barra1st : MonoBehaviour
+public class Controlador_Barra1 : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    
     [SerializeField] Rigidbody2D rbBarra1stPl;
     [SerializeField] Rigidbody2D rbBarrra2ndPl;
+    private Rigidbody2D rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -63,14 +65,5 @@ public class Controlador_Barra1st : MonoBehaviour
         rb.position = miPosicion;
         */
     }
-
-    /*
-     private void OnCollisionEnter2D(Collision2D golpeBola)
-    {
-        if(golpeBola.gameObject.GetComponent<ControladorPelota>() != null)
-        {
-            golpeBola.gameObject.GetComponent<ControladorPelota>().IncrementoVelocidad_Golpe();
-        }
-    }*/
 
 }
