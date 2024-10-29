@@ -8,7 +8,6 @@ public class CircleMovement : MonoBehaviour
     string AzulTag = "TrianAzul";
     string RojoTag = "TrianRojo";
     private bool shouldMove = true;
-
     void Update()
     {
         if (shouldMove)
@@ -23,19 +22,23 @@ public class CircleMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        GameManagerAtrapar gameManagerAtrapar = FindObjectOfType<GameManagerAtrapar>(); 
+
         if (collision.CompareTag(AzulTag))
         {
             particleEffect.SetActive(true);
             shouldMove = false;
             Destroy(circle);
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 0.5f);
+            gameManagerAtrapar.PuntoAzul();
         }
         if (collision.CompareTag(RojoTag))
         {
             particleEffect.SetActive(true);
             shouldMove = false;
             Destroy(circle);
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 0.5f);
+            gameManagerAtrapar.PuntoRojo();
         }
     }
 }

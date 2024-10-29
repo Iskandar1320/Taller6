@@ -4961,7 +4961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4016e36006a324a4da3f690289a1feb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 6
   particleEffect: {fileID: 5541196801388662131}
   circle: {fileID: 5284625388767917545}
 --- !u!58 &6846051352634362194
