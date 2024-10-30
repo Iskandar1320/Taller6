@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.ComponentModel;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 namespace Contar
@@ -18,7 +15,6 @@ namespace Contar
         private float tiempoDeRonda = 10f;
         public GameObject AzulGana;
         public GameObject RojoGana;
-        public GameObject Empate;
         public TextMeshProUGUI timeText;
         public TextMeshProUGUI contAzulTXT;
         public TextMeshProUGUI contRojoTXT;
@@ -30,12 +26,15 @@ namespace Contar
         public GameObject puntoRojo;
         public GameObject BtnRojo;
         public GameObject BtnAzul;
-
-
-
+    
+        private SceneTransitions _sceneTransitions;
+        private bool gana;
+        [SerializeField] GameObject tapToStart;
 
         private void Start()
         {
+            _sceneTransitions = FindObjectOfType<SceneTransitions>();
+
             gameManager = GameObject.FindObjectOfType<GameManagerContar>();
             contAzulTXT.enabled = false;
             contRojoTXT.enabled = false;
@@ -48,8 +47,10 @@ namespace Contar
             contRojoTXT.text = contRojo.ToString();
             contadorTXT.text = "Total pajaros amarillos: " + contador.ToString();
 
-            if (gameManager.gameStarted == true)
+           
+            if (gameManager.gameStarted)
             {
+                tapToStart.SetActive(false);
                 StartCoroutine(EjecutarAccionDespuesDeTiempo());
 
                 if (tiempoDeRonda > 0 && finRonda == false)
@@ -61,7 +62,7 @@ namespace Contar
                         finRonda = true;
                     }
                 }
-                else if (finRonda == true)
+                else if (finRonda)
                 {
                     gameManager.isSpawning = false;
                     BtnAzul.SetActive(false);
@@ -74,15 +75,19 @@ namespace Contar
                     if (diferencia1 > diferencia2)
                     {
                         rondaRojo++;
-                        if (rondaRojo >= 2)
+                        if (rondaRojo >= 2 && gana == false)
                         {
                             gameManager.isSpawning = false;
                             puntoAzul.SetActive(false);
                             puntoRojo.SetActive(false);
                             RojoGana.SetActive(true);
+                            gana = true;
+                            StartCoroutine(_sceneTransitions.EndScene());
+                            return;
                         }
                         else
                         {
+
                             puntoRojo.SetActive(true);
                             StartCoroutine(EjecutarAccionDespuesDeRonda());
                             finRonda = false;
@@ -92,12 +97,14 @@ namespace Contar
                     else if (diferencia1 < diferencia2)
                     {
                         rondaAzul++;
-                        if (rondaAzul >= 2)
+                        if (rondaAzul >= 2 && gana == false)
                         {
                             gameManager.isSpawning = false;
                             puntoAzul.SetActive(false);
                             puntoRojo.SetActive(false);
                             AzulGana.SetActive(true);
+                            gana = true;
+                            StartCoroutine(_sceneTransitions.EndScene());
                         }
                         else
                         {
