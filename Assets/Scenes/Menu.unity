@@ -505,7 +505,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 74827234}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.21797402
+  m_Size: 0.19652873
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5798,8 +5798,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Mant\xE9n presionado para empujar a tu adversario! No salgas del ring
-    y vencer\xE1s!"
+  m_text: "Elige un lado, desliza la barra y demuestra qui\xE9n tiene los mejores
+    reflejos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -9701,8 +9701,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 768064118}
   m_HandleRect: {fileID: 768064117}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -19590,13 +19590,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995346874}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.71251, y: 7.0172043, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 235254471}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -0.000061035156, y: 596.99994}
@@ -19622,7 +19622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5457da6726f6c93468daa82467348771, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a927513cedf67414e8a124faaca98869, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
