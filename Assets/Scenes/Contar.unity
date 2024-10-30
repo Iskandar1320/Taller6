@@ -1434,8 +1434,6 @@ MonoBehaviour:
   finRonda: 0
   puntoAzul: {fileID: 1204868400}
   puntoRojo: {fileID: 335015908}
-  BtnRojo: {fileID: 45259564}
-  BtnAzul: {fileID: 1274987697}
   tapToStart: {fileID: 814261083}
 --- !u!1 &1204868400
 GameObject:

@@ -25,8 +25,8 @@ namespace Contar
         public bool finRonda = false;
         public GameObject puntoAzul;
         public GameObject puntoRojo;
-        public Button BtnRojo;
-        public Button BtnAzul;
+        private Button BtnRojo;
+        private Button BtnAzul;
     
         private SceneTransitions _sceneTransitions;
         private bool gana;
@@ -34,8 +34,10 @@ namespace Contar
 
         private void Start()
         {
-            _sceneTransitions = FindObjectOfType<SceneTransitions>();
+            BtnRojo = GameObject.Find("Rojo").GetComponent<Button>();
+            BtnAzul = GameObject.Find("Azul").GetComponent<Button>();
 
+            _sceneTransitions = FindObjectOfType<SceneTransitions>();
             gameManager = GameObject.FindObjectOfType<GameManagerContar>();
             contAzulTXT.enabled = false;
             contRojoTXT.enabled = false;
