@@ -667,12 +667,13 @@ MonoBehaviour:
   redPlayers: {fileID: 1395064177}
   blueScore: 0
   bluePlayers: {fileID: 315430882}
+  ganaRed: 0
+  ganaBlue: 0
   bluePunt: {fileID: 1361249128}
   redPunt: {fileID: 1149116351}
   winText: {fileID: 810698897}
   winPannel: {fileID: 37562745}
-  blueColor: {r: 0.9333334, g: 0, b: 0, a: 1}
-  redColor: {r: 0, g: 0.24313727, b: 0.61960787, a: 1}
+  colorpanel: {fileID: 37562747}
   maxScore: 3
   restartDelay: 3
   _startTransitionDelay: 4
