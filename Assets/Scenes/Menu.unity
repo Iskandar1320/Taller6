@@ -15953,8 +15953,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Mant\xE9n presionado para empujar a tu adversario! No salgas del ring
-    y vencer\xE1s!"
+  m_text: "Cuenta el numero de pajaros amarillos que veas en pantalla, el jugador
+    que se acerque mas al numero correcto \xA1gana!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -15981,8 +15981,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 41
+  m_fontSizeBase: 41
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
