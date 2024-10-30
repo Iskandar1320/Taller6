@@ -1084,8 +1084,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3000,7 +3000,6 @@ GameObject:
   - component: {fileID: 1858043934}
   - component: {fileID: 1858043938}
   - component: {fileID: 1858043940}
-  - component: {fileID: 1858043941}
   - component: {fileID: 1858043942}
   m_Layer: 5
   m_Name: Canvas
@@ -3088,9 +3087,9 @@ RectTransform:
   - {fileID: 810698896}
   - {fileID: 1987438086}
   - {fileID: 1280194895}
-  - {fileID: 1741870122}
   - {fileID: 127260914}
   - {fileID: 530196604}
+  - {fileID: 1741870122}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3128,20 +3127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 1741870123}
---- !u!114 &1858043941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858043933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e68ec271c52dde4190beec1adb7e5d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  instructionsPanel: {fileID: 0}
-  delayBeforeShowing: 1.5
 --- !u!114 &1858043942
 MonoBehaviour:
   m_ObjectHideFlags: 0

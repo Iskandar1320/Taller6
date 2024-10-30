@@ -1,7 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Build.Reporting;
+using UnityEngine.UI;
 
 public class FutsalGameManager : MonoBehaviour
 {
@@ -11,18 +13,22 @@ public class FutsalGameManager : MonoBehaviour
     [SerializeField] GameObject ball;
 
     [Header("Red Team")]
-    [SerializeField] int redScore = 0;   // Puntuación del equipo rojo
+    [SerializeField] int redScore = 0;   // Puntuaciï¿½n del equipo rojo
     [SerializeField] GameObject redPlayers;
 
     [Header("Blue Team")]
-    [SerializeField] int blueScore = 0;  // Puntuación del equipo azul
+    [SerializeField] int blueScore = 0;  // Puntuaciï¿½n del equipo azul
     [SerializeField] GameObject bluePlayers;
 
     [Header("Score Settings")]
+    [SerializeField] private bool ganaRed;
+    [SerializeField] private bool ganaBlue;
+    
     [SerializeField] TextMeshProUGUI bluePunt;
     [SerializeField] TextMeshProUGUI redPunt;
     [SerializeField] TextMeshProUGUI winText;
     [SerializeField] GameObject winPannel;
+    [SerializeField] private Image colorpanel;
     [SerializeField] Color blueColor;
     [SerializeField] Color redColor;
 
@@ -37,10 +43,12 @@ public class FutsalGameManager : MonoBehaviour
     private Vector2[] redPlayerStartPositions;
     private Vector2[] bluePlayerStartPositions;
     private Vector2 ballStartPosition;
-    private SceneTransitions transitions;
+    private SceneTransitions _sceneTransitions;
 
     private void Start()
     {
+        _sceneTransitions = FindObjectOfType<SceneTransitions>();
+
         // Guardar las posiciones iniciales de todos los jugadores
         redPlayerStartPositions = GetPlayerPositions(redPlayers);
         bluePlayerStartPositions = GetPlayerPositions(bluePlayers);
@@ -61,8 +69,27 @@ public class FutsalGameManager : MonoBehaviour
         {
             Winner("red");
         }
-    }
 
+        TestWin();
+    }
+    /// <summary>
+    /// Esto es para poner la pantalla de Win visualmente
+    /// </summary>
+    private void TestWin()
+    {
+        if (ganaRed)
+        {
+            winPannel.SetActive(true);
+            colorpanel.color = new Color32(161, 28, 28, 233);
+            winText.text = "Player 1 Wins";
+        }
+        else if (ganaBlue)
+        {
+            winPannel.SetActive(true);
+            colorpanel.color = new Color32(28, 39, 161, 233);
+            winText.text = "Player 2 Wins";
+        }
+    }
     public void GoalScored(string team)
     {
         if (team == "blue")
@@ -86,16 +113,18 @@ public class FutsalGameManager : MonoBehaviour
         winPannel.SetActive(true);
         if (winner == "blue")
         {
-            winText.text = "Gana Azul";
-            winText.color = blueColor;
+            winText.text = "Player 2 Wins";
+            colorpanel.color = new Color32(28, 39, 161, 233);
+
         }
         else if (winner == "red")
         {
-            winText.text = "Gana Rojo";
-            winText.color = redColor;
+            winText.text = "Player 1 Wins";
+            colorpanel.color = new Color32(161, 28, 28, 233);
+
         }
-       transitions.EndScene();
-        // Lógica para manejar la victoria
+        StartCoroutine(_sceneTransitions.EndScene());
+        // Lï¿½gica para manejar la victoria
     }
 
     // Reiniciar el juego
@@ -113,7 +142,7 @@ public class FutsalGameManager : MonoBehaviour
         // Reiniciar las posiciones de jugadores y pelota
         ResetGame();
 
-        // Desactivar el panel y el texto después del tiempo de reinicio
+        // Desactivar el panel y el texto despuï¿½s del tiempo de reinicio
         winPannel.SetActive(false);
         winText.text = "";  // Limpiar el texto
     }
@@ -136,7 +165,7 @@ public class FutsalGameManager : MonoBehaviour
     {
         Debug.Log("ResetGame");
 
-        // Reiniciar la posición de la pelota
+        // Reiniciar la posiciï¿½n de la pelota
         ball.transform.position = ballStartPosition;
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;  // Detener cualquier movimiento de la pelota
 
@@ -160,13 +189,13 @@ public class FutsalGameManager : MonoBehaviour
         return startPositions;
     }
 
-    // Función para reiniciar las posiciones de los jugadores
+    // Funciï¿½n para reiniciar las posiciones de los jugadores
     private void ResetPlayerPositions(GameObject players, Vector2[] startPositions)
     {
         int index = 0;
         foreach (Transform player in players.transform)
         {
-            player.position = startPositions[index];  // Asigna la posición inicial a cada jugador
+            player.position = startPositions[index];  // Asigna la posiciï¿½n inicial a cada jugador
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
