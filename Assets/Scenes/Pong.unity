@@ -316,7 +316,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Grac\xEDas por Jugar\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d76e3b9d410ea9f4fa3580af2df7d9f1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: d76e3b9d410ea9f4fa3580af2df7d9f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_margin: {x: -97.21693, y: 0, z: 65.0665, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &251255958
@@ -3212,9 +3212,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: El Jugador Azul ha Gana
+  m_text: El Jugador Azul ha Ganado
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d76e3b9d410ea9f4fa3580af2df7d9f1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: d76e3b9d410ea9f4fa3580af2df7d9f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3278,7 +3278,7 @@ MonoBehaviour:
   m_margin: {x: -97.21693, y: 0, z: 0.06452941, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1679146934
