@@ -18,10 +18,13 @@ public class ScoreZone : MonoBehaviour
     [SerializeField] private GameObject panelRojoGana;
     [SerializeField] private GameObject panelAzulGana;
 
+    
+    private SceneTransitions _sceneTransitions;
      int score;
 
     private void Start()
     {
+        _sceneTransitions = FindObjectOfType<SceneTransitions>();
         score = 0;
         scoreText.text = score.ToString();
     }
@@ -52,7 +55,7 @@ public class ScoreZone : MonoBehaviour
         barra1.SetActive(false);
         barra2.SetActive(false);
         panelAzulGana.SetActive(true);
-       
+        StartCoroutine(_sceneTransitions.EndScene());
     }
     private IEnumerator WaitToDestroyRojo()
     {
@@ -61,5 +64,6 @@ public class ScoreZone : MonoBehaviour
         barra1.SetActive(false);
         barra2.SetActive(false);
         panelRojoGana.SetActive(true);
+        StartCoroutine(_sceneTransitions.EndScene());
     }
 }
