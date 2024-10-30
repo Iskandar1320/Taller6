@@ -4,6 +4,7 @@ using System.ComponentModel;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Contar
 {
@@ -28,8 +29,8 @@ namespace Contar
         public bool finRonda = false;
         public GameObject puntoAzul;
         public GameObject puntoRojo;
-        public GameObject BtnRojo;
-        public GameObject BtnAzul;
+        public Button BtnRojo;
+        public Button BtnAzul;
 
 
 
@@ -64,8 +65,8 @@ namespace Contar
                 else if (finRonda == true)
                 {
                     gameManager.isSpawning = false;
-                    BtnAzul.SetActive(false);
-                    BtnRojo.SetActive(false);
+                    BtnAzul.interactable = false;
+                    BtnRojo.interactable = false;
                     CompararContadores();
                     contAzulTXT.enabled = true;
                     contRojoTXT.enabled = true;
@@ -155,8 +156,8 @@ namespace Contar
             contador = 0;
             diferencia1 = 0;
             diferencia2 = 0;
-            BtnAzul.SetActive(true);
-            BtnRojo.SetActive(true);
+            BtnAzul.interactable = true;
+            BtnRojo.interactable = true;
             gameManager.ReiniciarSpawnRates();
             gameManager.isSpawning = true;
         }
