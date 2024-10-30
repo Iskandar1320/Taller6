@@ -29,8 +29,6 @@ public class FutsalGameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI winText;
     [SerializeField] GameObject winPannel;
     [SerializeField] private Image colorpanel;
-    [SerializeField] Color blueColor;
-    [SerializeField] Color redColor;
 
 
 
