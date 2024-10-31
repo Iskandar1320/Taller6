@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.Video;
+using System.Collections;
 
 namespace Panel
 {
@@ -29,6 +30,7 @@ namespace Panel
         
         private void Start()
         {
+            StartCoroutine(PantallaMenu());
             _textMeshPro = GetComponent<TextMeshPro>();
             
               originalScales = new Dictionary<GameObject, Vector3>();
@@ -150,6 +152,11 @@ namespace Panel
         private void OnDisable()
         {
             DOTween.KillAll();
+        }
+        private IEnumerator PantallaMenu()
+        {
+            yield return new WaitForSeconds(2.7f);
+            MovePanel();
         }
     }
 }
