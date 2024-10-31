@@ -24,12 +24,19 @@ namespace Panel
         [SerializeField] private List<GameObject> introPanels;
         [SerializeField] private List<GameObject> videoPanels;
         private Dictionary<GameObject, Vector3> originalScales; // Para guardar el tamaño original de cada popup
-        
-        
+
+        [SerializeField] private GameObject panelInicial;
+        [SerializeField] private GameObject panel2dario;
+
+        private CanvasGroup canvas1;
+        private CanvasGroup canvas2;
         private VideoPlayer videoPlayer;
         
         private void Start()
         {
+            canvas1 = panelInicial.GetComponent<CanvasGroup>();
+            canvas2 = panel2dario.GetComponent<CanvasGroup>();
+
             StartCoroutine(PantallaMenu());
             _textMeshPro = GetComponent<TextMeshPro>();
             
@@ -133,6 +140,21 @@ namespace Panel
             botonPantalla.SetActive(false);
 
         }
+        private void TransicionarPanelIn()
+        {
+            canvas1.DOFade(0, 1).OnComplete(() =>
+            {
+                panelInicial.SetActive(false);
+                panel2dario.SetActive(true);
+                StartCoroutine(EsperarPanel2());
+            });
+            
+            
+        }
+        private void TransicionPanelOut()
+        {
+            canvas2.DOFade(1, 1).OnComplete(() => DOTween.KillAll());
+        }
 
         public void RestartGame()
         {
@@ -156,7 +178,12 @@ namespace Panel
         private IEnumerator PantallaMenu()
         {
             yield return new WaitForSeconds(2.7f);
-            MovePanel();
+            TransicionarPanelIn();
+        }
+        private IEnumerator EsperarPanel2()
+        {
+            TransicionPanelOut();
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
