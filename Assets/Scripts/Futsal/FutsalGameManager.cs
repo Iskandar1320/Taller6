@@ -10,6 +10,10 @@ public class FutsalGameManager : MonoBehaviour
     public bool redGoal;
     public bool blueGoal;
 
+    [Header("Joysticks")]
+    [SerializeField] GameObject blueJoystick;
+    [SerializeField] GameObject redJoystick;
+
     [SerializeField] GameObject ball;
 
     [Header("Red Team")]
@@ -53,7 +57,12 @@ public class FutsalGameManager : MonoBehaviour
         ballStartPosition = ball.transform.position;
         winPannel.SetActive(false);
         StartCoroutine(StartGame());    
-       
+    }
+
+    private void Awake()
+    {
+        blueJoystick.gameObject.SetActive(false);
+        redJoystick.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -130,6 +139,8 @@ public class FutsalGameManager : MonoBehaviour
     {
         // Activar el panel y mostrar la cuenta regresiva en el winText
         winPannel.SetActive(true);
+        blueJoystick.gameObject.SetActive(false);
+        redJoystick.gameObject.SetActive(false);
 
         for (float timer = restartDelay; timer > 0; timer -= Time.deltaTime)
         {
@@ -162,6 +173,11 @@ public class FutsalGameManager : MonoBehaviour
     private void ResetGame()
     {
         Debug.Log("ResetGame");
+
+        // Activa los Joysticks
+
+        blueJoystick.gameObject.SetActive(true);
+        redJoystick.gameObject.SetActive(true);
 
         // Reiniciar la posici�n de la pelota
         ball.transform.position = ballStartPosition;
