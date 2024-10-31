@@ -6303,10 +6303,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1084033712}
         m_TargetAssemblyTypeName: Panel.PanelManagement, Assembly-CSharp
-        m_MethodName: ClosePopup
+        m_MethodName: ShowBotonVod
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 725324743}
+          m_ObjectArgument: {fileID: 314853458}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
@@ -11927,8 +11927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Mant\xE9n presionado para empujar a tu adversario! No salgas del ring
-    y vencer\xE1s!"
+  m_text: Anota gol en la porteria contaria, eele primero en llegar a 3 puntos gana!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -15087,7 +15086,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Copie aca la vaina
+  m_text: "Usa el tim\xF3n para dar direcci\xF3n al barco y dispara a tu adversario
+    hasta acabar sus vidas."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -18888,10 +18888,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1084033712}
         m_TargetAssemblyTypeName: Panel.PanelManagement, Assembly-CSharp
-        m_MethodName: ClosePopup
+        m_MethodName: ShowBotonVod
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 725324743}
+          m_ObjectArgument: {fileID: 314853458}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0

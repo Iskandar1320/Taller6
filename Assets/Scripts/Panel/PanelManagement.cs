@@ -59,17 +59,25 @@ namespace Panel
         }
         public void ShowBotonVod(GameObject panelToShow)
         {
+                panelToShow.SetActive(true); // Activar el GameObject al mostrar el panel
+
             if (videoPanels.Contains(panelToShow))
             {
+
                 VideoPlayer[] videoPlayers = panelToShow.GetComponentsInChildren<VideoPlayer>();
-                
+
+                if (videoPlayers.Length > 0)
+                {
+                    videoPlayer = videoPlayers[0]; // Asignar el primer VideoPlayer encontrado
+                }
+
                 Vector3 originalScale = originalScales[panelToShow];
                 panelToShow.transform.DOScale(originalScale, 0.5f).SetEase(Ease.OutBounce);
                 PlayVideo();
-                
             }
         }
-        
+
+
 
         public void ClosePopup(GameObject panelToClose)
         {
@@ -79,20 +87,22 @@ namespace Panel
             }
 
         }
-        
+
         public void CloseBotonVod(GameObject panelToClose)
         {
-            
             if (videoPanels.Contains(panelToClose))
             {
                 VideoPlayer[] videoPlayers = panelToClose.GetComponentsInChildren<VideoPlayer>();
 
                 foreach (VideoPlayer vp in videoPlayers)
                 {
-                    vp.Play();
+                    vp.Stop(); // Asegurarse de detener cada VideoPlayer dentro del panel
                 }
+
                 panelToClose.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack);
-                videoPlayer.Stop();
+
+                // Desactivar el GameObject una vez que el panel se ha cerrado
+                panelToClose.SetActive(false);
             }
         }
         public void ChangeScene(string _sceneName) 
@@ -128,13 +138,15 @@ namespace Panel
         }
         public void PlayVideo()
         {
-            // Asegúrate de que el VideoPlayer esté listo
-            videoPlayer.Prepare();
-            videoPlayer.prepareCompleted += (VideoPlayer vp) => {
-                vp.Play(); // Reproducir el video una vez preparado
-            };
+            if (videoPlayer != null && videoPlayer.gameObject.activeInHierarchy)
+            {
+                videoPlayer.Prepare();
+                videoPlayer.prepareCompleted += (VideoPlayer vp) => {
+                    vp.Play(); // Reproducir el video una vez preparado
+                };
+            }
         }
-        
+
         private void OnDisable()
         {
             DOTween.KillAll();
