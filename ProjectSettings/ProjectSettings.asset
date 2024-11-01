@@ -136,8 +136,9 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 0.3
-  preloadedAssets: []
+  bundleVersion: 1
+  preloadedAssets:
+  - {fileID: 11400000, guid: 2ee6df0e165974945a290f179ed5ff99, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -157,7 +158,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.devsc4p.Versus
   buildNumber:
     Standalone: 0
     VisionOS: 0

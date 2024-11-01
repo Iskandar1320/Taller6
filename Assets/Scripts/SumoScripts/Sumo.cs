@@ -11,23 +11,23 @@ namespace SumoScripts
 
         #region SerializedFields
         
-        [SerializeField] private float rotationSpeed = 45.0f;
-        [SerializeField] private float movementSpeed = 1.0f;
-        [SerializeField] private GameObject directionReference1;
-        [SerializeField] private GameObject directionReference2;
-        [SerializeField] private Transform p1;
-        [SerializeField] private Transform p2;
-        [SerializeField] private Collider2D gameZone;
-        [SerializeField] private TextMeshProUGUI textMeshPro;
-        [SerializeField] private GameObject panel;
-        [SerializeField] private GameObject mano1;
-        [SerializeField] private GameObject mano2;
-        [SerializeField] private Image colorpanel;
-        [SerializeField] private TextMeshProUGUI puntosAzul;
-        [SerializeField] private TextMeshProUGUI puntosRojo;
-        [SerializeField] private Animator animator;
-        [SerializeField] private GameObject botonR;
-        [SerializeField] private GameObject botonA;
+            [SerializeField] private float rotationSpeed = 45.0f;
+            [SerializeField] private float movementSpeed = 1.0f;
+            [SerializeField] private GameObject directionReference1;
+            [SerializeField] private GameObject directionReference2;
+            [SerializeField] private Transform p1;
+            [SerializeField] private Transform p2;
+            [SerializeField] private Collider2D gameZone;
+            [SerializeField] private TextMeshProUGUI textMeshPro;
+            [SerializeField] private GameObject panel;
+            [SerializeField] private GameObject mano1;
+            [SerializeField] private GameObject mano2;
+            [SerializeField] private Image colorpanel;
+            [SerializeField] private TextMeshProUGUI puntosAzul;
+            [SerializeField] private TextMeshProUGUI puntosRojo;
+            [SerializeField] private Animator animator;
+            [SerializeField] private GameObject botonR;
+            [SerializeField] private GameObject botonA;
         #endregion
 
         private Vector3 _p1InitialPosition;

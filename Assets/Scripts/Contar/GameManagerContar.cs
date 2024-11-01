@@ -1,8 +1,5 @@
 using System.Collections;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 
 namespace Contar
 {

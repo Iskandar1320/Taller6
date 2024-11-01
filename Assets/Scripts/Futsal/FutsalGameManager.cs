@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Build.Reporting;
 using UnityEngine.UI;
 
 public class FutsalGameManager : MonoBehaviour
