@@ -676,7 +676,7 @@ MonoBehaviour:
   winText: {fileID: 810698897}
   winPannel: {fileID: 37562745}
   colorpanel: {fileID: 37562747}
-  maxScore: 3
+  maxScore: 2
   restartDelay: 3
   _startTransitionDelay: 4
 --- !u!4 &504580970
@@ -3211,6 +3211,8 @@ MonoBehaviour:
   toca: {fileID: 0}
   introPanels: []
   videoPanels: []
+  panelInicial: {fileID: 0}
+  panel2dario: {fileID: 0}
 --- !u!114 &1858043940
 MonoBehaviour:
   m_ObjectHideFlags: 0

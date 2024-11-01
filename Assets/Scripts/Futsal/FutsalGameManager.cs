@@ -141,12 +141,15 @@ public class FutsalGameManager : MonoBehaviour
         winPannel.SetActive(true);
         blueJoystick.gameObject.SetActive(false);
         redJoystick.gameObject.SetActive(false);
-
-        for (float timer = restartDelay; timer > 0; timer -= Time.deltaTime)
+        if (blueScore < maxScore && redScore < maxScore)
         {
-            winText.text = "" + Mathf.Ceil(timer).ToString();  // Mostrar cuenta regresiva
-            yield return null;  // Esperar un frame
+            for (float timer = restartDelay; timer > 0; timer -= Time.deltaTime)
+            {
+                winText.text = "" + Mathf.Ceil(timer).ToString();  // Mostrar cuenta regresiva
+                yield return null;  // Esperar un frame
+            }
         }
+        
 
         // Reiniciar las posiciones de jugadores y pelota
         ResetGame();
