@@ -29,6 +29,7 @@ public class CircleMovement : MonoBehaviour
             particleEffect.SetActive(true);
             shouldMove = false;
             Destroy(circle);
+            GetComponent<Collider2D>().enabled = false;
             Destroy(gameObject, 0.5f);
             gameManagerAtrapar.PuntoAzul();
         }
@@ -37,6 +38,7 @@ public class CircleMovement : MonoBehaviour
             particleEffect.SetActive(true);
             shouldMove = false;
             Destroy(circle);
+            GetComponent<Collider2D>().enabled = false;
             Destroy(gameObject, 0.5f);
             gameManagerAtrapar.PuntoRojo();
         }
