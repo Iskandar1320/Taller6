@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Contar;
+using RadarMadness;
 
 public class GameManagerAtrapar : MonoBehaviour
 {
@@ -13,16 +15,23 @@ public class GameManagerAtrapar : MonoBehaviour
     public GameObject GanaAzul;
     private SceneTransitions _sceneTransitions;
     bool gana = false;
+    SpawnerPuntos spawnerPuntos;
 
     private void Start()
     {
        _sceneTransitions = FindObjectOfType<SceneTransitions>();
+        spawnerPuntos = GameObject.FindObjectOfType<SpawnerPuntos>();
     }
+    public void inicio()
+    {
+        spawnerPuntos.isSpawning = true;
+    }
+
     public void PuntoRojo()
     {
         PuntosRojo++;
         UpdateScoreText();
-        if(PuntosRojo == 5 && gana == false)
+        if(PuntosRojo == 25 && gana == false)
         {
             gana = true;
             Time.timeScale = 0f;
