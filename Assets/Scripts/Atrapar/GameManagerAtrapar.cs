@@ -11,24 +11,35 @@ public class GameManagerAtrapar : MonoBehaviour
     private int PuntosRojo = 0;
     public GameObject GanaRojo;
     public GameObject GanaAzul;
+    private SceneTransitions _sceneTransitions;
+    bool gana = false;
+
+    private void Start()
+    {
+       _sceneTransitions = FindObjectOfType<SceneTransitions>();
+    }
     public void PuntoRojo()
     {
         PuntosRojo++;
         UpdateScoreText();
-        if(PuntosRojo == 25)
+        if(PuntosRojo == 5 && gana == false)
         {
+            gana = true;
             Time.timeScale = 0f;
             GanaRojo.SetActive(true);
+            StartCoroutine(_sceneTransitions.EndScene());
         }
     }
     public void PuntoAzul()
     {
         PuntosAzul++;
         UpdateScoreText();
-        if (PuntosAzul == 25)
+        if (PuntosAzul == 25 && gana == false)
         {
+            gana = true;
             Time.timeScale = 0f;
             GanaAzul.SetActive(true);
+            StartCoroutine(_sceneTransitions.EndScene());
         }
     }
     private void UpdateScoreText()
