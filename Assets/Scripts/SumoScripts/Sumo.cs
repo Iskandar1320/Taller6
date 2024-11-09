@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace SumoScripts
@@ -28,6 +29,12 @@ namespace SumoScripts
             [SerializeField] private Animator animator;
             [SerializeField] private GameObject botonR;
             [SerializeField] private GameObject botonA;
+            
+            [SerializeField] private AudioSource empuje;
+            [SerializeField] private AudioSource empuje2;
+            [SerializeField] private AudioSource caida;
+            [SerializeField] private AudioSource caida2;
+            
         #endregion
 
         private Vector3 _p1InitialPosition;
@@ -93,7 +100,6 @@ namespace SumoScripts
                 }
             }
 
-            Debug.Log("blue: " + _roundsBlue + " red: " + _roundsRed);
             Touching();
             CheckPlayerInsideZone(p1, 1);
             CheckPlayerInsideZone(p2, 2);
@@ -117,10 +123,12 @@ namespace SumoScripts
                 if (normalizedY < 0.5f)
                 {
                     _isTackle1 = true;
+
                 }
                 else
                 {
                     _isTackle2 = true;
+
                 }
             }
             else
@@ -132,11 +140,13 @@ namespace SumoScripts
         public void ActivarTackle1(bool activo)
         {
             _isTackle1 = activo;
+
         }
 
         public void ActivarTackle2(bool activo)
         {
             _isTackle2 = activo;
+
         }
         private void FixedUpdate()
         {
@@ -146,9 +156,17 @@ namespace SumoScripts
         private void Moving()
         {
             if (!_canMove) return; // Verificar si los jugadores pueden moverse
+
             if (_isTackle1)
             {
                 mano1.SetActive(true);
+        
+                // Reproduce el sonido solo al presionar
+                if (!empuje.isPlaying)
+                {
+                    empuje.PlayOneShot(empuje.clip);
+                }
+
                 Tackle(p1, directionReference1.transform.up);
             }
             else
@@ -160,6 +178,13 @@ namespace SumoScripts
             if (_isTackle2)
             {
                 mano2.SetActive(true);
+
+                // Reproduce el sonido solo al presionar
+                if (!empuje2.isPlaying)
+                {
+                    empuje2.PlayOneShot(empuje2.clip);
+                }
+
                 Tackle(p2, directionReference2.transform.up);
             }
             else
@@ -168,6 +193,8 @@ namespace SumoScripts
                 Rotate(p2);
             }
         }
+
+
 
         private void Rotate(Transform playerTransform)
         {
@@ -211,10 +238,14 @@ namespace SumoScripts
             switch (playerNumber)
             {
                 case 1:
+                    caida.Play();
+
                     _roundsBlue++;
                     break;
                 case 2:
+                    caida2.Play();
                     _roundsRed++;
+                    
                     break;
             }
 
