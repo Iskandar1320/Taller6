@@ -34,6 +34,7 @@ namespace SumoScripts
             [SerializeField] private AudioSource empuje2;
             [SerializeField] private AudioSource caida;
             [SerializeField] private AudioSource caida2;
+            [SerializeField] private AudioSource sonidoAmbiente;
             
         #endregion
 
@@ -208,6 +209,7 @@ namespace SumoScripts
 
         private void OnTriggerExit2D(Collider2D other)
         {
+
             if (!_canAddPoints) return;
             if (other.transform == p1)
             {
@@ -238,11 +240,15 @@ namespace SumoScripts
             switch (playerNumber)
             {
                 case 1:
+                    sonidoAmbiente.volume = 0.7f;
+
                     caida.Play();
 
                     _roundsBlue++;
                     break;
                 case 2:
+                    sonidoAmbiente.volume = 0.7f;
+
                     caida2.Play();
                     _roundsRed++;
                     
@@ -277,6 +283,7 @@ namespace SumoScripts
 
         private void ResetPlayerPositions()
         {
+            sonidoAmbiente.volume = 0.4f;
             p1.position = _p1InitialPosition;
             p2.position = _p2InitialPosition;
 
