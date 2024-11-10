@@ -28,8 +28,8 @@ namespace Panel
         [SerializeField] private GameObject panelInicial;
         [SerializeField] private GameObject panel2dario;
 
-        private CanvasGroup canvas1;
-        private CanvasGroup canvas2;
+        private CanvasGroup canvas1 = null;
+        private CanvasGroup canvas2 = null;
         private VideoPlayer videoPlayer;
         
         private void Start()
