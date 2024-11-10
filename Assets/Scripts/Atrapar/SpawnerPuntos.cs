@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnerPuntos : MonoBehaviour
@@ -7,9 +8,10 @@ public class SpawnerPuntos : MonoBehaviour
     private float nextSpawn = 0f;
     public Transform spawnPoint;
     public float maxY;
+    public bool isSpawning = false;
     void Update()
     {
-        if (Time.time > nextSpawn)
+        if (Time.time > nextSpawn && isSpawning)
         {
             nextSpawn = Time.time + spawnRate;
             SpawnProjectile();
