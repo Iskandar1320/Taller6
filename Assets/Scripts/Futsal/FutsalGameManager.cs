@@ -32,6 +32,10 @@ public class FutsalGameManager : MonoBehaviour
     [SerializeField] GameObject winPannel;
     [SerializeField] private Image colorpanel;
 
+    [Header("Resolution Seettings")]
+    [SerializeField] GameObject ipadBackground;
+    [SerializeField] GameObject iphoneBackground;
+    [SerializeField] GameObject[] scalableObjects; // Lista de objetos para ajustar la escala
 
 
     [Header("Other Settings")]
@@ -39,11 +43,15 @@ public class FutsalGameManager : MonoBehaviour
     [SerializeField] float restartDelay = 2.0f;
     [SerializeField] float _startTransitionDelay = 4.0f;
 
+    
+
     // Para almacenar las posiciones iniciales de cada jugador
     private Vector2[] redPlayerStartPositions;
     private Vector2[] bluePlayerStartPositions;
     private Vector2 ballStartPosition;
     private SceneTransitions _sceneTransitions;
+
+    
 
     private void Start()
     {
@@ -54,7 +62,8 @@ public class FutsalGameManager : MonoBehaviour
         bluePlayerStartPositions = GetPlayerPositions(bluePlayers);
         ballStartPosition = ball.transform.position;
         winPannel.SetActive(false);
-        StartCoroutine(StartGame());    
+        StartCoroutine(StartGame());
+        resolution();
     }
 
     private void Awake()
@@ -80,6 +89,37 @@ public class FutsalGameManager : MonoBehaviour
     /// <summary>
     /// Esto es para poner la pantalla de Win visualmente
     /// </summary>
+    /// 
+
+    private void resolution()
+    {
+        float aspectRatio = (float)Screen.height / Screen.width;
+        print(aspectRatio);
+
+        // Si el dispositivo es 16:9 (~1.77551f)
+        if (Mathf.Approximately(aspectRatio, 1.77551f))
+        {
+            ipadBackground.gameObject.SetActive(false);
+            iphoneBackground.gameObject.SetActive(true);
+            AdjustScale(new Vector3(1.0f, 1.0f, 1.0f));  // Escala para 16:9
+        }
+        // Si el dispositivo es 3:2 (~1.5f)
+        else if (Mathf.Approximately(aspectRatio, 1.5f))
+        {
+            ipadBackground.gameObject.SetActive(true);
+            iphoneBackground.gameObject.SetActive(false);
+            AdjustScale(new Vector3(1.2f, 1.2f, 1.0f));  // Escala para 3:2
+        }
+    }
+
+    // Método auxiliar para ajustar la escala de los objetos
+    private void AdjustScale(Vector3 scale)
+    {
+        foreach (GameObject obj in scalableObjects)
+        {
+            obj.transform.localScale = scale;
+        }
+    }
     private void TestWin()
     {
         if (ganaRed)
