@@ -32,10 +32,15 @@ namespace Contar
             }
         }
 
+        public void AudioRonda()
+        {
+            audioSource2.Play();
+
+        }
+
         IEnumerator SpawnRoutine()
         {
-            audioSource2.PlayOneShot(audioSource2.clip);
-
+            AudioRonda();
             while (true)
             {
                 if (isSpawning)
