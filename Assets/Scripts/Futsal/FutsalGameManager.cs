@@ -48,7 +48,11 @@ public class FutsalGameManager : MonoBehaviour
     [SerializeField] float restartDelay = 2.0f;
     [SerializeField] float _startTransitionDelay = 4.0f;
 
-    
+    [SerializeField] private FutsalPlayerController redPlayerController;  // Referencia para el controlador del equipo rojo
+    [SerializeField] private FutsalPlayerController bluePlayerController;  // Referencia para el controlador del equipo azul
+
+
+
 
     // Para almacenar las posiciones iniciales de cada jugador
     private Vector2[] redPlayerStartPositions;
@@ -56,7 +60,14 @@ public class FutsalGameManager : MonoBehaviour
     private Vector2 ballStartPosition;
     private SceneTransitions _sceneTransitions;
 
-    
+    private float strikerMinX;
+    private float strikerMaxX;
+    private float strikerMinY;
+    private float strikerMaxY;
+    private float goalkeeperMinY;
+    private float goalkeeperMaxY;
+
+
 
     private void Start()
     {
@@ -68,7 +79,15 @@ public class FutsalGameManager : MonoBehaviour
         ballStartPosition = ball.transform.position;
         winPannel.SetActive(false);
         StartCoroutine(StartGame());
+        strikerMinX = -13.45f;
+        strikerMaxX = 13.45f;
+        strikerMinY = -6.2f;
+        strikerMaxY = 6.2f;
+
+        goalkeeperMinY = -3.5f;
+        goalkeeperMaxY = 3.5f;
         resolution();
+        
     }
 
     private void Awake()
@@ -103,7 +122,7 @@ public class FutsalGameManager : MonoBehaviour
 
         // Definir una tolerancia mayor para la comparación
         float iphoneTolerance = 0.05f;
-        float ipadTolerance = 1.5f;
+        float ipadTolerance = 0.05f;
 
         // Si el aspecto es cercano a 16:9 (~1.78)
         if (Mathf.Abs(aspectRatio - 1.78f) <= iphoneTolerance)
@@ -111,13 +130,13 @@ public class FutsalGameManager : MonoBehaviour
             ipadBackground.SetActive(false);
             iphoneBackground.SetActive(true);
 
-            // Ajustes de escala para 16:9
+            // Ajustes de escala y posición para 16:9
             northSouthBoundaries.transform.localScale = new Vector3(4.3f, blueGoalEdgeSouth.transform.localScale.y, northSouthBoundaries.transform.localScale.z);
 
             redGoalEdgeNorth.transform.localScale = new Vector3(4.3f, redGoalEdgeNorth.transform.localScale.y, redGoalEdgeNorth.transform.localScale.z);
             redGoalEdgeNorth.transform.position = new Vector3(-14.126f, 4.67f, redGoalEdgeNorth.transform.position.z);
 
-            redGoalEdgeSouth.transform.localScale = new Vector3(redGoalEdgeSouth.transform.localScale.x, redGoalEdgeSouth.transform.localScale.y, redGoalEdgeSouth.transform.localScale.z);
+            redGoalEdgeSouth.transform.localScale = new Vector3(4.3f, redGoalEdgeSouth.transform.localScale.y, redGoalEdgeSouth.transform.localScale.z);
             redGoalEdgeSouth.transform.position = new Vector3(-14.126f, -4.67f, redGoalEdgeSouth.transform.position.z);
 
             blueGoalEdgeNorth.transform.localScale = new Vector3(4.3f, blueGoalEdgeNorth.transform.localScale.y, blueGoalEdgeNorth.transform.localScale.z);
@@ -127,9 +146,19 @@ public class FutsalGameManager : MonoBehaviour
             blueGoalEdgeSouth.transform.position = new Vector3(14.126f, -4.67f, blueGoalEdgeSouth.transform.position.z);
 
             playerEdges.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
             // Ajuste de los Joysticks
             blueJoystick.transform.localScale = new Vector3(0.834f, 0.834f, 1.0f);
             redJoystick.transform.localScale = new Vector3(0.834f, 0.834f, 1.0f);
+
+            // Ajustes de rango de movimiento para 16:9
+            strikerMinX = -13.45f;
+            strikerMaxX = 13.45f;
+            strikerMinY = -6.2f;
+            strikerMaxY = 6.2f;
+
+            goalkeeperMinY = -3.5f;
+            goalkeeperMaxY = 3.5f;
         }
         // Si el aspecto es cercano a 4:3 (~1.33333 para iPad)
         else if (Mathf.Abs(aspectRatio - 1.33333f) <= ipadTolerance)
@@ -137,7 +166,7 @@ public class FutsalGameManager : MonoBehaviour
             ipadBackground.SetActive(true);
             iphoneBackground.SetActive(false);
 
-            // Ajustes de escala para 4:3
+            // Ajustes de escala y posición para 4:3
             northSouthBoundaries.transform.localScale = new Vector3(northSouthBoundaries.transform.localScale.x, 1.4f, northSouthBoundaries.transform.localScale.z);
 
             redGoalEdgeNorth.transform.localScale = new Vector3(6.9f, redGoalEdgeNorth.transform.localScale.y, redGoalEdgeNorth.transform.localScale.z);
@@ -157,8 +186,37 @@ public class FutsalGameManager : MonoBehaviour
             // Ajuste de los Joysticks
             blueJoystick.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
             redJoystick.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+
+            // Ajustes de rango de movimiento para 4:3
+            strikerMinX = -13.45f;
+            strikerMaxX = 13.45f;
+            strikerMinY = -8.9f;
+            strikerMaxY = 8.9f;
+
+            goalkeeperMinY = -3.5f;
+            goalkeeperMaxY = 3.5f;
+        }
+        if (redPlayerController != null)
+        {
+            redPlayerController.StrikerMinX = strikerMinX;
+            redPlayerController.StrikerMaxX = strikerMaxX;
+            redPlayerController.StrikerMinY = strikerMinY;
+            redPlayerController.StrikerMaxY = strikerMaxY;
+            redPlayerController.GoalkeeperMinY = goalkeeperMinY;
+            redPlayerController.GoalkeeperMaxY = goalkeeperMaxY;
+        }
+
+        if (bluePlayerController != null)
+        {
+            bluePlayerController.StrikerMinX = strikerMinX;
+            bluePlayerController.StrikerMaxX = strikerMaxX;
+            bluePlayerController.StrikerMinY = strikerMinY;
+            bluePlayerController.StrikerMaxY = strikerMaxY;
+            bluePlayerController.GoalkeeperMinY = goalkeeperMinY;
+            bluePlayerController.GoalkeeperMaxY = goalkeeperMaxY;
         }
     }
+
 
     // Método auxiliar para ajustar la escala de los objetos
 

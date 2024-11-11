@@ -687,6 +687,8 @@ MonoBehaviour:
   maxScore: 2
   restartDelay: 3
   _startTransitionDelay: 4
+  redPlayerController: {fileID: 1395064179}
+  bluePlayerController: {fileID: 315430884}
 --- !u!4 &504580970
 Transform:
   m_ObjectHideFlags: 0
