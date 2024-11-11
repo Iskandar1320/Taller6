@@ -35,7 +35,12 @@ public class FutsalGameManager : MonoBehaviour
     [Header("Resolution Seettings")]
     [SerializeField] GameObject ipadBackground;
     [SerializeField] GameObject iphoneBackground;
-    [SerializeField] GameObject[] scalableObjects; // Lista de objetos para ajustar la escala
+    [SerializeField] GameObject northSouthBoundaries;
+    [SerializeField] GameObject redGoalEdgeNorth;
+    [SerializeField] GameObject redGoalEdgeSouth;
+    [SerializeField] GameObject blueGoalEdgeNorth;
+    [SerializeField] GameObject blueGoalEdgeSouth;
+    [SerializeField] GameObject playerEdges;
 
 
     [Header("Other Settings")]
@@ -96,30 +101,67 @@ public class FutsalGameManager : MonoBehaviour
         float aspectRatio = (float)Screen.height / Screen.width;
         print(aspectRatio);
 
-        // Si el dispositivo es 16:9 (~1.77551f)
-        if (Mathf.Approximately(aspectRatio, 1.77551f))
+        // Definir una tolerancia mayor para la comparación
+        float iphoneTolerance = 0.05f;
+        float ipadTolerance = 1.5f;
+
+        // Si el aspecto es cercano a 16:9 (~1.78)
+        if (Mathf.Abs(aspectRatio - 1.78f) <= iphoneTolerance)
         {
-            ipadBackground.gameObject.SetActive(false);
-            iphoneBackground.gameObject.SetActive(true);
-            AdjustScale(new Vector3(1.0f, 1.0f, 1.0f));  // Escala para 16:9
+            ipadBackground.SetActive(false);
+            iphoneBackground.SetActive(true);
+
+            // Ajustes de escala para 16:9
+            northSouthBoundaries.transform.localScale = new Vector3(4.3f, blueGoalEdgeSouth.transform.localScale.y, northSouthBoundaries.transform.localScale.z);
+
+            redGoalEdgeNorth.transform.localScale = new Vector3(4.3f, redGoalEdgeNorth.transform.localScale.y, redGoalEdgeNorth.transform.localScale.z);
+            redGoalEdgeNorth.transform.position = new Vector3(-14.126f, 4.67f, redGoalEdgeNorth.transform.position.z);
+
+            redGoalEdgeSouth.transform.localScale = new Vector3(redGoalEdgeSouth.transform.localScale.x, redGoalEdgeSouth.transform.localScale.y, redGoalEdgeSouth.transform.localScale.z);
+            redGoalEdgeSouth.transform.position = new Vector3(-14.126f, -4.67f, redGoalEdgeSouth.transform.position.z);
+
+            blueGoalEdgeNorth.transform.localScale = new Vector3(4.3f, blueGoalEdgeNorth.transform.localScale.y, blueGoalEdgeNorth.transform.localScale.z);
+            blueGoalEdgeNorth.transform.position = new Vector3(14.126f, 4.67f, blueGoalEdgeNorth.transform.position.z);
+
+            blueGoalEdgeSouth.transform.localScale = new Vector3(4.3f, blueGoalEdgeSouth.transform.localScale.y, blueGoalEdgeSouth.transform.localScale.z);
+            blueGoalEdgeSouth.transform.position = new Vector3(14.126f, -4.67f, blueGoalEdgeSouth.transform.position.z);
+
+            playerEdges.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            // Ajuste de los Joysticks
+            blueJoystick.transform.localScale = new Vector3(0.834f, 0.834f, 1.0f);
+            redJoystick.transform.localScale = new Vector3(0.834f, 0.834f, 1.0f);
         }
-        // Si el dispositivo es 3:2 (~1.5f)
-        else if (Mathf.Approximately(aspectRatio, 1.5f))
+        // Si el aspecto es cercano a 4:3 (~1.33333 para iPad)
+        else if (Mathf.Abs(aspectRatio - 1.33333f) <= ipadTolerance)
         {
-            ipadBackground.gameObject.SetActive(true);
-            iphoneBackground.gameObject.SetActive(false);
-            AdjustScale(new Vector3(1.2f, 1.2f, 1.0f));  // Escala para 3:2
+            ipadBackground.SetActive(true);
+            iphoneBackground.SetActive(false);
+
+            // Ajustes de escala para 4:3
+            northSouthBoundaries.transform.localScale = new Vector3(northSouthBoundaries.transform.localScale.x, 1.4f, northSouthBoundaries.transform.localScale.z);
+
+            redGoalEdgeNorth.transform.localScale = new Vector3(6.9f, redGoalEdgeNorth.transform.localScale.y, redGoalEdgeNorth.transform.localScale.z);
+            redGoalEdgeNorth.transform.position = new Vector3(-14.13f, 6.07f, redGoalEdgeNorth.transform.position.z);
+
+            redGoalEdgeSouth.transform.localScale = new Vector3(6.9f, redGoalEdgeSouth.transform.localScale.y, redGoalEdgeSouth.transform.localScale.z);
+            redGoalEdgeSouth.transform.position = new Vector3(-14.13f, -6.07f, redGoalEdgeSouth.transform.position.z);
+
+            blueGoalEdgeNorth.transform.localScale = new Vector3(6.9f, blueGoalEdgeNorth.transform.localScale.y, blueGoalEdgeNorth.transform.localScale.z);
+            blueGoalEdgeNorth.transform.position = new Vector3(14.13f, 6.07f, blueGoalEdgeNorth.transform.position.z);
+
+            blueGoalEdgeSouth.transform.localScale = new Vector3(6.9f, blueGoalEdgeSouth.transform.localScale.y, blueGoalEdgeSouth.transform.localScale.z);
+            blueGoalEdgeSouth.transform.position = new Vector3(14.13f, -6.07f, blueGoalEdgeSouth.transform.position.z);
+
+            playerEdges.transform.localScale = new Vector3(1.0f, 1.4f, 1.0f);
+
+            // Ajuste de los Joysticks
+            blueJoystick.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            redJoystick.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
         }
     }
 
     // Método auxiliar para ajustar la escala de los objetos
-    private void AdjustScale(Vector3 scale)
-    {
-        foreach (GameObject obj in scalableObjects)
-        {
-            obj.transform.localScale = scale;
-        }
-    }
+
     private void TestWin()
     {
         if (ganaRed)
