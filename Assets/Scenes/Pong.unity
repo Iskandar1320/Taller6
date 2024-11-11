@@ -400,6 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 263195380}
+  - component: {fileID: 263195381}
   m_Layer: 0
   m_Name: Anotaciones
   m_TagString: Untagged
@@ -424,6 +425,21 @@ Transform:
   - {fileID: 1811882403}
   m_Father: {fileID: 1320360543}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &263195381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263195379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8384b43da6d5444438cb184c2b10a2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftCollider: {fileID: 2128054166}
+  rightCollider: {fileID: 1549163732}
+  bg: {fileID: 2147325772}
 --- !u!1 &639265472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,7 +2814,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1549163731}
   - component: {fileID: 1549163732}
-  - component: {fileID: 1549163733}
   m_Layer: 0
   m_Name: Derecha
   m_TagString: Untagged
@@ -2815,8 +2830,8 @@ Transform:
   m_GameObject: {fileID: 1549163730}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 2.7500002, y: 3, z: 0}
-  m_LocalScale: {x: 0.72000086, y: 0.5000006, z: 1}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1320360543}
@@ -2853,7 +2868,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.061261, y: 6.0663157}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2864,20 +2879,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1225219, y: 22.072756}
+  m_Size: {x: 1, y: 10}
   m_EdgeRadius: 0
---- !u!114 &1549163733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549163730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8384b43da6d5444438cb184c2b10a2b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1614448597
 GameObject:
   m_ObjectHideFlags: 0
@@ -8727,7 +8730,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2128054165}
   - component: {fileID: 2128054166}
-  - component: {fileID: 2128054167}
   m_Layer: 0
   m_Name: Izquierda
   m_TagString: Untagged
@@ -8744,8 +8746,8 @@ Transform:
   m_GameObject: {fileID: 2128054164}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -2.7500012, y: 3, z: 0}
-  m_LocalScale: {x: 0.5000006, y: 0.5000006, z: 1}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1320360543}
@@ -8782,7 +8784,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 6.0663157}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8793,20 +8795,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 22.072756}
+  m_Size: {x: 1, y: 10}
   m_EdgeRadius: 0
---- !u!114 &2128054167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128054164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8384b43da6d5444438cb184c2b10a2b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2147325772
 GameObject:
   m_ObjectHideFlags: 0
@@ -8834,8 +8824,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -84.6637, y: -225.7591, z: 0}
-  m_LocalScale: {x: 0.25763795, y: 0.25112343, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2109592456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
