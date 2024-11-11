@@ -202,7 +202,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 5, y: 10.15, z: 1}
+  m_LocalScale: {x: 7.300781, y: 10.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -388,21 +388,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startObject: {fileID: 1549958922}
   _images:
-  - {fileID: -1876505185, guid: 6595b41957ca12a4f8280bfba28fc147, type: 3}
+  - {fileID: -458156736, guid: 6595b41957ca12a4f8280bfba28fc147, type: 3}
   - {fileID: 1916827061, guid: 6595b41957ca12a4f8280bfba28fc147, type: 3}
   - {fileID: -1311661101, guid: 6595b41957ca12a4f8280bfba28fc147, type: 3}
-  - {fileID: 653655205, guid: 6595b41957ca12a4f8280bfba28fc147, type: 3}
+  - {fileID: -1387259153, guid: 6595b41957ca12a4f8280bfba28fc147, type: 3}
   - {fileID: 1204216126, guid: 6595b41957ca12a4f8280bfba28fc147, type: 3}
   - {fileID: -822461412, guid: 6595b41957ca12a4f8280bfba28fc147, type: 3}
   scoreTextPlayer1: {fileID: 930437921}
   scoreTextPlayer2: {fileID: 1258932141}
-  turnText: {fileID: 0}
-  turnText2: {fileID: 0}
   panelwin: {fileID: 1325448254}
   colorpanel: {fileID: 1325448256}
   _textMeshPro: {fileID: 1615188837}
   _mesa: {fileID: 392934982}
   animator: {fileID: 955403754}
+  bg: {fileID: 0}
 --- !u!4 &547492185
 Transform:
   m_ObjectHideFlags: 0
@@ -1117,6 +1116,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019528486}
   m_CullTransparentMesh: 1
+--- !u!1 &1075212846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1075212847}
+  m_Layer: 0
+  m_Name: Carta
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1075212847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075212846}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1549958919}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1115352452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,13 +1950,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549958918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2013}
-  m_LocalScale: {x: 0.16248946, y: 0.33206, z: 2.159377}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.16248944, y: 0.33205998, z: 2.159377}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1362355110}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1075212847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &1549958921
 SpriteRenderer:
@@ -2178,7 +2209,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1115352455}
   - {fileID: 547492185}
-  - {fileID: 1549958919}
+  - {fileID: 1075212847}
   - {fileID: 392934983}
   - {fileID: 609744765}
   - {fileID: 872912861}
