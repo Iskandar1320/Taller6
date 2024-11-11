@@ -9,6 +9,7 @@ namespace Memoria
         [SerializeField]
         private ControllerMemoria gameController;
 
+        [SerializeField] private AudioSource aS;
         private int _spriteId;
         public int spriteId
         {
@@ -20,6 +21,7 @@ namespace Memoria
             if (image_unknown.activeSelf && gameController.canOpen)
             {
                 image_unknown.SetActive(false);
+                aS.Play();
                 gameController.ImageOpened(this);
             }
         }
