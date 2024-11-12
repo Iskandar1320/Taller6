@@ -2,9 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Volume")]
+    [Range(0, 1)]
+    public float masterVolume = 1;
+    [Range(0, 1)]
+    public float musicVolume = 1;
+    [Range(0, 1)]
+    public float sfxVolume = 1;
+    [Range(0, 1)]
+
+    private Bus masterBus;
+    private Bus musicBus;
+    private Bus sfxBus;
+
     public static AudioManager Instance; // { get; private set; }
 
     private void Awake()
@@ -19,6 +33,18 @@ public class AudioManager : MonoBehaviour
         // Asigna esta instancia y haz que persista entre escenas
         Instance = this;
         DontDestroyOnLoad(gameObject); // Hace que no se destruya al cargar otra escena
+
+        masterBus = RuntimeManager.GetBus("bus:/");
+        musicBus = RuntimeManager.GetBus("bus:/Music");
+        sfxBus = RuntimeManager.GetBus("bus:/SFX");
+
+
+    }
+    private void Update()
+    {
+        masterBus.setVolume(masterVolume);
+        musicBus.setVolume(musicVolume);
+        sfxBus.setVolume(sfxVolume);
     }
     /*private void Start()
     {
