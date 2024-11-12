@@ -5,12 +5,12 @@ public class GameManagerAtrapar : MonoBehaviour
 {
     public TextMeshProUGUI scoreAzul;
     public TextMeshProUGUI scoreRojo;
-    private int PuntosAzul;
-    private int PuntosRojo;
+    private int PuntosAzul = 0;
+    private int PuntosRojo = 0;
     public GameObject GanaRojo;
     public GameObject GanaAzul;
     private SceneTransitions _sceneTransitions;
-    bool gana;
+    bool gana = false;
     SpawnerPuntos spawnerPuntos;
 
     private void Start()
@@ -27,11 +27,12 @@ public class GameManagerAtrapar : MonoBehaviour
     {
         PuntosRojo++;
         UpdateScoreText();
-        if(PuntosRojo == 15 && gana == false)
+        if(PuntosRojo == 5 && gana == false)
         {
             gana = true;
             spawnerPuntos.isSpawning = false;
             GanaRojo.SetActive(true);
+            print("ola");
             StartCoroutine(_sceneTransitions.EndScene());
         }
     }
@@ -39,12 +40,14 @@ public class GameManagerAtrapar : MonoBehaviour
     {
         PuntosAzul++;
         UpdateScoreText();
-        if (PuntosAzul == 15 && gana == false)
+        if (PuntosAzul == 5 && gana == false)
         {
             gana = true;
             spawnerPuntos.isSpawning = false;
 
             GanaAzul.SetActive(true);
+            print("ola");
+            
             StartCoroutine(_sceneTransitions.EndScene());
         }
     }

@@ -114,7 +114,7 @@ namespace SinkShip
                 timer += flashDuration;
             }
 
-            // Asegurarse de que el barco estÈ visible al final
+            // Asegurarse de que el barco estÅEvisible al final
             spriteRenderer.enabled = true;
 
             isInvulnerable = false; // Terminar el estado de inmortalidad
@@ -126,21 +126,23 @@ namespace SinkShip
             {
                 winningText.text = "Player 2 Wins";
                 colorpanel.color = new Color32(28, 39, 161, 233);
+                AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
                 StartCoroutine(_sceneTransitions.EndScene());
             }
             else if (playerNumber == 2 && lifes < 1)
             {
                 winningText.text = "Player 1 Wins";
                 colorpanel.color = new Color32(161, 28, 28, 233);
+                AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
                 StartCoroutine(_sceneTransitions.EndScene());
             }
             if (winAudioSource != null) // Alejo Aca iria lo del Audio de Disparo
             {
-                winAudioSource.Play();
+                //winAudioSource.Play();
             }
             if (musicAudioSource != null) // Alejo Aca iria lo del Audio de Disparo
             {
-                musicAudioSource.Stop();
+                //musicAudioSource.Stop();
             }
             winningPanel.SetActive(true);
             StartCoroutine(RestartGame());

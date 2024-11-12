@@ -43,7 +43,8 @@ public class FutsalBallController : MonoBehaviour
             // Reproducir sonido solo si se puede (controlado por la corrutina)
             if (canPlaySound)
             {
-                audioSource.Play();
+                //audioSource.Play();
+                AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.FutsalKickBall);
                 StartCoroutine(SoundCooldownCoroutine());
             }
         }
@@ -55,7 +56,8 @@ public class FutsalBallController : MonoBehaviour
             rb.velocity = direction * Mathf.Max(speed * bounceDamping, 0f);
 
             // Reproducir sonido de colisión en los bordes sin tiempo de espera
-            audioSource.Play();
+            //audioSource.Play();
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.FutsalKickBall);
         }
     }
 

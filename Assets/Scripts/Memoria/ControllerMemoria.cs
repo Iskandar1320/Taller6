@@ -248,11 +248,13 @@ namespace Memoria
                 {
                     scorePlayer1++;
                     scoreTextPlayer1.text = scorePlayer1.ToString();
+                    AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.correctGood);
                 }
                 else
                 {
                     scorePlayer2++;
                     scoreTextPlayer2.text = scorePlayer2.ToString();
+                    AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.correctGood);
                 }
             }
             else
@@ -282,23 +284,26 @@ namespace Memoria
                 {
                     _textMeshPro.text = "Player 1 Wins";
                     colorpanel.color = new Color32(161, 28, 28, 233);
+                    AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
                     StartCoroutine(_sceneTransitions.EndScene());
-                    winAudio.Play();
+                    //winAudio.Play();
+
 
                 }
                 else if (scorePlayer2 > scorePlayer1)
                 {
                     _textMeshPro.text = "Player 2 Wins";
                     colorpanel.color = new Color32(28, 39, 161, 233);
-                    winAudio.Play();
+                    //winAudio.Play();
+                    AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
                     StartCoroutine(_sceneTransitions.EndScene());
                 }
                 else
                 {
                     _textMeshPro.text = "Empate";
                     colorpanel.color = new Color32(117, 5, 226, 233);
-                    winAudio.Play();
-
+                    //winAudio.Play();
+                    AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
                     StartCoroutine(_sceneTransitions.EndScene());
                 }
                 panelwin.SetActive(true);

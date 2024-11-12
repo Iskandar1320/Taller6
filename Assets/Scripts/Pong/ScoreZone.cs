@@ -51,6 +51,7 @@ public class ScoreZone : MonoBehaviour
     private IEnumerator WaitToDestroyAzul()
     {
         yield return new WaitForSeconds(1.2f);
+        AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
         Destroy(pelota);
         barra1.SetActive(false);
         barra2.SetActive(false);
@@ -60,6 +61,7 @@ public class ScoreZone : MonoBehaviour
     private IEnumerator WaitToDestroyRojo()
     {
         yield return new WaitForSeconds(1.2f);
+        AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
         Destroy(pelota);
         barra1.SetActive(false);
         barra2.SetActive(false);

@@ -28,7 +28,8 @@ public class Puntos : MonoBehaviour
 
         if (collision.CompareTag(AzulTag))
         {
-            GetComponent<AudioSource>().Play();
+            //GetComponent<AudioSource>().Play();
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.eat);
             particleEffect.SetActive(true);
             shouldMove = false;
             Destroy(circle);
@@ -39,7 +40,8 @@ public class Puntos : MonoBehaviour
         }
         if (collision.CompareTag(RojoTag))
         {
-            GetComponent<AudioSource>().Play();
+            //GetComponent<AudioSource>().Play();
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.eat);
             particleEffect.SetActive(true);
             shouldMove = false;
             Destroy(circle);

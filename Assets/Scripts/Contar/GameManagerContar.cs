@@ -25,7 +25,8 @@ namespace Contar
         {
             if (Input.GetMouseButtonDown(0) && !gameStarted)
             {
-                audioSource.Play();
+                //audioSource.Play();
+                AudioManager.Instance.ClickUi();
 
                 StartCoroutine(SpawnRoutine());
                 gameStarted = true;
@@ -34,7 +35,8 @@ namespace Contar
 
         public void AudioRonda()
         {
-            audioSource2.Play();
+            //audioSource2.Play();
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.spawnPajaro);
 
         }
 

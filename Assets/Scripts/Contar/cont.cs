@@ -34,6 +34,8 @@ namespace Contar
         [SerializeField] private AudioSource winSound;
 
 
+        private bool puedeSonar;
+
         private void Start()
         {
             BtnRojo = GameObject.Find("Rojo").GetComponent<Button>();
@@ -56,10 +58,13 @@ namespace Contar
             if (gameManager.gameStarted)
             {
                 tapToStart.SetActive(false);
+                puedeSonar = true;
                 StartCoroutine(EjecutarAccionDespuesDeTiempo());
 
                 if (tiempoDeRonda > 0 && finRonda == false)
                 {
+                    
+
                     tiempoDeRonda -= Time.deltaTime;
                     if (tiempoDeRonda < 0)
                     {
@@ -82,6 +87,7 @@ namespace Contar
                         rondaRojo++;
                         if (rondaRojo >= 2 && gana == false)
                         {
+                            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
                             gameManager.isSpawning = false;
                             puntoAzul.SetActive(false);
                             puntoRojo.SetActive(false);
@@ -89,14 +95,18 @@ namespace Contar
                             winSound.Play();
 
                             gana = true;
+                            finRonda = true;
+                            puedeSonar = false;
                             StartCoroutine(_sceneTransitions.EndScene());
                             return;
                         }
                         else
                         {
-
+                            if (puedeSonar == true)
+                            {
+                                StartCoroutine(EjecutarAccionDespuesDeRonda());
+                            }
                             puntoRojo.SetActive(true);
-                            StartCoroutine(EjecutarAccionDespuesDeRonda());
                             finRonda = false;
                         }
                         return;
@@ -106,6 +116,7 @@ namespace Contar
                         rondaAzul++;
                         if (rondaAzul >= 2 && gana == false)
                         {
+                            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
                             gameManager.isSpawning = false;
                             puntoAzul.SetActive(false);
                             puntoRojo.SetActive(false);
@@ -113,19 +124,26 @@ namespace Contar
                             winSound.Play();
 
                             gana = true;
+                            puedeSonar = false;
                             StartCoroutine(_sceneTransitions.EndScene());
                         }
                         else
                         {
+                            if (puedeSonar == true)
+                            {
+                                StartCoroutine(EjecutarAccionDespuesDeRonda());
+                            }
                             puntoAzul.SetActive(true);
-                            StartCoroutine(EjecutarAccionDespuesDeRonda());
                             finRonda = false;
                         }
                         return;
                     }
                     else
                     {
-                        StartCoroutine(EjecutarAccionDespuesDeRonda());
+                        if (puedeSonar == true)
+                        {
+                            StartCoroutine(EjecutarAccionDespuesDeRonda());
+                        }
                         finRonda = false;
                         return;
                     }
@@ -162,8 +180,9 @@ namespace Contar
         private IEnumerator EjecutarAccionDespuesDeRonda()
         {
             yield return new WaitForSeconds(3f);
+            
+            gameManager.AudioRonda() ;
             tiempoDeRonda = 10f;
-            gameManager.AudioRonda();
             contAzulTXT.enabled = false;
             contRojoTXT.enabled = false;
             contadorTXT.enabled = false;

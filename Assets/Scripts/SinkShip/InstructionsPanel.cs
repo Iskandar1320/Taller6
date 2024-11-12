@@ -9,7 +9,7 @@ public class InstructionsPanel : MonoBehaviour
 
     void Start()
     {
-        instructionsPanel.SetActive(false); // Asegurarse de que el panel estÈ desactivado al inicio
+        instructionsPanel.SetActive(false); // Asegurarse de que el panel estÅEdesactivado al inicio
         StartCoroutine(ShowInstructionsPanelAfterDelay()); // Comienza el delay para mostrar el panel
 
     }

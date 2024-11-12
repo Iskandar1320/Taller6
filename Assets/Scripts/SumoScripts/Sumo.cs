@@ -54,6 +54,8 @@ namespace SumoScripts
         private float _timeNow;
         private float _referenceTime = 4f;
         private bool _runningTime;
+        private bool suenaEmpuje1 = true;
+        private bool suenaEmpuje2 = true;
 
         private void Start()
         {
@@ -162,11 +164,13 @@ namespace SumoScripts
             if (_isTackle1)
             {
                 mano1.SetActive(true);
-        
+
                 // Reproduce el sonido solo al presionar
-                if (!empuje.isPlaying)
+                if (suenaEmpuje1)
                 {
-                    empuje.PlayOneShot(empuje.clip);
+                    //empuje.PlayOneShot(empuje.clip);
+                    AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.empuje);
+                    suenaEmpuje1 = false;
                 }
 
                 Tackle(p1, directionReference1.transform.up);
@@ -175,6 +179,7 @@ namespace SumoScripts
             {
                 mano1.SetActive(false);
                 Rotate(p1);
+                suenaEmpuje1 = true;
             }
 
             if (_isTackle2)
@@ -182,9 +187,11 @@ namespace SumoScripts
                 mano2.SetActive(true);
 
                 // Reproduce el sonido solo al presionar
-                if (!empuje2.isPlaying)
+                if (suenaEmpuje2)
                 {
-                    empuje2.PlayOneShot(empuje2.clip);
+                    //empuje2.PlayOneShot(empuje2.clip);
+                    AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.empuje);
+                    suenaEmpuje2 = false;
                 }
 
                 Tackle(p2, directionReference2.transform.up);
@@ -193,6 +200,7 @@ namespace SumoScripts
             {
                 mano2.SetActive(false);
                 Rotate(p2);
+                suenaEmpuje2 = true;
             }
         }
 
@@ -241,16 +249,16 @@ namespace SumoScripts
             switch (playerNumber)
             {
                 case 1:
-                    sonidoAmbiente.volume = 0.7f;
+                    //sonidoAmbiente.volume = 0.7f;
 
-                    caida.Play();
+                    //caida.Play();
 
                     _roundsBlue++;
                     break;
                 case 2:
-                    sonidoAmbiente.volume = 0.7f;
+                    //sonidoAmbiente.volume = 0.7f;
 
-                    caida2.Play();
+                    //caida2.Play();
                     _roundsRed++;
                     
                     break;
@@ -267,7 +275,7 @@ namespace SumoScripts
                 colorpanel.color = new Color32(161, 28, 28, 233);
                 panel.SetActive(true);
                 sonidoAmbiente.volume = 1f;
-                winSound.Play();
+                //winSound.Play();
 
                 StartCoroutine(_sceneTransitions.EndScene());
             }
@@ -277,7 +285,7 @@ namespace SumoScripts
                 colorpanel.color = new Color32(28, 39, 161, 233);
                 panel.SetActive(true);
                 sonidoAmbiente.volume = 1f;
-                winSound.Play();
+                //winSound.Play();
                 StartCoroutine(_sceneTransitions.EndScene());
 
             }
@@ -344,5 +352,10 @@ namespace SumoScripts
         {
             panelTime.SetActive(false);
         }
-     }
+        private IEnumerator WaitForFewSecondsChant()
+        {
+            yield return new WaitForSeconds(0.3f);
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.crowd);
+        }
+    }
 }

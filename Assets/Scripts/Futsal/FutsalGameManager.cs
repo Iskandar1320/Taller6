@@ -244,7 +244,8 @@ public class FutsalGameManager : MonoBehaviour
             blueScore++;
             string tempScorB = blueScore.ToString();
             bluePunt.text = tempScorB;
-            goalScoredSound.Play();
+            //goalScoredSound.Play();
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.crowd);
             StartCoroutine(RestartGame());
         }
         else if (team == "red")
@@ -252,7 +253,8 @@ public class FutsalGameManager : MonoBehaviour
             redScore++;
             string tempScorR = redScore.ToString();
             redPunt.text = tempScorR;
-            goalScoredSound.Play();
+            //goalScoredSound.Play();
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.crowd);
             StartCoroutine(RestartGame());
         }
     }
@@ -272,7 +274,8 @@ public class FutsalGameManager : MonoBehaviour
             colorpanel.color = new Color32(161, 28, 28, 233);
 
         }
-        winnerSound.Play();
+        //winnerSound.Play();
+        AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Winning);
         StartCoroutine(_sceneTransitions.EndScene());
         // L�gica para manejar la victoria
     }
@@ -334,7 +337,8 @@ public class FutsalGameManager : MonoBehaviour
         ResetPlayerPositions(bluePlayers, bluePlayerStartPositions);
         if (blueScore < maxScore && redScore < maxScore)
         {
-            resetGameSound.Play();
+            //resetGameSound.Play();
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.Whistle);
 
         }
     }

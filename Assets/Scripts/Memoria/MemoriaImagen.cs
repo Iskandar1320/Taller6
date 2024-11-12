@@ -21,7 +21,8 @@ namespace Memoria
             if (image_unknown.activeSelf && gameController.canOpen)
             {
                 image_unknown.SetActive(false);
-                aS.Play();
+                //aS.Play();
+                AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.cartasOpen);
                 gameController.ImageOpened(this);
             }
         }
@@ -34,6 +35,8 @@ namespace Memoria
         public void Close()
         {
             image_unknown.SetActive(true);
+            AudioManager.Instance.PlayOneShot(Fmod_Events.Instance.cartasClose);
+
         }
     }
 }
