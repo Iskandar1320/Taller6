@@ -37,12 +37,12 @@ namespace Memoria
         
         bool allPrimaryChildrenAtTargetPosition;  // Para verificar si todos los hijos de primaryGroup están en su lugar
         bool allSecondaryChildrenAtTargetPosition;  // Para verificar si todos los hijos de secondaryGroup están en su lugar
-        [SerializeField] private GameObject bg;
         private bool escalame;
         private int totalClones; // Total de clones creados
         private int clonesAssignedToGroups; // Clones que ya han sido movidos y asignados
         private int timex = 7;
 
+        [SerializeField] private AudioSource winAudio;
         private void Start()
         {
             _sceneTransitions = FindObjectOfType<SceneTransitions>();
@@ -283,18 +283,22 @@ namespace Memoria
                     _textMeshPro.text = "Player 1 Wins";
                     colorpanel.color = new Color32(161, 28, 28, 233);
                     StartCoroutine(_sceneTransitions.EndScene());
+                    winAudio.Play();
+
                 }
                 else if (scorePlayer2 > scorePlayer1)
                 {
                     _textMeshPro.text = "Player 2 Wins";
                     colorpanel.color = new Color32(28, 39, 161, 233);
+                    winAudio.Play();
                     StartCoroutine(_sceneTransitions.EndScene());
                 }
                 else
                 {
                     _textMeshPro.text = "Empate";
-                    colorpanel.color = new Color32(117, 5, 226, 255);
-                    animator.Play("EntreEscenas");
+                    colorpanel.color = new Color32(117, 5, 226, 233);
+                    winAudio.Play();
+
                     StartCoroutine(_sceneTransitions.EndScene());
                 }
                 panelwin.SetActive(true);
