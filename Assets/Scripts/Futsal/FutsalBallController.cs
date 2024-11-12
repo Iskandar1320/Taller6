@@ -7,7 +7,7 @@ public class FutsalBallController : MonoBehaviour
     [SerializeField] private float ballPushForce = 5.0f; // Ajustable desde el Inspector para controlar la fuerza de empuje
     [SerializeField] private float bounceDamping = 0.8f; // Entre 0 y 1
     [SerializeField] private float soundCooldown = 0.2f; // Tiempo de espera entre sonidos al colisionar con el jugador
-    [SerializeField] private float minimumSpeedToStop = 0.5f; // Velocidad mínima antes de detenerse
+    [SerializeField] private float minimumSpeedToStop = 0.5f; // Velocidad mú‹ima antes de detenerse
 
     private Rigidbody2D rb;
     private Vector2 lastVelocity;

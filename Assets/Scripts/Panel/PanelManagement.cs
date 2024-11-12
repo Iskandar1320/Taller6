@@ -170,11 +170,11 @@ namespace Panel
                 };
             }
         }
-
-        private void OnDisable()
+        private void OnDestroy()
         {
             DOTween.KillAll();
         }
+    
         private IEnumerator PantallaMenu()
         {
             yield return new WaitForSeconds(2.7f);

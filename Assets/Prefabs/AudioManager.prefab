@@ -1,5 +1,147 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3225723281408881586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4993058582841011953}
+  - component: {fileID: 8551760896476729277}
+  m_Layer: 0
+  m_Name: FmodEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4993058582841011953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225723281408881586}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.0912957, y: 38.13867, z: 11.40664}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3921324115585220173}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8551760896476729277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225723281408881586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1840ea781100def4a95492dbfc8d64e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <cartas>k__BackingField:
+    Guid:
+      Data1: -180266728
+      Data2: 1190851515
+      Data3: 182183841
+      Data4: 399482489
+    Path: event:/SFX/Cards
+  <crowd>k__BackingField:
+    Guid:
+      Data1: -1037208550
+      Data2: 1110981662
+      Data3: -761781066
+      Data4: -971995392
+    Path: event:/SFX/Crowd
+  <gunShot>k__BackingField:
+    Guid:
+      Data1: -1889020745
+      Data2: 1112083044
+      Data3: 976564367
+      Data4: 1237487833
+    Path: event:/SFX/GunShot
+  <golpePelota>k__BackingField:
+    Guid:
+      Data1: -2135737698
+      Data2: 1321241168
+      Data3: 847199371
+      Data4: 1635301364
+    Path: event:/SFX/HitBall_Destroy
+  <Winning>k__BackingField:
+    Guid:
+      Data1: 1002476119
+      Data2: 1176560627
+      Data3: 1696081563
+      Data4: 2043232091
+    Path: event:/SFX/Winning
+  <explotion>k__BackingField:
+    Guid:
+      Data1: 2003889435
+      Data2: 1200182367
+      Data3: 458064545
+      Data4: 829759689
+    Path: event:/SFX/Explotion
+  <caida>k__BackingField:
+    Guid:
+      Data1: 1223118770
+      Data2: 1199643978
+      Data3: 709196177
+      Data4: 1622034823
+    Path: event:/SFX/Caida
+  <empuje>k__BackingField:
+    Guid:
+      Data1: -2115587119
+      Data2: 1183752246
+      Data3: -1757121877
+      Data4: 1352185244
+    Path: event:/SFX/Empuje
+  <spawnPajaro>k__BackingField:
+    Guid:
+      Data1: 2078016417
+      Data2: 1328401810
+      Data3: 663189917
+      Data4: 435675637
+    Path: event:/SFX/SpwanPajaros
+  <eat>k__BackingField:
+    Guid:
+      Data1: -507526323
+      Data2: 1276537709
+      Data3: -1863673189
+      Data4: -1862741426
+    Path: event:/SFX/Eat
+  <FutsalKickBall>k__BackingField:
+    Guid:
+      Data1: -825221546
+      Data2: 1207375457
+      Data3: 30538373
+      Data4: 1153765943
+    Path: event:/SFX/FutsalKickBall
+  <Whistle>k__BackingField:
+    Guid:
+      Data1: -1726616638
+      Data2: 1144027402
+      Data3: -1717043567
+      Data4: 1318250764
+    Path: event:/SFX/Whistle
+  <Click>k__BackingField:
+    Guid:
+      Data1: 976015855
+      Data2: 1120041939
+      Data3: -412202878
+      Data4: 1058454365
+    Path: event:/Ui/UiClick
+  <ClickMaquinita>k__BackingField:
+    Guid:
+      Data1: 1056105128
+      Data2: 1105606560
+      Data3: -1461805649
+      Data4: 535775097
+    Path: event:/Ui/ArcadeTurningOn
 --- !u!1 &3681760979316558611
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +171,8 @@ Transform:
   m_LocalPosition: {x: 9.735951, y: 170.33807, z: -16.204203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4993058582841011953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4340099419321086890
@@ -44,80 +187,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785b28cc1e16e16418d4fdbec337232b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <disparo>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <pajaro>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <golpeSumo>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <golpePelota>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <cartas>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <gol>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <winChant>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  "<destrucci\xF3nObjeto>k__BackingField":
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  "<destrucci\xF3nBarcos>k__BackingField":
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <Click>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <ClickMaquinita>k__BackingField:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
