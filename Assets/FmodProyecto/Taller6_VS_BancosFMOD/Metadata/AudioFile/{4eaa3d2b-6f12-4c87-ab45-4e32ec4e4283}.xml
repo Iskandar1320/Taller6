@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4eaa3d2b-6f12-4c87-ab45-4e32ec4e4283}">
+		<property name="assetPath">
+			<value>Song/Barcos1.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>34.558526077097504</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4f866e39-48e9-4924-8425-6d4c68e2d0f0}</destination>
+		</relationship>
+	</object>
+</objects>
