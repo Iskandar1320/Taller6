@@ -51,8 +51,10 @@ public class FutsalGameManager : MonoBehaviour
     [SerializeField] private FutsalPlayerController redPlayerController;  // Referencia para el controlador del equipo rojo
     [SerializeField] private FutsalPlayerController bluePlayerController;  // Referencia para el controlador del equipo azul
 
-
-
+    [Header("Audio Sources")]
+    [SerializeField] AudioSource resetGameSound;
+    [SerializeField] AudioSource winnerSound;
+    [SerializeField] AudioSource goalScoredSound;
 
     // Para almacenar las posiciones iniciales de cada jugador
     private Vector2[] redPlayerStartPositions;
@@ -242,6 +244,7 @@ public class FutsalGameManager : MonoBehaviour
             blueScore++;
             string tempScorB = blueScore.ToString();
             bluePunt.text = tempScorB;
+            goalScoredSound.Play();
             StartCoroutine(RestartGame());
         }
         else if (team == "red")
@@ -249,6 +252,7 @@ public class FutsalGameManager : MonoBehaviour
             redScore++;
             string tempScorR = redScore.ToString();
             redPunt.text = tempScorR;
+            goalScoredSound.Play();
             StartCoroutine(RestartGame());
         }
     }
@@ -268,6 +272,7 @@ public class FutsalGameManager : MonoBehaviour
             colorpanel.color = new Color32(161, 28, 28, 233);
 
         }
+        winnerSound.Play();
         StartCoroutine(_sceneTransitions.EndScene());
         // L�gica para manejar la victoria
     }
@@ -327,6 +332,11 @@ public class FutsalGameManager : MonoBehaviour
         // Reiniciar las posiciones de los jugadores
         ResetPlayerPositions(redPlayers, redPlayerStartPositions);
         ResetPlayerPositions(bluePlayers, bluePlayerStartPositions);
+        if (blueScore < maxScore && redScore < maxScore)
+        {
+            resetGameSound.Play();
+
+        }
     }
 
     // Guardar las posiciones iniciales de todos los jugadores
