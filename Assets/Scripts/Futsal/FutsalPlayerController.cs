@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FutsalPlayerController : MonoBehaviour
 {
+    
+
+
     [SerializeField] private GameObject striker;
     [SerializeField] private GameObject goalkeeper;
     [SerializeField] private Joystick joystick;
@@ -11,14 +14,15 @@ public class FutsalPlayerController : MonoBehaviour
     [SerializeField] float goalkeeperSpeed = 5.0f;
 
     // Límites de la cancha para los Delanteros
-    [SerializeField] private float strikerMinX = -8f;
-    [SerializeField] private float strikerMaxX = 8f;
-    [SerializeField] private float strikerMinY = -4.5f;
-    [SerializeField] private float strikerMaxY = 4.5f;
+    [SerializeField] private float strikerMinX;
+    [SerializeField] private float strikerMaxX;
+    [SerializeField] private float strikerMinY;
+    [SerializeField] private float strikerMaxY;
+
 
     // Rango permitido para el movimiento del portero (en el eje Y)
-    [SerializeField] private float goalkeeperMinY = -4f;
-    [SerializeField] private float goalkeeperMaxY = 4f;
+    [SerializeField] private float goalkeeperMinY;
+    [SerializeField] private float goalkeeperMaxY;
 
     // Booleanos para diferenciar a que equipo pertenecen esto debido a que toca invertir los ejes de movimiento dependiendo de la posicion en la pantalla
     [SerializeField] bool redTeam;
@@ -29,6 +33,14 @@ public class FutsalPlayerController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
+
+    public float StrikerMinX { get => strikerMinX; set => strikerMinX = value; }
+    public float StrikerMaxX { get => strikerMaxX; set => strikerMaxX = value; }
+    public float StrikerMinY { get => strikerMinY; set => strikerMinY = value; }
+    public float StrikerMaxY { get => strikerMaxY; set => strikerMaxY = value; }
+
+    public float GoalkeeperMinY { get => goalkeeperMinY; set => goalkeeperMinY = value; }
+    public float GoalkeeperMaxY { get => goalkeeperMaxY; set => goalkeeperMaxY = value; }
 
     private void Awake()
     {
