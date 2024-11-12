@@ -14,6 +14,8 @@ namespace Contar
         public float spawnRatePjroVer;
         public bool gameStarted = false;
         public bool isSpawning = true;
+        [SerializeField] AudioSource audioSource;
+        [SerializeField] AudioSource audioSource2;
 
         private void Start()
         {
@@ -23,13 +25,22 @@ namespace Contar
         {
             if (Input.GetMouseButtonDown(0) && !gameStarted)
             {
+                audioSource.Play();
+
                 StartCoroutine(SpawnRoutine());
                 gameStarted = true;
             }
         }
 
+        public void AudioRonda()
+        {
+            audioSource2.Play();
+
+        }
+
         IEnumerator SpawnRoutine()
         {
+            AudioRonda();
             while (true)
             {
                 if (isSpawning)
@@ -46,6 +57,7 @@ namespace Contar
         }
         void SpawnPrefabPjroAma()
         {
+
             Vector3 spawnPos = spawnPoint.position;
             spawnPos.x = Random.Range(-maxX, maxX);
             Instantiate(PjroAma, spawnPos, Quaternion.identity);

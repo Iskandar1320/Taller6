@@ -157,6 +157,7 @@ namespace Contar
         {
             yield return new WaitForSeconds(3f);
             tiempoDeRonda = 10f;
+            gameManager.AudioRonda();
             contAzulTXT.enabled = false;
             contRojoTXT.enabled = false;
             contadorTXT.enabled = false;
