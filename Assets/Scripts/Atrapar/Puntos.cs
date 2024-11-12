@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class CircleMovement : MonoBehaviour
+public class Puntos : MonoBehaviour
 {
     public float speed = 5f;
     public GameObject particleEffect;
@@ -8,6 +9,7 @@ public class CircleMovement : MonoBehaviour
     string AzulTag = "TrianAzul";
     string RojoTag = "TrianRojo";
     private bool shouldMove = true;
+
     void Update()
     {
         if (shouldMove)
@@ -32,6 +34,7 @@ public class CircleMovement : MonoBehaviour
             Destroy(circle);
             GetComponent<Collider2D>().enabled = false;
             Destroy(gameObject, 0.5f);
+         
             gameManagerAtrapar.PuntoAzul();
         }
         if (collision.CompareTag(RojoTag))

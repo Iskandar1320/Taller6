@@ -31,6 +31,8 @@ namespace Contar
         private SceneTransitions _sceneTransitions;
         private bool gana;
         [SerializeField] GameObject tapToStart;
+        [SerializeField] private AudioSource winSound;
+
 
         private void Start()
         {
@@ -84,6 +86,8 @@ namespace Contar
                             puntoAzul.SetActive(false);
                             puntoRojo.SetActive(false);
                             RojoGana.SetActive(true);
+                            winSound.Play();
+
                             gana = true;
                             StartCoroutine(_sceneTransitions.EndScene());
                             return;
@@ -106,6 +110,8 @@ namespace Contar
                             puntoAzul.SetActive(false);
                             puntoRojo.SetActive(false);
                             AzulGana.SetActive(true);
+                            winSound.Play();
+
                             gana = true;
                             StartCoroutine(_sceneTransitions.EndScene());
                         }

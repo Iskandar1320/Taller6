@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Contar;
-using RadarMadness;
 
 public class GameManagerAtrapar : MonoBehaviour
 {
@@ -31,11 +27,12 @@ public class GameManagerAtrapar : MonoBehaviour
     {
         PuntosRojo++;
         UpdateScoreText();
-        if(PuntosRojo == 25 && gana == false)
+        if(PuntosRojo == 5 && gana == false)
         {
             gana = true;
-            Time.timeScale = 0f;
+            spawnerPuntos.isSpawning = false;
             GanaRojo.SetActive(true);
+            print("ola");
             StartCoroutine(_sceneTransitions.EndScene());
         }
     }
@@ -43,11 +40,14 @@ public class GameManagerAtrapar : MonoBehaviour
     {
         PuntosAzul++;
         UpdateScoreText();
-        if (PuntosAzul == 25 && gana == false)
+        if (PuntosAzul == 5 && gana == false)
         {
             gana = true;
-            Time.timeScale = 0f;
+            spawnerPuntos.isSpawning = false;
+
             GanaAzul.SetActive(true);
+            print("ola");
+            
             StartCoroutine(_sceneTransitions.EndScene());
         }
     }

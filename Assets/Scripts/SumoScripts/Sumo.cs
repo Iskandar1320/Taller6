@@ -35,6 +35,7 @@ namespace SumoScripts
             [SerializeField] private AudioSource caida;
             [SerializeField] private AudioSource caida2;
             [SerializeField] private AudioSource sonidoAmbiente;
+            [SerializeField] private AudioSource winSound;
             
         #endregion
 
@@ -266,6 +267,7 @@ namespace SumoScripts
                 colorpanel.color = new Color32(161, 28, 28, 233);
                 panel.SetActive(true);
                 sonidoAmbiente.volume = 1f;
+                winSound.Play();
 
                 StartCoroutine(_sceneTransitions.EndScene());
             }
@@ -275,7 +277,7 @@ namespace SumoScripts
                 colorpanel.color = new Color32(28, 39, 161, 233);
                 panel.SetActive(true);
                 sonidoAmbiente.volume = 1f;
-
+                winSound.Play();
                 StartCoroutine(_sceneTransitions.EndScene());
 
             }
