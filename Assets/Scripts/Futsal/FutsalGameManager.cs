@@ -123,8 +123,8 @@ public class FutsalGameManager : MonoBehaviour
         print(aspectRatio);
 
         // Definir una tolerancia mayor para la comparación
-        float iphoneTolerance = 0.05f;
-        float ipadTolerance = 0.05f;
+        float iphoneTolerance = 0.1f;
+        float ipadTolerance = 0.2f;
 
         // Si el aspecto es cercano a 16:9 (~1.78)
         if (Mathf.Abs(aspectRatio - 1.78f) <= iphoneTolerance)

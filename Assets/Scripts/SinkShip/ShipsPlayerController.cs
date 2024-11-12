@@ -33,7 +33,12 @@ namespace SinkShip
         private Rigidbody2D rb;
         private SpriteRenderer spriteRenderer;
         private float steeringInput;
-    
+
+        [SerializeField] AudioSource musicAudioSource;
+        [SerializeField] AudioSource winAudioSource;
+
+
+
 
         // Start is called before the first frame update
         private void Awake()
@@ -128,6 +133,14 @@ namespace SinkShip
                 winningText.text = "Player 1 Wins";
                 colorpanel.color = new Color32(161, 28, 28, 233);
                 StartCoroutine(_sceneTransitions.EndScene());
+            }
+            if (winAudioSource != null) // Alejo Aca iria lo del Audio de Disparo
+            {
+                winAudioSource.Play();
+            }
+            if (musicAudioSource != null) // Alejo Aca iria lo del Audio de Disparo
+            {
+                musicAudioSource.Stop();
             }
             winningPanel.SetActive(true);
             StartCoroutine(RestartGame());
