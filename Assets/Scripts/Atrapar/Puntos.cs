@@ -26,6 +26,7 @@ public class CircleMovement : MonoBehaviour
 
         if (collision.CompareTag(AzulTag))
         {
+            GetComponent<AudioSource>().Play();
             particleEffect.SetActive(true);
             shouldMove = false;
             Destroy(circle);
@@ -35,6 +36,7 @@ public class CircleMovement : MonoBehaviour
         }
         if (collision.CompareTag(RojoTag))
         {
+            GetComponent<AudioSource>().Play();
             particleEffect.SetActive(true);
             shouldMove = false;
             Destroy(circle);
